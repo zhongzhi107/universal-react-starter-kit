@@ -1,5 +1,5 @@
 {
-  "name": "react-universal-starter-kit",
+  "name": "rusk",
   "version": "0.0.1",
   "description": "an universal web application framework using express, react, redux and webpack",
   "keywords": [
