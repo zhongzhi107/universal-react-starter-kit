@@ -15,7 +15,7 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'uajs',
+    title: 'react-universal-starter-kit',
     description: 'All the modern best practices in one example.',
     head: {
       titleTemplate: 'uajs: %s',
