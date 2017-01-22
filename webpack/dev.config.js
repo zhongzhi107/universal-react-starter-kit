@@ -107,7 +107,10 @@ module.exports = {
       },
       {
         test: isomorphicToolsPlugin.regular_expression('images'),
-        loader: 'url-loader?limit=10240'
+        loader: 'url-loader',
+        query: {
+          limit: 10240,
+        },
       }
     ]
   },

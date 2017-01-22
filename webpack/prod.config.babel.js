@@ -47,10 +47,20 @@ export default {
       },
       {
         test: isomorphicToolsPlugin.regular_expression('images'),
-        loader: 'url-loader',
-        query: {
-          limit: 10240
-        }
+        use: [
+          {
+            loader: 'url-loader',
+            query: {
+              limit: 10240,
+            }
+          },
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              bypassOnDebug: true,
+            },
+          },
+        ]
       }
     ]
   },
