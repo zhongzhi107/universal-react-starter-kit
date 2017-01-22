@@ -13,8 +13,8 @@
   "main": "bin/server.js",
   "scripts": {
     "build": "better-npm-run build",
-    "prepublish": "better-npm-run prepublish",
     "postinstall": "npm run build",
+    "postpublish": "better-npm-run postpublish",
     "lint": "eslint -c .eslintrc src api",
     "serve": "concurrent --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "serve:dist": "npm run build && npm start",
@@ -153,8 +153,8 @@
         "NODE_ENV": "production"
       }
     },
-    "prepublish": {
-      "command": "babel-node ./npm-scripts/prepublish.js"
+    "postpublish": {
+      "command": "babel-node ./npm-scripts/postpublish.js"
     }
   }
 }
