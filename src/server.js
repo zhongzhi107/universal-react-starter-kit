@@ -1,35 +1,35 @@
+import path from 'path';
+import PrettyError from 'pretty-error';
+import http from 'http';
 import Express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import config from './config';
-import favicon from 'serve-favicon';
-import compression from 'compression';
 import httpProxy from 'http-proxy';
-import path from 'path';
-import createStore from './redux/create';
-import ApiClient from './helpers/ApiClient';
-import Html from './helpers/Html';
-import PrettyError from 'pretty-error';
-import http from 'http';
-
 import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
+import createStore from './redux/create';
+import ApiClient from './helpers/ApiClient';
+import Html from './helpers/Html';
 import getRoutes from './routes';
+import {
+  apiHost,
+  apiPort,
+  host,
+  port,
+  app as meta
+} from './config';
 
-const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
+const targetUrl = `http://${apiHost}:${apiPort}`;
 const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
 const proxy = httpProxy.createProxyServer({
   target: targetUrl,
-  ws: true
+  // ws: true
 });
-
-app.use(compression());
-app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 
 app.use(Express.static(path.join(__dirname, '..', 'static')));
 
@@ -37,14 +37,6 @@ app.use(Express.static(path.join(__dirname, '..', 'static')));
 app.use('/api', (req, res) => {
   proxy.web(req, res, {target: targetUrl});
 });
-
-// app.use('/ws', (req, res) => {
-//   proxy.web(req, res, {target: targetUrl + '/ws'});
-// });
-//
-// server.on('upgrade', (req, socket, head) => {
-//   proxy.ws(req, socket, head);
-// });
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
@@ -109,13 +101,13 @@ app.use((req, res) => {
   });
 });
 
-if (config.port) {
-  server.listen(config.port, (err) => {
+if (port) {
+  server.listen(port, (err) => {
     if (err) {
       console.error(err);
     }
-    console.info('----\n==> ✅  %s is running, talking to API server on %s.', config.app.title, config.apiPort);
-    console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.port);
+    console.info(`----\n==> ✅  ${meta.title} is running, talking to API server on ${apiPort}.`);
+    console.info(`==> 💻  Open http://${host}:${port} in a browser to view the app.`);
   });
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
