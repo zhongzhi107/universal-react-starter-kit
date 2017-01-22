@@ -1,8 +1,7 @@
 { "extends": "eslint-config-airbnb",
   "env": {
     "browser": true,
-    "node": true,
-    "mocha": true
+    "node": true
   },
   "rules": {
     "new-cap": [2, { "capIsNewExceptions": ["List", "Map", "Set"] }],

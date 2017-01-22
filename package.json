@@ -15,7 +15,7 @@
     "build": "better-npm-run build",
     "postinstall": "npm run build",
     "postpublish": "better-npm-run postpublish",
-    "lint": "eslint -c .eslintrc src api",
+    "eslint": "eslint webpack",
     "serve": "concurrent --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "serve:dist": "npm run build && npm start",
     "start": "concurrent --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
@@ -139,7 +139,7 @@
       }
     },
     "watch-client": {
-      "command": "node webpack/webpack-dev-server.js",
+      "command": "babel-node webpack/webpack-dev-server.js",
       "env": {
         "UV_THREADPOOL_SIZE": 100,
         "NODE_PATH": "./src",
@@ -148,7 +148,7 @@
       }
     },
     "build": {
-      "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
+      "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.babel.js",
       "env": {
         "NODE_ENV": "production"
       }

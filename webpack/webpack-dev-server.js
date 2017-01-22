@@ -1,14 +1,17 @@
-var Express = require('express');
-var webpack = require('webpack');
+import Express from 'express';
+import webpack from 'webpack';
+import {host, port} from 'config';
+import webpackConfig from './dev.config';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
-var config = require('../src/config');
-var webpackConfig = require('./dev.config');
-var compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig);
 
-var host = config.host || 'localhost';
-var port = (Number(config.port) + 1) || 3001;
-var serverOptions = {
-  contentBase: 'http://' + host + ':' + port,
+const HOST = host || 'localhost';
+const PORT = (Number(port) + 1) || 3001;
+
+const serverOptions = {
+  contentBase: `http://${HOST}:${PORT}`,
   quiet: true,
   noInfo: true,
   hot: true,
@@ -19,15 +22,13 @@ var serverOptions = {
   stats: {colors: true}
 };
 
-var app = new Express();
-
-app.use(require('webpack-dev-middleware')(compiler, serverOptions));
-app.use(require('webpack-hot-middleware')(compiler));
-
-app.listen(port, function onAppListening(err) {
+const app = new Express();
+app.use(webpackDevMiddleware(compiler, serverOptions));
+app.use(webpackHotMiddleware(compiler));
+app.listen(PORT, (err) => {
   if (err) {
     console.error(err);
   } else {
-    console.info('==> 🚧  Webpack development server listening on port %s', port);
+    console.info(`==> 🚧  Webpack development server listening on port ${PORT}`);
   }
 });

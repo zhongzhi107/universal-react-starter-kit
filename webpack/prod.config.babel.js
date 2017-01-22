@@ -1,24 +1,23 @@
-require('babel-polyfill');
+import 'babel-polyfill';
+import path from 'path';
+import webpack from 'webpack';
+import CleanPlugin from 'clean-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
-// Webpack config for creating the production bundle.
-var path = require('path');
-var webpack = require('webpack');
-var CleanPlugin = require('clean-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-
-var projectRootPath = path.resolve(__dirname, '../');
-var assetsPath = path.resolve(projectRootPath, './static/dist');
+const projectRootPath = path.resolve(__dirname, '../');
+const assetsPath = path.resolve(projectRootPath, './static/dist');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
+const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
 
-module.exports = {
+export default {
   devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
   entry: {
-    'main': [
+    main: [
       './src/client.js'
     ]
   },
@@ -35,11 +34,6 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader'
       },
-      // {
-      //   test: /\.less$/,
-      //   loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap=true&sourceMapContents=true')
-      // },
-
       {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract({
@@ -52,7 +46,7 @@ module.exports = {
         }),
       },
       {
-        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
         query: {
           limit: 10240
@@ -62,7 +56,6 @@ module.exports = {
   },
   resolve: {
     modules: ['src', 'node_modules'],
-    // extensions: ['', '.json', '.js', '.jsx']
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
@@ -73,7 +66,6 @@ module.exports = {
     new CleanPlugin([assetsPath], { root: projectRootPath }),
 
     // css files from the extract-text-plugin loader
-    // new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
     new ExtractTextPlugin({
       filename: '[name]-[chunkhash].css',
       allChunks: true,
@@ -105,6 +97,6 @@ module.exports = {
       comments: /^!/,
     }),
 
-    webpackIsomorphicToolsPlugin
+    isomorphicToolsPlugin
   ]
 };
