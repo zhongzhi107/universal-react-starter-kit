@@ -48,6 +48,8 @@
     "http-proxy": "^1.16.2",
     "image-webpack-loader": "^3.1.0",
     "immutable": "^3.8.1",
+    "koa": "next",
+    "koa-webpack-middleware": "^1.0.3",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
     "lru-memoize": "^1.0.0",
