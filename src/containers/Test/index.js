@@ -9,6 +9,7 @@ import {Link} from 'react-router';
 
 @asyncConnect([{
   deferred: true,
+  // eslint-disable-next-line
   promise: ({store: {dispatch, getState}}) => {
     if (!isLoaded(getState())) {
       return dispatch(loadTest());
@@ -33,85 +34,13 @@ export default class Test extends Component {
     const {message} = this.props.data;
     return (
       <div className="container">
-        <h1>Test</h1>
+        <h1>Test33</h1>
         <ul>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/registry">Registry</Link></li>
         </ul>
         <div>{message}</div>
         <Helmet title="Test title" />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>sdfsadfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfa sdf
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>sdfsadfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfa sdf
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>sdfsadfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfa sdf
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>sdfsadfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfa sdf
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>sdfsadfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfa sdf
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>d
-        <br/>
-        <br/>
-        <br/>
         <button>Click Here</button>
       </div>
     );

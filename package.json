@@ -15,7 +15,7 @@
     "build": "better-npm-run build",
     "postinstall": "npm run build",
     "postpublish": "better-npm-run postpublish",
-    "eslint": "eslint webpack",
+    "eslint": "eslint webpack src",
     "serve": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "serve:dist": "npm run build && npm start",
     "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",

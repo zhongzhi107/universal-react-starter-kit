@@ -13,6 +13,7 @@ import Helmet from 'react-helmet';
  * by the server.js file.
  */
 export default class Html extends Component {
+  // eslint-disable-next-line
   static propTypes = {
     assets: PropTypes.object,
     component: PropTypes.node,
@@ -39,7 +40,7 @@ export default class Html extends Component {
           {Object.keys(assets.styles).map((style, key) =>
             <link
               href={assets.styles[style]}
-              key={key}
+              key={key} // eslint-disable-line
               media="screen, projection"
               rel="stylesheet"
               type="text/css"
@@ -48,15 +49,18 @@ export default class Html extends Component {
           )}
 
           {/* (will be present only in development mode) */}
-          {/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}
-          {/* can smoothen the initial style flash (flicker) on page load in development mode. */}
-          {/* ideally one could also include here the style for the current page (Home.scss, About.scss, etc) */}
-          { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('containers/App/App.less')._style}}/> : null }
+          {/* outputs a <style/> tag with all bootstrap styles + App.scss +
+            it could be CurrentPage.scss. */}
+          {/* can smoothen the initial style flash (flicker) on page load
+            in development mode. */}
+          {/* ideally one could also include here the style
+            for the current page (Home.scss, About.scss, etc) */}
+          { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('containers/App/App.less')._style}} /> : null }
         </head>
         <body>
-          <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
-          <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
-          <script src={assets.javascript.main} charSet="UTF-8"/>
+          <div id="content" dangerouslySetInnerHTML={{__html: content}} />
+          <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8" />
+          <script src={assets.javascript.main} charSet="UTF-8" />
         </body>
       </html>
     );

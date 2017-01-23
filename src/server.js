@@ -12,6 +12,7 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
+// eslint-disable-next-line
 import Html from './helpers/Html';
 import getRoutes from './routes';
 import {
@@ -40,7 +41,6 @@ app.use('/api', (req, res) => {
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
-  let json;
   if (error.code !== 'ECONNRESET') {
     console.error('proxy error', error);
   }
@@ -48,7 +48,7 @@ proxy.on('error', (error, req, res) => {
     res.writeHead(500, {'content-type': 'application/json'});
   }
 
-  json = {error: 'proxy_error', reason: error.message};
+  const json = {error: 'proxy_error', reason: error.message};
   res.end(JSON.stringify(json));
 });
 
@@ -64,12 +64,13 @@ app.use((req, res) => {
   const history = syncHistoryWithStore(memoryHistory, store);
 
   function hydrateOnClient() {
-    res.send('<!doctype html>\n' + ReactDOM.renderToString(
+    const html = ReactDOM.renderToString(
       <Html
         assets={webpackIsomorphicTools.assets()}
         store={store}
       />
-    ));
+    );
+    res.send(`<!doctype html>\n${html}`);
   }
 
   if (__DISABLE_SSR__) {
@@ -77,7 +78,12 @@ app.use((req, res) => {
     return;
   }
 
-  match({ history, routes: getRoutes(store), location: req.originalUrl }, (error, redirectLocation, renderProps) => {
+  const matchOptions = {
+    history,
+    routes: getRoutes(store),
+    location: req.originalUrl
+  };
+  match(matchOptions, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       res.redirect(redirectLocation.pathname + redirectLocation.search);
     } else if (error) {
@@ -91,15 +97,16 @@ app.use((req, res) => {
             <ReduxAsyncConnect {...renderProps} />
           </Provider>
         );
-
-        res.status(200);
-        res.send('<!doctype html>\n' + ReactDOM.renderToString(
+        const html = ReactDOM.renderToString(
           <Html
             assets={webpackIsomorphicTools.assets()}
             component={component}
             store={store}
           />
-        ));
+        );
+
+        res.status(200);
+        res.send(`<!doctype html>\n${html}`);
       });
     } else {
       res.status(404).send('Not found');

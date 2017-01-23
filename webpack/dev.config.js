@@ -23,16 +23,22 @@ try {
   console.error(err);
 }
 
-const babelrcObjectDevelopment = babelrcObject.env && babelrcObject.env.development || {};
+const babelrcObjectDevelopment = (babelrcObject.env && babelrcObject.env.development) || {};
 
 // merge global and dev-only plugins
 let combinedPlugins = babelrcObject.plugins || [];
 combinedPlugins = combinedPlugins.concat(babelrcObjectDevelopment.plugins);
 
-const babelLoaderQuery = Object.assign({}, babelrcObjectDevelopment, babelrcObject, {plugins: combinedPlugins});
+const babelLoaderQuery = Object.assign(
+  {},
+  babelrcObjectDevelopment,
+  babelrcObject,
+  {plugins: combinedPlugins}
+);
 delete babelLoaderQuery.env;
 
-// Since we use .babelrc for client and server, and we don't want HMR enabled on the server, we have to add
+// Since we use .babelrc for client and server,
+// and we don't want HMR enabled on the server, we have to add
 // the babel plugin react-transform-hmr manually here.
 
 // make sure react-transform is enabled

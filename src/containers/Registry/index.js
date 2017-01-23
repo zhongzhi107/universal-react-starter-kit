@@ -18,7 +18,7 @@ export default class Registry extends Component {
           <li><Link to="/test">Test</Link></li>
           <li><Link to="/about">About</Link></li>
         </ul>
-        <RegistryForm onSubmit={this.handleSubmit}/>
+        <RegistryForm onSubmit={this.handleSubmit} />
       </div>
     );
   }

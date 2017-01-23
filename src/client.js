@@ -25,7 +25,7 @@ const renderRouter = props => <ReduxAsyncConnect
   render={applyRouterMiddleware(useScroll())}
 />;
 
-const render = routes => {
+const render = (routes) => {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
     ReactDOM.render(
       <Provider store={store} key="provider">
@@ -49,11 +49,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (__DEVTOOLS__ && !window.devToolsExtension) {
+  // eslint-disable-next-line
   const DevTools = require('./containers/DevTools');
   ReactDOM.render(
     <Provider store={store} key="provider">
       <div>
-        {component}
+        {/* component */}
         <DevTools />
       </div>
     </Provider>,

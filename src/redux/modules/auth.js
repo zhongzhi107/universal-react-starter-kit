@@ -109,17 +109,15 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadAuth')
+    promise: client => client.get('/loadAuth')
   };
 }
 
 export function login(name) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/login', {
-      data: {
-        name: name
-      }
+    promise: client => client.post('/login', {
+      data: {name}
     })
   };
 }
@@ -127,16 +125,14 @@ export function login(name) {
 export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
-    promise: (client) => client.get('/logout')
+    promise: client => client.get('/logout')
   };
 }
 
 export function isValidCaptcha(data) {
   return {
     types: [IS_VALID, IS_VALID_SUCCESS, IS_VALID_FAIL],
-    promise: (client) => client.post('/validCaptcha', {
-      data
-    })
+    promise: client => client.post('/validCaptcha', {data})
   };
 }
 

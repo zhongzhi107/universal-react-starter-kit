@@ -7,7 +7,7 @@ import { asyncConnect } from 'redux-async-connect';
 import cx from 'classnames';
 
 // import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
-import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import config from 'config';
 import styles from './App.less';
 
@@ -56,7 +56,7 @@ export default class App extends Component {
 
     return (
       <div id="app">
-        <Helmet {...config.app.head}/>
+        <Helmet {...config.app.head} />
         <div key="pageContent" className={pageContentClass}>
           {this.props.children}
         </div>

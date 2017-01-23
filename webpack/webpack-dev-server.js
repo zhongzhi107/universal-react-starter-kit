@@ -1,10 +1,14 @@
-import Koa from 'koa';
+// import Koa from 'koa';
+import Express from 'express';
 import webpack from 'webpack';
+// import {
+//   devMiddleware as webpackDevMiddleware,
+//   hotMiddleware as webpackHotMiddleware
+// } from 'koa-webpack-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import {host, port} from 'config';
 import webpackConfig from './dev.config';
-// import webpackDevMiddleware from 'webpack-dev-middleware';
-// import webpackHotMiddleware from 'webpack-hot-middleware';
-import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware';
 
 const compiler = webpack(webpackConfig);
 
@@ -23,10 +27,10 @@ const serverOptions = {
   stats: {colors: true}
 };
 
-// const app = new Express();
-const app = new Koa();
-app.use(devMiddleware(compiler, serverOptions));
-app.use(hotMiddleware(compiler));
+const app = new Express();
+// const app = new Koa();
+app.use(webpackDevMiddleware(compiler, serverOptions));
+app.use(webpackHotMiddleware(compiler));
 app.listen(PORT, (err) => {
   if (err) {
     console.error(err);
