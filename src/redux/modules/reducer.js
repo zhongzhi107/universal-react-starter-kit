@@ -1,13 +1,9 @@
 import { combineReducers } from 'redux';
-// import multireducer from 'multireducer';
 import { routerReducer } from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
-// import { pagination } from 'violet-paginator';
-
-// import counter from './counter';
 import {reducer as form} from 'redux-form';
-// import info from './info';
-// import widgets from './widgets';
+// import { pagination } from 'violet-paginator';
+// import multireducer from 'multireducer';
 import auth from './auth';
 import test from './test';
 
@@ -16,14 +12,5 @@ export default combineReducers({
   reduxAsyncConnect,
   auth,
   form,
-  // layout,
-  // multireducer: multireducer({
-  //   counter1: counter,
-  //   counter2: counter,
-  //   counter3: counter
-  // }),
-  // info,
-  // pagination,
-  // widgets,
   test,
 });
