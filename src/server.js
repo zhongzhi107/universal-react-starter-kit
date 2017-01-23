@@ -53,6 +53,15 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
+  function hydrateOnClient() {
+    res.send('<!doctype html>\n' + ReactDOM.renderToString(
+      <Html
+        assets={webpackIsomorphicTools.assets()}
+        store={store}
+      />
+    ));
+  }
+
   if (__DEVELOPMENT__) {
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
@@ -62,15 +71,6 @@ app.use((req, res) => {
   const memoryHistory = createHistory(req.originalUrl);
   const store = createStore(memoryHistory, client);
   const history = syncHistoryWithStore(memoryHistory, store);
-
-  function hydrateOnClient() {
-    res.send('<!doctype html>\n' + ReactDOM.renderToString(
-      <Html
-        assets={webpackIsomorphicTools.assets()}
-        store={store}
-      />
-    ));
-  }
 
   if (__DISABLE_SSR__) {
     hydrateOnClient();
