@@ -18,7 +18,7 @@ module.exports = Object.assign({
     title: 'react-universal-starter-kit',
     description: 'All the modern best practices in one example.',
     head: {
-      titleTemplate: 'uajs: %s',
+      titleTemplate: 'react-universal-starter-kit: %s',
       meta: [
         {name: 'description', content: 'All the modern best practices in one example.'},
         {charset: 'utf-8'}
