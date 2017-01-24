@@ -117,10 +117,15 @@ app.use((req, res) => {
 if (port) {
   server.listen(port, (err) => {
     if (err) {
-      console.error(err);
+      console.error(`==> 😭  OMG!!! ${err}`);
     }
     console.info(`----\n==> ✅  ${meta.title} is running, talking to API server on ${apiPort}.`);
     console.info(`==> 💻  Open http://${host}:${port} in a browser to view the app.`);
+
+    if (__DEVELOPMENT__) {
+      // Open Chrome
+      require('../tools/open-browser')(port);
+    }
   });
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
