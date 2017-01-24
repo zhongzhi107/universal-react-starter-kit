@@ -1,4 +1,4 @@
-![React Universal Starter Kit](https://github.com/zhongzhi107/react-universal-starter-kit/blob/master/static/logo.png?raw=true)
+<img src="https://github.com/zhongzhi107/react-universal-starter-kit/blob/master/static/logo.png?raw=true" style="width:150px;margin-left:100px;" alt="React Universal Starter Kit" />
 
 # React Universal Starter Kit
 React Universal Starter Kit is an universal web application framework using express, react, redux and webpack.
