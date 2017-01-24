@@ -25,5 +25,11 @@ module.exports = Object.assign({
       ]
     }
   },
+  commonChunks: {
+    vendor: [
+      'react',
+      'react-dom',
+    ],
+  },
 
 }, environment);

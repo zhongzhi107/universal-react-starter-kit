@@ -90,9 +90,11 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: babelLoaderQuery
+            query: babelLoaderQuery,
           },
-          {loader: 'eslint-loader'}
+          {
+            loader: 'eslint-loader',
+          }
         ],
       },
       {
