@@ -1,3 +1,5 @@
+![React Universal Starter Kit](https://github.com/zhongzhi107/react-universal-starter-kit/blob/master/static/logo.png?raw=true)
+
 # React Universal Starter Kit
 React Universal Starter Kit is an universal web application framework using express, react, redux and webpack.
 
@@ -13,8 +15,6 @@ Really starter boilerplate with the most popular technologies:
 * [x][Webpack 2](https://webpack.js.org/) for bundling and [**"Tree-Shaking"**](http://www.2ality.com/2015/12/webpack-tree-shaking.html) support.
 * [x][Babel](https://babeljs.io/) for ES6 and ES7 transpiling.
 * [ ][React Hot Loader 3](https://github.com/gaearon/react-hot-loader) to tweak React components in real time.
-* [ ][nodemon]() to monitor for any changes in your node.js application and automatically restart the server.
-* [ ][axios](https://github.com/mzabriskie/axios) for universal data fetching/rehydration on the client.
 * [x][redux-thunk](https://github.com/gaearon/redux-thunk) as the middleware to deal with asynchronous action.
 * [x][react-router-redux](https://github.com/reactjs/react-router-redux) to keep your router in sync with Redux state.
 * [x][react-helmet](https://github.com/nfl/react-helmet) to manage title, meta, styles and scripts tags on both server and client.
@@ -27,7 +27,7 @@ Really starter boilerplate with the most popular technologies:
 * [x][ESLint](http://eslint.org/) to maintain a consistent javascript code style (Airbnb's code style).
 * [ ][StyleLint](http://stylelint.io/) to maintain a consistent css/scss code style.
 * [x]CSS and SASS support with [PostCSS](https://github.com/postcss/postcss-loader) for advanced transformations (e.g. autoprefixer). [CSS Modules](https://github.com/css-Modules/css-Modules) enabled.
-* [ ]Image (with [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) for optimizing) and Font support.
+* [x]Image (with [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) for optimizing) and Font support.
 * [ ]Split vendor's libraries from client bundle.
 * [x]No other view engines, just javascript based HTML rendering template.
 * [x]Shared app config between development and production.
@@ -48,8 +48,8 @@ Really starter boilerplate with the most popular technologies:
 1. You can start by clone the repository on your local machine by running:
 
 ```
-git clone https://github.com/zhongzhi107/ibaodong/cms.git
-cd cms
+git clone https://github.com/zhongzhi107/react-universal-starter-kit
+cd react-universal-starter-kit
 ```
 
 2. Install all of the npm packages:
