@@ -1,10 +1,5 @@
-// import Koa from 'koa';
 import Express from 'express';
 import webpack from 'webpack';
-// import {
-//   devMiddleware as webpackDevMiddleware,
-//   hotMiddleware as webpackHotMiddleware
-// } from 'koa-webpack-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import {host, port} from 'config';
@@ -28,7 +23,6 @@ const serverOptions = {
 };
 
 const app = new Express();
-// const app = new Koa();
 app.use(webpackDevMiddleware(compiler, serverOptions));
 app.use(webpackHotMiddleware(compiler));
 app.listen(PORT, (err) => {
