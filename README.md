@@ -37,6 +37,7 @@ Really starter boilerplate with the most popular technologies:
 * [ ]Happypack for build performance.
 * [x]Auto open chrome window when service start.
 * [ ].env
+* [ ]Extract text plugin with code splitting
 
 ## Requirements
 
