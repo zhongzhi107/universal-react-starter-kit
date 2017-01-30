@@ -38,6 +38,10 @@ const render = (routes) => {
   });
 };
 
+if (process.env.NODE_ENV === 'production') {
+  require('offline-plugin/runtime').install();
+}
+
 render(getRoutes(store));
 
 if (process.env.NODE_ENV !== 'production') {

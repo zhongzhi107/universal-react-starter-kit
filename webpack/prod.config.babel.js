@@ -3,6 +3,7 @@ import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import {commonChunks} from '../src/config';
@@ -109,6 +110,8 @@ const plugins = [
     },
     comments: /^!/,
   }),
+
+  new OfflinePlugin(),
 
   isomorphicToolsPlugin
 ];
