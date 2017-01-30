@@ -38,6 +38,7 @@ Really starter boilerplate with the most popular technologies:
 * [x]Auto open chrome window when service start.
 * [ ].env
 * [ ]Extract text plugin with code splitting
+* [ ]PWA support
 
 ## Requirements
 
