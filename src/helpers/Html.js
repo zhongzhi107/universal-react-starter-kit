@@ -60,8 +60,12 @@ export default class Html extends Component {
         <body>
           <div id="content" dangerouslySetInnerHTML={{__html: content}} />
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8" />
-          {Object.keys(assets.javascript).reverse().map(script =>
-            <script src={assets.javascript[script]} charSet="UTF-8" />
+          {Object.keys(assets.javascript).reverse().map((script, key) =>
+            <script
+              key={key} // eslint-disable-line
+              src={assets.javascript[script]}
+              charSet="UTF-8"
+            />
           )}
         </body>
       </html>
