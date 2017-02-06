@@ -1,11 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env babel-node
+
+import piping from 'piping';
+
 if (process.env.NODE_ENV !== 'production') {
-  if (!require('piping')({
+  piping({
     hook: true,
-    ignore: /(\/\.|~$|\.json$)/i
-  })) {
-    return;
-  }
+    ignore: /(\/\.|~$|\.json|\.scss$)/i
+  });
 }
-require('../server.babel'); // babel registration (runtime transpilation for node)
 require('../api/api');
