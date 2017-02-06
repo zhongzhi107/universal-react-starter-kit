@@ -1,6 +1,6 @@
 {
   "name": "rusk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "an universal web application framework using express, react, redux and webpack",
   "keywords": [
     "react",
