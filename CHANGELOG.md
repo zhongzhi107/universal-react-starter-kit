@@ -1,0 +1,28 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/zhongzhi107/react-universal-starter-kit/compare/v0.0.2...v0.1.0) (2017-02-06)
+
+
+### Bug Fixes
+
+* Each child in an array or iterator should have a unique "key" prop ([95e0d29](https://github.com/zhongzhi107/react-universal-starter-kit/commit/95e0d29))
+* titleTemplate ([9bc24df](https://github.com/zhongzhi107/react-universal-starter-kit/commit/9bc24df))
+
+
+### Features
+
+* Add urlStrictEqual parameter to set url match type ([d5b9787](https://github.com/zhongzhi107/react-universal-starter-kit/commit/d5b9787))
+* auto open Chrome window when service start ([ab8afa1](https://github.com/zhongzhi107/react-universal-starter-kit/commit/ab8afa1))
+* Config files support ES6 syntax ([edf7685](https://github.com/zhongzhi107/react-universal-starter-kit/commit/edf7685))
+* Optimize image with image-webpack-loader ([16decde](https://github.com/zhongzhi107/react-universal-starter-kit/commit/16decde))
+* PWA support ([54edfe5](https://github.com/zhongzhi107/react-universal-starter-kit/commit/54edfe5))
+* Replace Expressjs with Koajs in watch-client script ([04cb378](https://github.com/zhongzhi107/react-universal-starter-kit/commit/04cb378))
+* Split vendor's libraries from client bundle ([905d6c1](https://github.com/zhongzhi107/react-universal-starter-kit/commit/905d6c1))
+
+
+### Performance Improvements
+
+* Update import order ([7d2bb01](https://github.com/zhongzhi107/react-universal-starter-kit/commit/7d2bb01))
