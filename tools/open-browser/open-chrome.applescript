@@ -15,6 +15,9 @@ on run argv
       make new window
     end if
 
+    -- Complete or partial match the URL
+    set isStrictEqual to false
+
     -- Find a tab currently running the debugger
     set found to false
     set theTabIndex to -1
@@ -22,7 +25,12 @@ on run argv
       set theTabIndex to 0
       repeat with theTab in every tab of theWindow
         set theTabIndex to theTabIndex + 1
-        if theTab's URL is theURL then
+
+        if isStrictEqual and theTab's URL is theURL then
+          set found to true
+          exit repeat
+        end if
+        if not isStrictEqual and theTab's URL starts with theURL then
           set found to true
           exit repeat
         end if
