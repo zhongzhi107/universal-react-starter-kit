@@ -14,7 +14,7 @@
   "scripts": {
     "build": "better-npm-run build",
     "postinstall": "npm run build",
-    "postpublish": "better-npm-run postpublish",
+    "postrelease": "better-npm-run postrelease",
     "eslint": "eslint webpack src",
     "serve": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "serve:dist": "npm run build && npm start",
@@ -157,8 +157,8 @@
         "NODE_ENV": "production"
       }
     },
-    "postpublish": {
-      "command": "babel-node ./npm-scripts/postpublish.js"
+    "postrelease": {
+      "command": "git push origin --tags"
     }
   }
 }
