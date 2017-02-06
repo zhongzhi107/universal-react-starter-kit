@@ -26,7 +26,7 @@ Really starter boilerplate with the most popular technologies:
 * [x][Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension) for next generation developer experience.
 * [x][ESLint](http://eslint.org/) to maintain a consistent javascript code style (Airbnb's code style).
 * [ ][StyleLint](http://stylelint.io/) to maintain a consistent css/scss code style.
-* [x]CSS and SASS support with [PostCSS](https://github.com/postcss/postcss-loader) for advanced transformations (e.g. autoprefixer). [CSS Modules](https://github.com/css-Modules/css-Modules) enabled.
+* [x]CSS and LESS support with [PostCSS](https://github.com/postcss/postcss-loader) for advanced transformations (e.g. autoprefixer). [CSS Modules](https://github.com/css-Modules/css-Modules) enabled.
 * [x]Image (with [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) for optimizing) and Font support.
 * [x]Split vendor's libraries from client bundle.
 * [x]No other view engines, just javascript based HTML rendering template.
@@ -36,7 +36,7 @@ Really starter boilerplate with the most popular technologies:
 * [ ]Testing code coverage support.
 * [ ]Happypack for build performance.
 * [x]Auto open chrome window when service start.
-* [ ].env
+* [ ].env(maybe not best solution)
 * [ ]Extract text plugin with code splitting
 * [ ]PWA support
 
@@ -61,8 +61,8 @@ Really starter boilerplate with the most popular technologies:
 
 3. Start to run it:
   ```
-  # development
-  yarn run serve    # Building bundle and running development server
+  # Building bundle and running development server
+  yarn run serve
   ```
 
   Now the app should be running at http://localhost:3000/
@@ -70,7 +70,7 @@ Really starter boilerplate with the most popular technologies:
   or start production server
 
   ```
-  # production
+  # Running production server
   yarn run serve:dist
   ```
 
