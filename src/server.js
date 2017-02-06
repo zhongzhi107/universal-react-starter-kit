@@ -124,7 +124,7 @@ if (port) {
 
     if (__DEVELOPMENT__) {
       // Open Chrome
-      require('../tools/open-browser')(port);
+      require('../tools/open-browser')(`http://${host}:${port}/`);
     }
   });
 } else {

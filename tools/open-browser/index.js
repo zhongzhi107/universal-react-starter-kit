@@ -4,14 +4,14 @@ import path from 'path';
 import { execSync } from 'child_process';
 import opn from 'opn';
 
-export default (port) => {
+export default (url) => {
   if (process.platform === 'darwin') {
     try {
       // Try our best to reuse existing tab
       // on OS X Google Chrome with AppleScript
       execSync('ps cax | grep "Google Chrome"');
       execSync(
-        `osascript ${path.join(__dirname, './open-chrome.applescript')} http://localhost:${port}/`,
+        `osascript ${path.join(__dirname, './open-chrome.applescript')} ${url}`,
       );
       return true;
     } catch (err) {
@@ -20,7 +20,7 @@ export default (port) => {
   }
   // Fallback to opn
   try {
-    opn(`http://localhost:${port}/`);
+    opn(url);
     return true;
   } catch (err) {
     return false;
