@@ -5,6 +5,7 @@
   "keywords": [
     "react",
     "redux",
+    "koa",
     "universal",
     "isomorphic",
     "react-router"
