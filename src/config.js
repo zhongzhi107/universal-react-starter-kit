@@ -6,10 +6,10 @@ module.exports = {
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'react-universal-starter-kit',
+    title: 'universal-react-starter-kit',
     description: 'All the modern best practices in one example.',
     head: {
-      titleTemplate: 'react-universal-starter-kit: %s',
+      titleTemplate: 'universal-react: %s',
       meta: [
         {name: 'description', content: 'All the modern best practices in one example.'},
         {charset: 'utf-8'}

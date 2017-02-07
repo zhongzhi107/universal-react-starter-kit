@@ -1,7 +1,7 @@
-<img src="https://github.com/zhongzhi107/react-universal-starter-kit/blob/master/static/logo.png?raw=true" width="150" alt="React Universal Starter Kit" />
+<img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/logo.png?raw=true" width="150" alt="Universal React Starter Kit" />
 
-# React Universal Starter Kit
-React Universal Starter Kit is an universal web application framework using express, react, redux and webpack.
+# Universal React Starter Kit
+Universal React Starter Kit is an universal web application framework using express, react, redux and webpack.
 
 ## Features
 Really starter boilerplate with the most popular technologies:
@@ -50,8 +50,8 @@ Really starter boilerplate with the most popular technologies:
 
 1. You can start by clone the repository on your local machine by running:
   ```
-  git clone https://github.com/zhongzhi107/react-universal-starter-kit
-  cd react-universal-starter-kit
+  git clone https://github.com/zhongzhi107/universal-react-starter-kit
+  cd universal-react-starter-kit
   ```
 
 2. Install all of the npm packages:

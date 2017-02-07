@@ -1,5 +1,5 @@
 {
-  "name": "react-universal-starter-kit",
+  "name": "universal-react-starter-kit",
   "version": "0.1.2",
   "description": "an universal web application framework using express, react, redux and webpack",
   "keywords": [
