@@ -34,7 +34,7 @@ export default class Test extends Component {
     const {message} = this.props.data;
     return (
       <div className="container">
-        <h1>Test33</h1>
+        <h1>Test</h1>
         <ul>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/registry">Registry</Link></li>

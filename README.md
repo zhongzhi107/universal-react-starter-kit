@@ -1,7 +1,7 @@
 <img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/logo.png?raw=true" width="150" alt="Universal React Starter Kit" />
 
 # Universal React Starter Kit
-Universal React Starter Kit is an universal web application framework using express, react, redux and webpack.
+Universal React Starter Kit is an universal web application framework using koa2, react, redux and webpack.
 
 ## Features
 Really starter boilerplate with the most popular technologies:

@@ -13,7 +13,6 @@ import Helmet from 'react-helmet';
  * by the server.js file.
  */
 export default class Html extends Component {
-  // eslint-disable-next-line
   static propTypes = {
     assets: PropTypes.object,
     component: PropTypes.node,
