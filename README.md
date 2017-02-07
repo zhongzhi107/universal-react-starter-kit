@@ -37,8 +37,11 @@ Really starter boilerplate with the most popular technologies:
 * [ ]Happypack for build performance.
 * [x]Auto open chrome window when service start.
 * [ ].env(maybe not best solution)
-* [ ]Extract text plugin with code splitting
+* [ ]Code splitting
+  * [ ]Extract text plugin with code splitting
+  * [ ]Code splitting for redux-modules
 * [ ]PWA support
+* [ ]Optimized configuration file structure
 
 ## Requirements
 
