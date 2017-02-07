@@ -14,7 +14,7 @@ function formatUrl(path) {
 }
 
 export default class ApiClient {
-  constructor(req) {
+  constructor(ctx) {
     methods.forEach((method) => {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
@@ -23,8 +23,8 @@ export default class ApiClient {
           request.query(params);
         }
 
-        if (__SERVER__ && req.get('cookie')) {
-          request.set('cookie', req.get('cookie'));
+        if (__SERVER__ && ctx.cookie) {
+          request.set('cookie', ctx.cookie);
         }
 
         if (data) {

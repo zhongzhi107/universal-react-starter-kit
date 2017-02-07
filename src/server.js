@@ -1,10 +1,12 @@
 import path from 'path';
 import PrettyError from 'pretty-error';
-import http from 'http';
-import Express from 'express';
+import Koa from 'koa';
+import convert from 'koa-convert';
+import serve from 'koa-static';
+import proxy from 'koa-proxy';
+import cookie from 'koa-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import httpProxy from 'http-proxy';
 import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
@@ -12,7 +14,6 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
-// eslint-disable-next-line
 import Html from './helpers/Html';
 import getRoutes from './routes';
 import {
@@ -25,41 +26,27 @@ import {
 
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const pretty = new PrettyError();
-const app = new Express();
-const server = new http.Server(app);
-const proxy = httpProxy.createProxyServer({
-  target: targetUrl,
-  // ws: true
-});
-
-app.use(Express.static(path.join(__dirname, '..', 'static')));
+const app = new Koa();
 
 // Proxy to API server
-app.use('/api', (req, res) => {
-  proxy.web(req, res, {target: targetUrl});
-});
+app.use(convert(proxy({
+  host: targetUrl,
+  // Send cookie to real server
+  jar: true,
+  match: /^\/api\//,
+  map: endpoint => endpoint.replace('/api', '')
+})));
+app.use(cookie());
+app.use(serve(path.join(__dirname, '..', 'static')));
 
-// added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
-proxy.on('error', (error, req, res) => {
-  if (error.code !== 'ECONNRESET') {
-    console.error('proxy error', error);
-  }
-  if (!res.headersSent) {
-    res.writeHead(500, {'content-type': 'application/json'});
-  }
-
-  const json = {error: 'proxy_error', reason: error.message};
-  res.end(JSON.stringify(json));
-});
-
-app.use((req, res) => {
+app.use(async (ctx) => {
   if (__DEVELOPMENT__) {
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
     webpackIsomorphicTools.refresh();
   }
-  const client = new ApiClient(req);
-  const memoryHistory = createHistory(req.originalUrl);
+  const client = new ApiClient(ctx);
+  const memoryHistory = createHistory(ctx.originalUrl);
   const store = createStore(memoryHistory, client);
   const history = syncHistoryWithStore(memoryHistory, store);
 
@@ -70,7 +57,7 @@ app.use((req, res) => {
         store={store}
       />
     );
-    res.send(`<!doctype html>\n${html}`);
+    ctx.body = `<!doctype html>\n${html}`;
   }
 
   if (__DISABLE_SSR__) {
@@ -81,41 +68,51 @@ app.use((req, res) => {
   const matchOptions = {
     history,
     routes: getRoutes(store),
-    location: req.originalUrl
+    location: ctx.originalUrl
   };
-  match(matchOptions, (error, redirectLocation, renderProps) => {
-    if (redirectLocation) {
-      res.redirect(redirectLocation.pathname + redirectLocation.search);
-    } else if (error) {
-      console.error('ROUTER ERROR:', pretty.render(error));
-      res.status(500);
-      hydrateOnClient();
-    } else if (renderProps) {
-      loadOnServer({...renderProps, store, helpers: {client}}).then(() => {
-        const component = (
-          <Provider store={store} key="provider">
-            <ReduxAsyncConnect {...renderProps} />
-          </Provider>
-        );
-        const html = ReactDOM.renderToString(
-          <Html
-            assets={webpackIsomorphicTools.assets()}
-            component={component}
-            store={store}
-          />
-        );
 
-        res.status(200);
-        res.send(`<!doctype html>\n${html}`);
+  try {
+    await new Promise((resolve, reject) => {
+      match(matchOptions, async (error, redirectLocation, renderProps) => {
+        if (redirectLocation) {
+          const {pathname, search} = redirectLocation;
+          ctx.redirect(`${pathname}${search}`);
+        } else if (error) {
+          console.error('ROUTER ERROR:', pretty.render(error));
+          ctx.status(500);
+          hydrateOnClient();
+          reject();
+        } else if (renderProps) {
+          try {
+            await loadOnServer({ ...renderProps, store, helpers: client });
+            const component = (
+              <Provider store={store} key="provider">
+                <ReduxAsyncConnect {...renderProps} />
+              </Provider>
+            );
+            global.navigator = { userAgent: ctx.headers['user-agent'] };
+            const html = ReactDOM.renderToString(
+              <Html
+                assets={webpackIsomorphicTools.assets()}
+                component={component}
+                store={store}
+              />
+            );
+            ctx.body = `<!doctype html>\n${html}`;
+            resolve();
+          } catch (err) {
+            console.error(err);
+          }
+        }
       });
-    } else {
-      res.status(404).send('Not found');
-    }
-  });
+    });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 if (port) {
-  server.listen(port, (err) => {
+  app.listen(port, (err) => {
     if (err) {
       console.error(`==> 😭  OMG!!! ${err}`);
     }

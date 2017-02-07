@@ -1,12 +1,11 @@
-import Express from 'express';
+import Koa from 'koa';
 import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 import {host, port} from 'config';
+import devMiddleware from './middleware/webpack-dev';
+import hotMiddleware from './middleware/webpack-hot';
 import webpackConfig from './dev.config';
 
 const compiler = webpack(webpackConfig);
-
 const HOST = host || 'localhost';
 const PORT = (Number(port) + 1) || 3001;
 
@@ -22,9 +21,9 @@ const serverOptions = {
   stats: {colors: true}
 };
 
-const app = new Express();
-app.use(webpackDevMiddleware(compiler, serverOptions));
-app.use(webpackHotMiddleware(compiler));
+const app = new Koa();
+app.use(devMiddleware(compiler, serverOptions));
+app.use(hotMiddleware(compiler));
 app.listen(PORT, (err) => {
   if (err) {
     console.error(err);
