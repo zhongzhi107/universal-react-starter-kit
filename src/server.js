@@ -5,6 +5,7 @@ import convert from 'koa-convert';
 import serve from 'koa-static';
 import proxy from 'koa-proxy';
 import cookie from 'koa-cookie';
+import favicon from 'koa-favicon';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { match } from 'react-router';
@@ -38,6 +39,7 @@ app.use(convert(proxy({
 })));
 app.use(cookie());
 app.use(serve(path.join(__dirname, '..', 'static')));
+app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 
 app.use(async (ctx) => {
   if (__DEVELOPMENT__) {
