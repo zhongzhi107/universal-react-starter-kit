@@ -158,7 +158,7 @@
       }
     },
     "postrelease": {
-      "command": "git push && git push origin --tags"
+      "command": "git push origin branch --tags"
     }
   }
 }
