@@ -162,7 +162,7 @@
       }
     },
     "postrelease": {
-      "command": "git push origin branch --tags"
+      "command": "git push && git push origin --tags"
     }
   }
 }
