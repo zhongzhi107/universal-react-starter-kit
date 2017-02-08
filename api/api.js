@@ -4,9 +4,10 @@ import session from 'koa-session';
 import body from 'koa-body';
 import PrettyError from 'pretty-error';
 import {mapUrl} from 'utils/url';
-import * as actions from 'actions/index';
-import config from '../src/config';
+import * as actions from 'actions';
+import {environments} from '../src/config';
 
+const {apiHost, apiPort} = environments;
 const pretty = new PrettyError();
 const app = new Koa();
 
@@ -39,13 +40,13 @@ app.use(async (ctx) => {
   }
 });
 
-if (config.apiPort) {
-  app.listen(config.apiPort, (err) => {
+if (apiPort) {
+  app.listen(apiPort, (err) => {
     if (err) {
       console.error(err);
     }
-    console.info('----\n==> 🌎  API is running on port %s', config.apiPort);
-    console.info('==> 💻  Send requests to http://%s:%s', config.apiHost, config.apiPort);
+    console.info('----\n==> 🌎  API is running on port %s', apiPort);
+    console.info('==> 💻  Send requests to http://%s:%s', apiHost, apiPort);
   });
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');

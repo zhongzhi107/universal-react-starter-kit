@@ -13,30 +13,29 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
+import {environments} from 'config';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import getRoutes from './routes';
-import {
-  apiHost,
-  apiPort,
-  host,
-  port,
-  app as meta
-} from './config';
+import pkg from '../package.json';
 
+const {host, port, apiHost, apiPort} = environments;
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const pretty = new PrettyError();
 const app = new Koa();
 
 // Proxy to API server
-app.use(convert(proxy({
-  host: targetUrl,
-  // Send cookie to real server
-  jar: true,
-  match: /^\/api\//,
-  map: endpoint => endpoint.replace('/api', '')
-})));
+//
+if (__DEVELOPMENT__) {
+  app.use(convert(proxy({
+    host: targetUrl,
+    // Send cookie to real server
+    jar: true,
+    match: /^\/api\//,
+    map: endpoint => endpoint.replace('/api', '')
+  })));
+}
 app.use(cookie());
 app.use(serve(path.join(__dirname, '..', 'static')));
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
@@ -118,7 +117,7 @@ if (port) {
     if (err) {
       console.error(`==> 😭  OMG!!! ${err}`);
     }
-    console.info(`----\n==> ✅  ${meta.title} is running, talking to API server on ${apiPort}.`);
+    console.info(`----\n==> ✅  ${pkg.name} is running, talking to API server on ${apiPort}.`);
     console.info(`==> 💻  Open http://${host}:${port} in a browser to view the app.`);
 
     if (__DEVELOPMENT__) {
