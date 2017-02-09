@@ -116,7 +116,7 @@
   },
   "betterScripts": {
     "start-prod": {
-      "command": "node ./bin/server.js",
+      "command": "babel-node ./bin/server.js",
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
