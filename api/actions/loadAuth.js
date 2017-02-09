@@ -1,3 +1,5 @@
-export default function loadAuth(req) {
-  return Promise.resolve(req.session.user || null);
+export default function loadAuth() {
+  return Promise.resolve({
+    name: 'Zhongzhi'
+  });
 }

@@ -2,18 +2,18 @@ import Koa from 'koa';
 import convert from 'koa-convert';
 import session from 'koa-session';
 import body from 'koa-body';
+import json from 'koa-json';
 import PrettyError from 'pretty-error';
 import {mapUrl} from 'utils/url';
 import * as actions from 'actions';
-import {environments} from '../src/config';
+import {apiHost, apiPort, globals} from '../src/config/environments';
 
-const {apiHost, apiPort} = environments;
 const pretty = new PrettyError();
 const app = new Koa();
 
 app.use(convert(session(app)));
 app.use(body());
-
+app.use(json({ pretty: globals.__DEVELOPMENT__}));
 app.use(async (ctx) => {
   const splittedUrlPath = ctx.url.split('?')[0].split('/').slice(1);
   const { action, params } = mapUrl(actions, splittedUrlPath);
@@ -24,7 +24,7 @@ app.use(async (ctx) => {
       if (result instanceof Function) {
         result(ctx);
       } else {
-        ctx.body = JSON.stringify(result);
+        ctx.body = result;
       }
     } catch (error) {
       if (error && error.redirect) {
@@ -32,7 +32,7 @@ app.use(async (ctx) => {
       } else {
         console.error('API ERROR: ', pretty.render(error));
         ctx.status = error.status || 500;
-        ctx.body = JSON.stringify(error);
+        ctx.body = error;
       }
     }
   } else {

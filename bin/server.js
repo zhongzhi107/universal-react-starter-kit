@@ -4,14 +4,16 @@ import path from 'path';
 import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 import piping from 'piping';
 import witConfig from '../webpack/webpack-isomorphic-tools';
+import {globals} from '../src/config/environments';
 
 /**
  * Define isomorphic constants.
  */
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
-global.__DISABLE_SSR__ = false;  // <----- DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
-global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+// DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
+global.__DISABLE_SSR__ = globals.__DISABLE_SSR__;
+global.__DEVELOPMENT__ = globals.__DEVELOPMENT__;
 
 if (__DEVELOPMENT__) {
   piping({

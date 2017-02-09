@@ -5,9 +5,8 @@ export default {
   apiPort: process.env.APIPORT,
 
   globals: {
-    //   '__CLIENT__' = false;
-    // global.__SERVER__ = true;
-    __DISABLE_SSR__: false,  // <----- DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
+    // DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
+    __DISABLE_SSR__: false,
     __DEVELOPMENT__: process.env.NODE_ENV !== 'production',
   },
 

@@ -1,15 +1,15 @@
 import superagent from 'superagent';
 // import axios from 'axios'
-import {environments} from 'config';
+import {host, port} from 'config/environments';
 
-const {apiHost, apiPort} = environments;
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
-  const adjustedPath = path[0] !== '/' ? `/${path}` : path;
+  const adjustedPath = path.startsWith('/') ? path : `/${path}`;
+
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
-    return `http://${apiHost}:${apiPort}${adjustedPath}`;
+    return `http://${host}:${port}/api${adjustedPath}`;
   }
   // Prepend `/api` to relative URL, to proxy to API server.
   return `/api${adjustedPath}`;
@@ -19,6 +19,7 @@ export default class ApiClient {
   constructor(ctx) {
     methods.forEach((method) => {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
+        console.log('-----------formatUrl(path):', formatUrl(path));
         const request = superagent[method](formatUrl(path));
 
         if (params) {
