@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.2.0...v0.3.0) (2017-02-09)
+
+
+### Features
+
+* StyleLint to maintain a consistent css/less code style ([d3acb35](https://github.com/zhongzhi107/universal-react-starter-kit/commit/d3acb35))
+* Use koa-favicon for serving a favicon ([93f2f57](https://github.com/zhongzhi107/universal-react-starter-kit/commit/93f2f57))
+
+
+### Performance Improvements
+
+* Added koa-json to make response more concise ([77a2ae9](https://github.com/zhongzhi107/universal-react-starter-kit/commit/77a2ae9))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.1.2...v0.2.0) (2017-02-07)
 
