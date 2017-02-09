@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
+import StyleLintPlugin from 'stylelint-webpack-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
@@ -130,6 +131,11 @@ module.exports = {
       options: {
         postcss: [autoprefixer],
       },
+    }),
+    new StyleLintPlugin({
+      files: '**/*.less',
+      syntax: 'less',
+      failOnError: true,  // Disable style lint error terminating here
     }),
     // hot reload
     new webpack.HotModuleReplacementPlugin(),
