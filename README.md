@@ -1,10 +1,3 @@
-<div align="center">
-<img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/logo.png?raw=true" width="150" alt="Universal React Starter Kit" />
-<h1>Universal React Starter Kit</h1>
-</div>
-
-Universal React Starter Kit is an universal web application framework using [koa](https://koajs.com/), [react](https://github.com/facebook/react), [redux](https://github.com/reactjs/redux) and [webpack](https://github.com/webpack/webpack).
-
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
@@ -13,6 +6,13 @@ Universal React Starter Kit is an universal web application framework using [koa
 [![builds][builds]][builds-url]
 [![coverage][cover]][cover-url]
 [![license][mit-badge]][mit-url]
+
+<div align="center">
+<img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/logo.png?raw=true" width="150" alt="Universal React Starter Kit" />
+<h1>Universal React Starter Kit</h1>
+</div>
+
+Universal React Starter Kit is an universal web application framework using [koa](https://koajs.com/), [react](https://github.com/facebook/react), [redux](https://github.com/reactjs/redux) and [webpack](https://github.com/webpack/webpack).
 
 ## Features
 Really starter boilerplate with the most popular technologies:
