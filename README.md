@@ -41,6 +41,7 @@ Really starter boilerplate with the most popular technologies:
   * [ ]Code splitting for redux-modules
 * [x]PWA support
 * [x]Optimized configuration file structure
+* [ ]webpack-dashboard
 
 ## Requirements
 
