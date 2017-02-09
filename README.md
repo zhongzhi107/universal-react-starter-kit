@@ -1,7 +1,18 @@
+<div align="center">
 <img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/logo.png?raw=true" width="150" alt="Universal React Starter Kit" />
+<h1>Universal React Starter Kit</h1>
+</div>
 
-# Universal React Starter Kit
-Universal React Starter Kit is an universal web application framework using koa2, react, redux and webpack.
+Universal React Starter Kit is an universal web application framework using [koa](https://koajs.com/), [react](https://github.com/facebook/react), [redux](https://github.com/reactjs/redux) and [webpack](https://github.com/webpack/webpack).
+
+[![npm][npm]][npm-url]
+[![node][node]][node-url]
+[![deps][deps]][deps-url]
+[![devDependency][devdeps-image]][devdeps-url]
+[![tests][tests]][tests-url]
+[![builds][builds]][builds-url]
+[![coverage][cover]][cover-url]
+[![license][mit-badge]][mit-url]
 
 ## Features
 Really starter boilerplate with the most popular technologies:
@@ -11,7 +22,7 @@ Really starter boilerplate with the most popular technologies:
 * [x][React Router](https://github.com/reactjs/react-router) as the router.
 * [x][Redux](https://github.com/reactjs/redux)'s futuristic [Flux](https://facebook.github.io/react/blog/2014/05/06/flux.html) implementation.
 * [ ][Immutable-js](https://facebook.github.io/immutable-js/) provides persistent data collections which increase efficiency and simplicity.
-* [x][Koa](https://koajs.com/) server.
+* [x][koa](https://koajs.com/) server.
 * [x][Webpack 2](https://webpack.js.org/) for bundling and [**"Tree-Shaking"**](http://www.2ality.com/2015/12/webpack-tree-shaking.html) support.
 * [x][Babel](https://babeljs.io/) for ES6 and ES7 transpiling.
 * [ ][React Hot Loader 3](https://github.com/gaearon/react-hot-loader) to tweak React components in real time.
