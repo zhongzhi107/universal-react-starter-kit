@@ -17,13 +17,12 @@
     "postinstall": "npm run build",
     "postrelease": "better-npm-run postrelease",
     "eslint": "eslint webpack src",
-    "serve": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
+    "serve": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-api\"",
     "serve:dist": "npm run build && npm start",
-    "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
+    "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-api\"",
+    "start-api": "better-npm-run start-api",
     "start-dev": "better-npm-run start-dev",
-    "start-dev-api": "better-npm-run start-dev-api",
     "start-prod": "better-npm-run start-prod",
-    "start-prod-api": "better-npm-run start-prod-api",
     "watch-client": "better-npm-run watch-client",
     "release": "standard-version"
   },
@@ -121,15 +120,8 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
         "PORT": 8080,
-        "APIPORT": 3030
-      }
-    },
-    "start-prod-api": {
-      "command": "babel-node ./bin/api.js",
-      "env": {
-        "NODE_PATH": "./api",
-        "NODE_ENV": "production",
-        "APIPORT": 3030
+        "APIPORT": 3030,
+        "ENABLE_PROXY": true
       }
     },
     "start-dev": {
@@ -138,10 +130,11 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "development",
         "PORT": 3000,
-        "APIPORT": 3030
+        "APIPORT": 3030,
+        "ENABLE_PROXY": true
       }
     },
-    "start-dev-api": {
+    "start-api": {
       "command": "babel-node ./bin/api.js",
       "env": {
         "NODE_PATH": "./api",

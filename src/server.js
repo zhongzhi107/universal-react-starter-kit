@@ -26,8 +26,7 @@ const pretty = new PrettyError();
 const app = new Koa();
 
 // Proxy to API server
-//
-if (__DEVELOPMENT__) {
+if (process.env.ENABLE_PROXY) {
   app.use(convert(proxy({
     host: targetUrl,
     // Send cookie to real server
