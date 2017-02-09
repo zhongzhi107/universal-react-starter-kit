@@ -5,11 +5,10 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import {compiler} from '../src/config';
+import { commonChunks } from '../src/config/compiler';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
-const {commonChunks} = compiler;
-const projectRootPath = path.resolve(__dirname, '../');
+const projectRootPath = path.resolve(__dirname, '..');
 const assetsPath = path.resolve(projectRootPath, './static/dist');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools

@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import webpack from 'webpack';
-import {host, port} from 'config';
+import { host, port } from 'config/environments';
 import devMiddleware from './middleware/webpack-dev';
 import hotMiddleware from './middleware/webpack-hot';
 import webpackConfig from './dev.config';
@@ -17,8 +17,8 @@ const serverOptions = {
   inline: true,
   lazy: false,
   publicPath: webpackConfig.output.publicPath,
-  headers: {'Access-Control-Allow-Origin': '*'},
-  stats: {colors: true}
+  headers: { 'Access-Control-Allow-Origin': '*' },
+  stats: { colors: true }
 };
 
 const app = new Koa();

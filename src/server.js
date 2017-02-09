@@ -12,15 +12,14 @@ import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
-import {Provider} from 'react-redux';
-import {environments} from 'config';
+import { Provider } from 'react-redux';
+import { host, port, apiHost, apiPort } from 'config/environments';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import getRoutes from './routes';
 import pkg from '../package.json';
 
-const {host, port, apiHost, apiPort} = environments;
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const webroot = path.join(__dirname, '..', 'static');
 const pretty = new PrettyError();
@@ -76,7 +75,7 @@ app.use(async (ctx) => {
     await new Promise((resolve, reject) => {
       match(matchOptions, async (error, redirectLocation, renderProps) => {
         if (redirectLocation) {
-          const {pathname, search} = redirectLocation;
+          const { pathname, search } = redirectLocation;
           ctx.redirect(`${pathname}${search}`);
         } else if (error) {
           console.error('ROUTER ERROR:', pretty.render(error));

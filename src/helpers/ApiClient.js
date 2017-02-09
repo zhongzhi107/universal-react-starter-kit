@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 // import axios from 'axios'
-import {host, port} from 'config/environments';
+import { host, port } from 'config/environments';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 

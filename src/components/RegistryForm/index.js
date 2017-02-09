@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 @reduxForm({
@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 })
 export default class RegistryForm extends Component {
   static propTypes = {
-    handleSubmit: PropTypes.func,
+    handleSubmit: PropTypes.func.isRequired,
   };
 
   render() {

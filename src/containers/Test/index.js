@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-async-connect';
-import {initializeWithKey} from 'redux-form';
-import * as testActions from 'redux/modules/test';
-import {isLoaded, load as loadTest} from 'redux/modules/test';
-import {Link} from 'react-router';
+import { initializeWithKey } from 'redux-form';
+// import * as testActions from 'redux/modules/test';
+import testActions, { isLoaded, load as loadTest } from 'redux/modules/test';
+import { Link } from 'react-router';
 
 @asyncConnect([{
   deferred: true,
@@ -23,24 +23,26 @@ import {Link} from 'react-router';
     error: state.test.error,
     loading: state.test.loading
   }),
-  {...testActions, initializeWithKey }
+  { ...testActions, initializeWithKey }
 )
 export default class Test extends Component {
   static propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.shape({
+      message: PropTypes.string
+    }).isRequired,
   };
 
   render() {
-    const {message} = this.props.data;
+    const { message } = this.props.data;
     return (
       <div className="container">
+        <Helmet title="Test title" />
         <h1>Test</h1>
         <ul>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/registry">Registry</Link></li>
         </ul>
         <div>{message}</div>
-        <Helmet title="Test title" />
         <button>Click Here</button>
       </div>
     );

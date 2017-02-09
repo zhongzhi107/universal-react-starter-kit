@@ -33,7 +33,7 @@ const babelLoaderQuery = Object.assign(
   {},
   babelrcObjectDevelopment,
   babelrcObject,
-  {plugins: combinedPlugins}
+  { plugins: combinedPlugins }
 );
 delete babelLoaderQuery.env;
 
@@ -52,12 +52,12 @@ for (let i = 0; i < babelLoaderQuery.plugins.length; ++i) {
 }
 
 if (!reactTransform) {
-  reactTransform = ['react-transform', {transforms: []}];
+  reactTransform = ['react-transform', { transforms: [] }];
   babelLoaderQuery.plugins.push(reactTransform);
 }
 
 if (!reactTransform[1] || !reactTransform[1].transforms) {
-  reactTransform[1] = Object.assign({}, reactTransform[1], {transforms: []});
+  reactTransform[1] = Object.assign({}, reactTransform[1], { transforms: [] });
 }
 
 // make sure react-transform-hmr is enabled

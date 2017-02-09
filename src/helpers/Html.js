@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
@@ -14,13 +14,24 @@ import Helmet from 'react-helmet';
  */
 export default class Html extends Component {
   static propTypes = {
-    assets: PropTypes.object,
-    component: PropTypes.node,
-    store: PropTypes.object
+    assets: PropTypes.shape({
+      styles: PropTypes.object,
+      javascript: PropTypes.object,
+    }),
+    component: PropTypes.node.isRequired,
+    // eslint-disable-next-line
+    store: PropTypes.object.isRequired,
+  };
+
+  static defaultProps = {
+    assets: {
+      styles: [],
+      javascript: [],
+    }
   };
 
   render() {
-    const {assets, component, store} = this.props;
+    const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
@@ -33,8 +44,6 @@ export default class Html extends Component {
           {head.link.toComponent()}
           {head.script.toComponent()}
 
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
             <link
@@ -54,11 +63,11 @@ export default class Html extends Component {
             in development mode. */}
           {/* ideally one could also include here the style
             for the current page (Home.scss, About.scss, etc) */}
-          { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('containers/App/App.less')._style}} /> : null }
+          { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{ __html: require('containers/App/App.less')._style }} /> : null }
         </head>
         <body>
-          <div id="content" dangerouslySetInnerHTML={{__html: content}} />
-          <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8" />
+          <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
+          <script dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }} charSet="UTF-8" />
           {Object.keys(assets.javascript).reverse().map((script, key) =>
             <script
               key={key} // eslint-disable-line

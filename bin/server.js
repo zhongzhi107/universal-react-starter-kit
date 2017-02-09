@@ -4,7 +4,7 @@ import path from 'path';
 import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 import piping from 'piping';
 import witConfig from '../webpack/webpack-isomorphic-tools';
-import {globals} from '../src/config/environments';
+import { globals } from '../src/config/environments';
 
 /**
  * Define isomorphic constants.
