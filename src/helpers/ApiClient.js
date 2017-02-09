@@ -4,22 +4,22 @@ import {host, port} from 'config/environments';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
-function formatUrl(path) {
-  const adjustedPath = path.startsWith('/') ? path : `/${path}`;
+function formatUrl(url) {
+  const adjustedUrl = url.startsWith('/') ? url : `/${url}`;
 
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
-    return `http://${host}:${port}/api${adjustedPath}`;
+    return `http://${host}:${port}${adjustedUrl}`;
   }
   // Prepend `/api` to relative URL, to proxy to API server.
-  return `/api${adjustedPath}`;
+  return adjustedUrl;
 }
 
 export default class ApiClient {
   constructor(ctx) {
     methods.forEach((method) => {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
-        console.log('-----------formatUrl(path):', formatUrl(path));
+        console.log('-----------fetch url: ', formatUrl(path));
         const request = superagent[method](formatUrl(path));
 
         if (params) {
