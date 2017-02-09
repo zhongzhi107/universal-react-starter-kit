@@ -3,7 +3,6 @@ import { routerReducer } from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import {reducer as form} from 'redux-form';
 // import { pagination } from 'violet-paginator';
-// import multireducer from 'multireducer';
 import auth from './auth';
 import test from './test';
 

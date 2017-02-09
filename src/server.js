@@ -22,6 +22,7 @@ import pkg from '../package.json';
 
 const {host, port, apiHost, apiPort} = environments;
 const targetUrl = `http://${apiHost}:${apiPort}`;
+const webroot = path.join(__dirname, '..', 'static');
 const pretty = new PrettyError();
 const app = new Koa();
 
@@ -36,8 +37,8 @@ if (process.env.ENABLE_PROXY) {
   })));
 }
 app.use(cookie());
-app.use(serve(path.join(__dirname, '..', 'static')));
-app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
+app.use(serve(webroot));
+app.use(favicon(path.join(webroot, 'favicon.ico')));
 
 app.use(async (ctx) => {
   if (__DEVELOPMENT__) {
