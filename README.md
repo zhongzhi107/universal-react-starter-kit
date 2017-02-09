@@ -11,7 +11,7 @@ Really starter boilerplate with the most popular technologies:
 * [x][React Router](https://github.com/reactjs/react-router) as the router.
 * [x][Redux](https://github.com/reactjs/redux)'s futuristic [Flux](https://facebook.github.io/react/blog/2014/05/06/flux.html) implementation.
 * [ ][Immutable-js](https://facebook.github.io/immutable-js/) provides persistent data collections which increase efficiency and simplicity.
-* [ ][Koa](https://koajs.com/) server.
+* [x][Koa](https://koajs.com/) for dev-server and API server.
 * [x][Webpack 2](https://webpack.js.org/) for bundling and [**"Tree-Shaking"**](http://www.2ality.com/2015/12/webpack-tree-shaking.html) support.
 * [x][Babel](https://babeljs.io/) for ES6 and ES7 transpiling.
 * [ ][React Hot Loader 3](https://github.com/gaearon/react-hot-loader) to tweak React components in real time.
@@ -36,12 +36,11 @@ Really starter boilerplate with the most popular technologies:
 * [ ]Testing code coverage support.
 * [ ]Happypack for build performance.
 * [x]Auto open chrome window when service start.
-* [ ].env(maybe not best solution)
 * [ ]Code splitting
   * [ ]Extract text plugin with code splitting
   * [ ]Code splitting for redux-modules
-* [ ]PWA support
-* [ ]Optimized configuration file structure
+* [x]PWA support
+* [x]Optimized configuration file structure
 
 ## Requirements
 
