@@ -25,14 +25,14 @@ Really starter boilerplate with the most popular technologies:
 * [ ][morgan](https://github.com/expressjs/morgan) the HTTP request logger for server side debugging.
 * [x][Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension) for next generation developer experience.
 * [x][ESLint](http://eslint.org/) to maintain a consistent javascript code style (Airbnb's code style).
-* [ ][StyleLint](http://stylelint.io/) to maintain a consistent css/scss code style.
+* [x][StyleLint](http://stylelint.io/) to maintain a consistent css/scss code style.
 * [x]CSS and LESS support with [PostCSS](https://github.com/postcss/postcss-loader) for advanced transformations (e.g. autoprefixer). [CSS Modules](https://github.com/css-Modules/css-Modules) enabled.
 * [x]Image (with [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) for optimizing) and Font support.
 * [x]Split vendor's libraries from client bundle.
 * [x]No other view engines, just javascript based HTML rendering template.
 * [x]Shared app config between development and production.
 * [x]404 error page and redirect handling.
-* [ ][karma](https://karma-runner.github.io/1.0/index.html), [mocha](https://mochajs.org/), [enzyme](https://github.com/airbnb/enzyme), [chai](http://chaijs.com/) and [sinon](https://github.com/sinonjs/sinon) as the integrated solution for wrting unit tests.
+* [ ][karma](https://karma-runner.github.io/1.0/index.html), [mocha](https://mochajs.org/), [enzyme](https://github.com/airbnb/enzyme), [chai](http://chaijs.com/) and [sinon](https://github.com/sinonjs/sinon) as the integrated solution for writing unit tests.
 * [ ]Testing code coverage support.
 * [ ][Happypack](https://github.com/amireh/happypack) for build performance.
 * [x]Auto open chrome window when service start.
