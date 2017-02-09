@@ -1,6 +1,9 @@
 [![npm][npm]][npm-url]
+
 [![node][node]][node-url]
+
 [![deps][deps]][deps-url]
+
 [![devDependency][devdeps-image]][devdeps-url]
 [![tests][tests]][tests-url]
 [![builds][builds]][builds-url]
