@@ -45,8 +45,8 @@ const moduleConfig = {
     {
       test: /\.less$/,
       loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: [
+        fallback: 'style-loader',
+        use: [
           { loader: 'css-loader', query: { importLoaders: 2, minimize: true } },
           { loader: 'postcss-loader' },
           { loader: 'less-loader' },
