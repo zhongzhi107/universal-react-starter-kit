@@ -5,7 +5,7 @@ import { asyncConnect } from 'redux-async-connect';
 import { initializeWithKey } from 'redux-form';
 // import * as testActions from 'redux/modules/test';
 import testActions, { isLoaded, load as loadTest } from 'redux/modules/test';
-import { Link } from 'react-router';
+import Header from 'components/Header';
 
 @asyncConnect([{
   deferred: true,
@@ -38,10 +38,7 @@ export default class Test extends Component {
       <div className="container">
         <Helmet title="Test title" />
         <h1>Test</h1>
-        <ul>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/registry">Registry</Link></li>
-        </ul>
+        <Header />
         <div>{message}</div>
         <button>Click Here</button>
       </div>

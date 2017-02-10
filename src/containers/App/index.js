@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-async-connect';
-import cx from 'classnames';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import { helmet } from 'config';
-import styles from './App.less';
 
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
@@ -57,12 +55,10 @@ export default class App extends Component {
   }
 
   render() {
-    const pageContentClass = cx(styles.main);
-
     return (
       <div id="app">
         <Helmet {...helmet.head} />
-        <div key="pageContent" className={pageContentClass}>
+        <div key="pageContent">
           {this.props.children}
         </div>
       </div>

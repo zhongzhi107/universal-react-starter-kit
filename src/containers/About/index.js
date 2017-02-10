@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import cx from 'classnames';
+import Header from 'components/Header';
 import styles from './About.less';
 
 export default class About extends Component {
@@ -10,10 +10,7 @@ export default class About extends Component {
       <div className={cx(styles.about, 'container')}>
         <Helmet title="About" />
         <h1>About</h1>
-        <ul>
-          <li><Link to="/test">Test</Link></li>
-          <li><Link to="/registry">Registry</Link></li>
-        </ul>
+        <Header />
       </div>
     );
   }
