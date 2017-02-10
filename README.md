@@ -40,7 +40,7 @@ Really starter boilerplate with the most popular technologies:
 * [x] Shared app config between development and production.
 * [x] 404 error page and redirect handling.
 * [ ] [karma](https://karma-runner.github.io/1.0/index.html), [mocha](https://mochajs.org/), [enzyme](https://github.com/airbnb/enzyme), [chai](http://chaijs.com/) and [sinon](https://github.com/sinonjs/sinon) as the integrated solution for writing unit tests.
-* [ ]Testing code coverage support.
+* [ ] Testing code coverage support.
 * [ ] [Happypack](https://github.com/amireh/happypack) for build performance.
 * [x] Auto open chrome window when service start.
 * [ ] Code splitting
