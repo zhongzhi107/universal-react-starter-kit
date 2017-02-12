@@ -36,7 +36,7 @@ export default class Html extends Component {
     const head = Helmet.rewind();
 
     return (
-      <html lang="zh">
+      <html lang={head.htmlAttributes.toComponent().lang}>
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}

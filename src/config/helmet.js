@@ -1,10 +1,10 @@
 export default Object.freeze({
-  htmlAttributes: {
-    lang: 'en'
-  },
   title: 'universal-react-starter-kit',
   description: 'All the modern best practices in one example.',
   head: {
+    htmlAttributes: {
+      lang: 'zh'
+    },
     titleTemplate: 'ursk: %s',
     meta: [
       { name: 'description', content: 'All the modern best practices in one example.' },
