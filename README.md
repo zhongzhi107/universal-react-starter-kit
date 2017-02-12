@@ -32,7 +32,7 @@ Really starter boilerplate with the most popular technologies:
 * [ ] [morgan](https://github.com/expressjs/morgan) the HTTP request logger for server side debugging.
 * [x] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension) for next generation developer experience.
 * [x] [ESLint](http://eslint.org/) to maintain a consistent javascript code style (Airbnb's code style).
-* [x] [StyleLint](http://stylelint.io/) to maintain a consistent css/scss code style.
+* [x] [StyleLint](http://stylelint.io/) to maintain a consistent css/less code style.
 * [x] CSS and LESS support with [PostCSS] (https://github.com/postcss/postcss-loader) for advanced transformations (e.g. autoprefixer). [CSS Modules](https://github.com/css-Modules/css-Modules) enabled.
 * [x] Image (with [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) for optimizing) and Font support.
 * [x] Split vendor's libraries from client bundle.
