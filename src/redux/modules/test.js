@@ -4,7 +4,9 @@ const LOAD_FAIL = 'test/LOAD_FAIL';
 
 const initialState = {
   loaded: false,
-  data: {}
+  data: {
+    message: '== This is a default message! =='
+  }
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -27,7 +29,6 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        data: null,
         error: action.error
       };
     default:

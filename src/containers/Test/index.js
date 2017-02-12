@@ -28,12 +28,12 @@ import Header from 'components/Header';
 export default class Test extends Component {
   static propTypes = {
     data: PropTypes.shape({
-      message: PropTypes.string
-    }).isRequired,
+      message: PropTypes.string.isRequired,
+    }),
   };
 
   render() {
-    const { message } = this.props.data;
+    const { data: { message } } = this.props;
     return (
       <div className="container">
         <Helmet title="Test title" />
