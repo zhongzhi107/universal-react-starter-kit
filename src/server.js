@@ -79,12 +79,18 @@ app.use(async (ctx) => {
           ctx.redirect(`${pathname}${search}`);
         } else if (error) {
           console.error('ROUTER ERROR:', pretty.render(error));
-          ctx.status(500);
+          ctx.status = 500;
           hydrateOnClient();
           reject();
         } else if (renderProps) {
           try {
-            await loadOnServer({ ...renderProps, store, helpers: client });
+            const result = await loadOnServer({ ...renderProps, store, helpers: client });
+            // Exception handling
+            const hasErrorPromise = result.some(item => item.undefined.error);
+            if (hasErrorPromise) {
+              console.error('LOAD_ON_SERVER ERROR:', pretty.render('loadOnServer failed'));
+              reject();
+            }
             const component = (
               <Provider store={store} key="provider">
                 <ReduxAsyncConnect {...renderProps} />
