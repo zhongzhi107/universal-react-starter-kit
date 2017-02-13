@@ -7,12 +7,14 @@ export default Object.freeze({
     },
     titleTemplate: 'ursk: %s',
     meta: [
+      { charset: 'utf-8' },
       { name: 'description', content: 'All the modern best practices in one example.' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { charset: 'utf-8' }
+      { name: 'theme-color', content: '#2196F3' }
     ],
     link: [
-      { rel: 'shortcut icon', href: '/favicon.ico' }
+      { rel: 'shortcut icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: '/manifest.json' }
     ],
     script: [],
   }
