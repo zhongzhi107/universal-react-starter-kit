@@ -88,8 +88,8 @@ app.use(async (ctx) => {
             // Exception handling
             const hasErrorPromise = result.some(item => item.undefined.error);
             if (hasErrorPromise) {
-              console.error('LOAD_ON_SERVER ERROR:', pretty.render('loadOnServer failed'));
-              reject();
+              reject('loadOnServer failed');
+              return;
             }
             const component = (
               <Provider store={store} key="provider">
@@ -113,7 +113,8 @@ app.use(async (ctx) => {
       });
     });
   } catch (error) {
-    console.error(error);
+    ctx.status = 500;
+    console.log(pretty.render(error));
   }
 });
 
