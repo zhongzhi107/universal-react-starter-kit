@@ -15,12 +15,22 @@ function formatUrl(url) {
   return adjustedUrl;
 }
 
+function createRequest(method, url, timeout) {
+  const request = superagent[method](url);
+  if (timeout) request.timeout(timeout);
+  request.catch((e) => {
+    e.message = `${url} ${e.message}`;
+    e.url = url;
+  });
+  return request;
+}
+
 export default class ApiClient {
   constructor(ctx) {
     methods.forEach((method) => {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         console.log('-----------fetch url: ', formatUrl(path));
-        const request = superagent[method](formatUrl(path));
+        const request = createRequest(method, formatUrl(path));
 
         if (params) {
           request.query(params);
@@ -35,7 +45,7 @@ export default class ApiClient {
         }
 
         // eslint-disable-next-line
-        request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        request.end((err, { body } = {}) => err ? reject(err) : resolve(body));
       });
     });
   }
