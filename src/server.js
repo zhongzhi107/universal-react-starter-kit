@@ -25,16 +25,17 @@ const webroot = path.join(__dirname, '..', 'static');
 const pretty = new PrettyError();
 const app = new Koa();
 
-function parseLoadOnServer(opt) {
+function proxyLoadOnServer(opt) {
   return loadOnServer(opt)
   .then(function(result) {
     for(var i=0;i<result.length;i++) {
       var item = result[i];
       for (var key in item) {
         var val = item[key];
-        console.log('222222222222', val);
         // val instanceof Error
         if (val && typeof val === 'object' && val.error) {
+          if (!val.error.message) val.error.message = '';
+          val.error.message += `. task key: ${key}`
           return Promise.reject(val.error);
         }
       }
@@ -102,8 +103,7 @@ app.use(async (ctx) => {
           reject();
         } else if (renderProps) {
           try {
-            const result = await parseLoadOnServer({ ...renderProps, store, helpers: client });
-            console.log('44444444444444', result);
+            const result = await proxyLoadOnServer({ ...renderProps, store, helpers: client });
             const component = (
               <Provider store={store} key="provider">
                 <ReduxAsyncConnect {...renderProps} />
@@ -121,8 +121,6 @@ app.use(async (ctx) => {
             resolve();
           } catch (err) {
             ctx.status = 500;
-            ctx.body = '<!doctype html><html><head></head><body><p>error</p></body></html>';
-            console.error('9999999999999', err);
             reject(err);
           }
         }
