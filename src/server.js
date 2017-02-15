@@ -26,16 +26,16 @@ const pretty = new PrettyError();
 const app = new Koa();
 
 function proxyLoadOnServer(opt) {
-  return loadOnServer(opt)
-  .then(function(result) {
-    for(var i=0;i<result.length;i++) {
-      var item = result[i];
-      for (var key in item) {
-        var val = item[key];
+  return loadOnServer(opt).then((result) => {
+    for (let i = 0; i < result.length; i++) {
+      const item = result[i];
+      // eslint-disable-next-line
+      for (const key in item) {
+        const val = item[key];
         // val instanceof Error
         if (val && typeof val === 'object' && val.error) {
           if (!val.error.message) val.error.message = '';
-          val.error.message += `. task key: ${key}`
+          val.error.message += `. task key: ${key}`;
           return Promise.reject(val.error);
         }
       }
@@ -103,7 +103,7 @@ app.use(async (ctx) => {
           reject();
         } else if (renderProps) {
           try {
-            const result = await proxyLoadOnServer({ ...renderProps, store, helpers: client });
+            await proxyLoadOnServer({ ...renderProps, store, helpers: client });
             const component = (
               <Provider store={store} key="provider">
                 <ReduxAsyncConnect {...renderProps} />
