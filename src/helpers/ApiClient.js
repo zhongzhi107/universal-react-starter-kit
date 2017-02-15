@@ -20,7 +20,9 @@ export default class ApiClient {
     methods.forEach((method) => {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         console.log('-----------fetch url: ', formatUrl(path));
-        const request = superagent[method](formatUrl(path));
+        // const request = createRequest(method, formatUrl(path));
+        const url = formatUrl(path);
+        const request = superagent[method](url);
 
         if (params) {
           request.query(params);
@@ -35,7 +37,14 @@ export default class ApiClient {
         }
 
         // eslint-disable-next-line
-        request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        request.end((err, { body } = {}) => {
+          if (err) {
+            err.message = `${url} ${err.message}`;
+            err.url = url;
+            return reject(err);
+          }
+          resolve(body);
+        });
       });
     });
   }

@@ -25,6 +25,25 @@ const webroot = path.join(__dirname, '..', 'static');
 const pretty = new PrettyError();
 const app = new Koa();
 
+function proxyLoadOnServer(opt) {
+  return loadOnServer(opt)
+  .then(function(result) {
+    for(var i=0;i<result.length;i++) {
+      var item = result[i];
+      for (var key in item) {
+        var val = item[key];
+        // val instanceof Error
+        if (val && typeof val === 'object' && val.error) {
+          if (!val.error.message) val.error.message = '';
+          val.error.message += `. task key: ${key}`
+          return Promise.reject(val.error);
+        }
+      }
+    }
+    return result;
+  });
+}
+
 // Proxy to API server
 if (process.env.ENABLE_PROXY) {
   app.use(convert(proxy({
@@ -84,13 +103,7 @@ app.use(async (ctx) => {
           reject();
         } else if (renderProps) {
           try {
-            const result = await loadOnServer({ ...renderProps, store, helpers: client });
-            // Exception handling
-            const hasErrorPromise = result.some(item => item.undefined.error);
-            if (hasErrorPromise) {
-              reject('loadOnServer failed');
-              return;
-            }
+            const result = await proxyLoadOnServer({ ...renderProps, store, helpers: client });
             const component = (
               <Provider store={store} key="provider">
                 <ReduxAsyncConnect {...renderProps} />
@@ -107,12 +120,14 @@ app.use(async (ctx) => {
             ctx.body = `<!doctype html>\n${html}`;
             resolve();
           } catch (err) {
-            console.error(err);
+            ctx.status = 500;
+            reject(err);
           }
         }
       });
     });
   } catch (error) {
+    // Exception handling
     ctx.status = 500;
     console.log(pretty.render(error));
   }
