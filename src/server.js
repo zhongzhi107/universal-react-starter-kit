@@ -32,25 +32,25 @@ function proxyLoadOnServer(opt) {
       for (let k = 0, pairs = Object.keys(item); k < pairs.length; k++) {
         const key = pairs[k];
         const val = item[key];
-        if (val && typeof val === 'object' && val.hasOwnProperty('error')) {
+        if (val && typeof val === 'object' && 'error' in val) {
           const err = val.error;
           if (!val.error) {
             val.error = {
-              message: 'you may directly call reject(), error is null' 
+              message: 'you may directly call reject(), error is null'
             };
-          } else if(typeof val.error == 'object') {
-            if(Array.isArray(val.error)) {
+          } else if (typeof val.error === 'object') {
+            if (Array.isArray(val.error)) {
               val.error = {
                 message: 'you may call reject rather than resolve, result is a array',
-                origin: err 
+                origin: err
               };
-            } else if(!Object.keys(err).length) {
+            } else if (!Object.keys(err).length) {
               val.message = 'call reject({}), error is a empty object.';
             }
           } else {
-            const message = val.error.toString && val.error.toString() || 'unkown error data type';
+            const message = val.error.toString && val.error.toString();
             val.error = {
-              message: message,
+              message,
               origin: err
             };
           }
