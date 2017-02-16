@@ -7,6 +7,7 @@ import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import { helmet } from 'config';
 
 @asyncConnect([{
+  key: 'AppInit',
   promise: ({ store: { dispatch, getState } }) => {
     const promises = [];
 

@@ -25,6 +25,45 @@ const webroot = path.join(__dirname, '..', 'static');
 const pretty = new PrettyError();
 const app = new Koa();
 
+function proxyLoadOnServer(opt) {
+  return loadOnServer(opt).then((result) => {
+    for (let i = 0; i < result.length; i++) {
+      const item = result[i];
+      for (let k = 0, pairs = Object.keys(item); k < pairs.length; k++) {
+        const key = pairs[k];
+        const val = item[key];
+        if (val && typeof val === 'object' && 'error' in val) {
+          const err = val.error;
+          if (!val.error) {
+            val.error = {
+              message: 'you may directly call reject(), error is null'
+            };
+          } else if (typeof val.error === 'object') {
+            if (Array.isArray(val.error)) {
+              val.error = {
+                message: 'you may call reject rather than resolve, result is a array',
+                origin: err
+              };
+            } else if (!Object.keys(err).length) {
+              val.message = 'call reject({}), error is a empty object.';
+            }
+          } else {
+            const message = val.error.toString && val.error.toString();
+            val.error = {
+              message,
+              origin: err
+            };
+          }
+          val.error.message = val.error.message || '';
+          val.error.message += `. task key: ${key}`;
+          return Promise.reject(val.error);
+        }
+      }
+    }
+    return result;
+  });
+}
+
 // Proxy to API server
 if (process.env.ENABLE_PROXY) {
   app.use(convert(proxy({
@@ -84,13 +123,7 @@ app.use(async (ctx) => {
           reject();
         } else if (renderProps) {
           try {
-            const result = await loadOnServer({ ...renderProps, store, helpers: client });
-            // Exception handling
-            const hasErrorPromise = result.some(item => item.undefined.error);
-            if (hasErrorPromise) {
-              reject('loadOnServer failed');
-              return;
-            }
+            await proxyLoadOnServer({ ...renderProps, store, helpers: client });
             const component = (
               <Provider store={store} key="provider">
                 <ReduxAsyncConnect {...renderProps} />
@@ -107,12 +140,14 @@ app.use(async (ctx) => {
             ctx.body = `<!doctype html>\n${html}`;
             resolve();
           } catch (err) {
-            console.error(err);
+            ctx.status = 500;
+            reject(err);
           }
         }
       });
     });
   } catch (error) {
+    // Exception handling
     ctx.status = 500;
     console.log(pretty.render(error));
   }

@@ -8,6 +8,7 @@ import testActions, { isLoaded, load as loadTest } from 'redux/modules/test';
 import Header from 'components/Header';
 
 @asyncConnect([{
+  key: 'TestInit',
   deferred: true,
   // eslint-disable-next-line
   promise: ({store: {dispatch, getState}}) => {
