@@ -8,6 +8,7 @@ Universal React Starter Kit is an universal web application framework using [koa
 [![Build status](https://ci.appveyor.com/api/projects/status/xmypn7o4togy04c1?svg=true)](https://ci.appveyor.com/project/zhongzhi107/universal-react-starter-kit)
 [![Dependency Status](https://david-dm.org/zhongzhi107/universal-react-starter-kit.svg)](https://david-dm.org/zhongzhi107/universal-react-starter-kit)
 [![devDependency Status](https://david-dm.org/zhongzhi107/universal-react-starter-kit/dev-status.svg)](https://david-dm.org/zhongzhi107/universal-react-starter-kit#info=devDependencies)
+[![Known Vulnerabilities](https://snyk.io/test/github/zhongzhi107/universal-react-starter-kit/badge.svg)](https://snyk.io/test/github/zhongzhi107/universal-react-starter-kit)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/zhongzhi107/universal-react-starter-kit/master/LICENSE)
 
 ## Features
