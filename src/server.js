@@ -29,12 +29,32 @@ function proxyLoadOnServer(opt) {
   return loadOnServer(opt).then((result) => {
     for (let i = 0; i < result.length; i++) {
       const item = result[i];
-      // eslint-disable-next-line
-      for (const key in item) {
+      for (let k = 0, pairs = Object.keys(item); k < pairs.length; k++) {
+        const key = pairs[k];
         const val = item[key];
-        // val instanceof Error
-        if (val && typeof val === 'object' && val.error) {
-          if (!val.error.message) val.error.message = '';
+        if (val && typeof val === 'object' && 'error' in val) {
+          const err = val.error;
+          if (!val.error) {
+            val.error = {
+              message: 'you may directly call reject(), error is null'
+            };
+          } else if (typeof val.error === 'object') {
+            if (Array.isArray(val.error)) {
+              val.error = {
+                message: 'you may call reject rather than resolve, result is a array',
+                origin: err
+              };
+            } else if (!Object.keys(err).length) {
+              val.message = 'call reject({}), error is a empty object.';
+            }
+          } else {
+            const message = val.error.toString && val.error.toString();
+            val.error = {
+              message,
+              origin: err
+            };
+          }
+          val.error.message = val.error.message || '';
           val.error.message += `. task key: ${key}`;
           return Promise.reject(val.error);
         }
