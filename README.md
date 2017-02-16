@@ -50,6 +50,7 @@ Really starter boilerplate with the most popular technologies:
 * [x] Progressive Web Application ready, with offline support, via a Service Worker.
 * [x] Optimized configuration file structure
 * [ ] [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard)
+* [ ] Quick scaffolding - Create components, containers, routes from the CLI!
 
 ## Requirements
 
