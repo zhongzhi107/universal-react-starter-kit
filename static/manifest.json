@@ -3,7 +3,7 @@
   "short_name": "URSK",
   "description": "xx",
   "lang": "zh",
-  "start_url": "/dist/offline.html",
+  "start_url": "/",
   "icons": [{
         "src": "/images/touch/logo_128.png",
         "type": "image/png",
