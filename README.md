@@ -60,30 +60,20 @@ Really starter boilerplate with the most popular technologies:
 
 ## Getting Started
 
-1. You can start by clone the repository on your local machine by running:
   ```
-  git clone https://github.com/zhongzhi107/universal-react-starter-kit
-  cd universal-react-starter-kit
-  ```
-
-2. Install all of the npm packages:
-  ```
-  yarn install
-  ```
-
-3. Start to run it:
-  ```
-  # Building bundle and running development server
+  git clone https://github.com/zhongzhi107/universal-react-starter-kit my-project
+  cd my-project
+  yarn
   yarn run serve
   ```
 
+  Or, if you aren't using [yarn](https://yarnpkg.com/):
+
+  ```
+  git clone https://github.com/zhongzhi107/universal-react-starter-kit my-project
+  cd my-project
+  npm install
+  npm run serve
+  ```
+
   Now the app should be running at http://localhost:3000/
-
-  or start production server
-
-  ```
-  # Running production server
-  yarn run serve:dist
-  ```
-
-  Now the app should be running at http://localhost:8080/

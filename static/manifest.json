@@ -1,6 +1,9 @@
 {
   "name": "The Universal React Starter Kit",
   "short_name": "URSK",
+  "description": "xx",
+  "lang": "zh",
+  "start_url": "/dist/offline.html",
   "icons": [{
         "src": "/images/touch/logo_128.png",
         "type": "image/png",
@@ -28,7 +31,6 @@
         "type": "image/png",
         "sizes": "512x512"
       }],
-  "start_url": "/about",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
