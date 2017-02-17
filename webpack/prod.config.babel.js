@@ -6,7 +6,7 @@ import OfflinePlugin from 'offline-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import { commonChunks } from '../src/config/compiler';
+import { commonChunks, offlinePageTemplate, offlinePageFileName } from '../src/config/compiler';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
 const projectRootPath = path.resolve(__dirname, '..');
@@ -114,8 +114,8 @@ const plugins = [
   isomorphicToolsPlugin,
 
   new HtmlWebpackPlugin({
-    filename: 'offline.html',
-    template: 'webpack/offline/template.html'
+    filename: offlinePageFileName,
+    template: offlinePageTemplate
   }),
 
   new OfflinePlugin({
@@ -123,7 +123,7 @@ const plugins = [
       main: [
         // These assets don't have a chunk hash.
         // SW fetch them on every SW update.
-        'offline.html'
+        offlinePageFileName
       ],
       additional: [
         // All other assets have a chunk hash.
