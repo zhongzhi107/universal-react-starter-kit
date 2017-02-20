@@ -24,5 +24,5 @@ export default {
   // offline.
   offlinePageTemplate: 'tools/offline-page/template.html',
   // Offline page file name.
-  offlinePageFileName: 'index.html',
+  offlinePageFileName: 'offline.html',
 };
