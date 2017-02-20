@@ -1,6 +1,6 @@
 {
   "name": "universal-react-starter-kit",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An universal web application framework using react, redux, koa and webpack",
   "keywords": [
     "universal",
