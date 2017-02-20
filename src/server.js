@@ -25,6 +25,7 @@ if (process.env.ENABLE_PROXY) {
   })));
 }
 app.use(cookie())
+  // Set index page not index.html to keep SSR
   .use(serve(webroot, { index: 'xxx.html' }))
   .use(favicon(path.join(webroot, 'favicon.ico')))
   .use(serverSideRender());
