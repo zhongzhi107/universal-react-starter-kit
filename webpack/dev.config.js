@@ -4,9 +4,10 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import { dist } from 'config/compiler';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
-const assetsPath = path.resolve(__dirname, '../static/dist');
+const assetsPath = path.resolve(__dirname, '..', dist);
 const host = (process.env.HOST || 'localhost');
 const port = (+process.env.PORT + 1) || 3001;
 

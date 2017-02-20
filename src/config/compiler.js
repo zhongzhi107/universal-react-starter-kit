@@ -12,6 +12,10 @@ export default {
     'woff2',
     'otf',
   ],
+  dist: 'dist',
+  fileHashLength: 8,
+  jsOutputDirectory: 'js',
+  cssOutputDirectory: 'css',
   commonChunks: {
     vendor: [
       'react',
@@ -24,5 +28,5 @@ export default {
   // offline.
   offlinePageTemplate: 'tools/offline-page/template.html',
   // Offline page file name.
-  offlinePageFileName: 'offline.html',
+  offlinePageFileName: 'index.html',
 };
