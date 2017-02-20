@@ -6,11 +6,12 @@ import proxy from 'koa-proxy';
 import cookie from 'koa-cookie';
 import favicon from 'koa-favicon';
 import { host, port, apiHost, apiPort } from 'config/environments';
+import { dist } from 'config/compiler';
 import pkg from '../package.json';
 import serverSideRender from '../webpack/middleware/server-side-render';
 
 const targetUrl = `http://${apiHost}:${apiPort}`;
-const webroot = path.join(__dirname, '..', 'static');
+const webroot = path.join(__dirname, '..', dist);
 const app = new Koa();
 
 // Proxy to API server

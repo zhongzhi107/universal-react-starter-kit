@@ -1,15 +1,22 @@
 import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import { commonChunks } from '../src/config/compiler';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
+import {
+  commonChunks,
+  dist,
+  fileHashLength,
+  jsOutputDirectory,
+  cssOutputDirectory,
+} from '../src/config/compiler';
 
-const projectRootPath = path.resolve(__dirname, '..');
-const assetsPath = path.resolve(projectRootPath, './static/dist');
+const context = path.resolve(__dirname, '..');
+const assetsPath = path.resolve(context, dist);
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
@@ -20,13 +27,12 @@ const entry = {
   ]
 };
 
-const context = path.resolve(__dirname, '..');
 
 const output = {
   path: assetsPath,
-  filename: '[name]-[chunkhash].js',
-  chunkFilename: '[name]-[chunkhash].js',
-  publicPath: '/dist/'
+  filename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
+  chunkFilename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
+  publicPath: ''
 };
 
 const resolve = {
@@ -77,11 +83,11 @@ const plugins = [
       postcss: [autoprefixer],
     },
   }),
-  new CleanPlugin([assetsPath], { root: projectRootPath }),
+  new CleanPlugin([assetsPath], { root: context }),
 
   // css files from the extract-text-plugin loader
   new ExtractTextPlugin({
-    filename: '[name]-[chunkhash].css',
+    filename: `${cssOutputDirectory}/[name]-[contenthash:${fileHashLength}].css`,
     allChunks: true,
   }),
 
@@ -109,6 +115,12 @@ const plugins = [
     },
     comments: /^!/,
   }),
+
+  new CopyWebpackPlugin([
+    {
+      from: './static'
+    }
+  ], { ignore: ['*.psd'] }),
 
   new OfflinePlugin(),
 
