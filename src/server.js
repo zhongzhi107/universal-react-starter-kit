@@ -25,7 +25,9 @@ if (process.env.ENABLE_PROXY) {
   })));
 }
 app.use(cookie())
-  .use(serve(webroot))
+  // html-webpack-plugin will generate index.html in build for PWA
+  // Here set index page not index.html to keep SSR
+  .use(serve(webroot, { index: 'disable-index.html' }))
   .use(favicon(path.join(webroot, 'favicon.ico')))
   .use(serverSideRender());
 

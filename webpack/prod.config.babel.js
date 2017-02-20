@@ -4,6 +4,7 @@ import CleanPlugin from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
@@ -13,6 +14,8 @@ import {
   fileHashLength,
   jsOutputDirectory,
   cssOutputDirectory,
+  offlinePageTemplate,
+  offlinePageFileName
 } from '../src/config/compiler';
 
 const context = path.resolve(__dirname, '..');
@@ -116,15 +119,49 @@ const plugins = [
     comments: /^!/,
   }),
 
+  isomorphicToolsPlugin,
+
   new CopyWebpackPlugin([
     {
       from: './static'
     }
   ], { ignore: ['*.psd'] }),
 
-  new OfflinePlugin(),
+  new HtmlWebpackPlugin({
+    filename: offlinePageFileName,
+    template: offlinePageTemplate
+  }),
 
-  isomorphicToolsPlugin
+  new OfflinePlugin({
+    // caches: {
+    //   main: [
+    //     // These assets don't have a chunk hash.
+    //     // SW fetch them on every SW update.
+    //     // '/',
+    //     offlinePageFileName
+    //   ],
+    //   additional: [
+    //     // All other assets have a chunk hash.
+    //     // SW only fetch them once.
+    //     // They'll have another name on change.
+    //     ':rest:',
+    //     // ':externals:'
+    //   ]
+    // },
+    // externals: [
+    //   'manifest.json',
+    //   'robots.txt',
+    //   'favicon.ico',
+    //   'images/touch/logo_192.png'
+    // ],
+    // // To remove a warning about additional need to have hash
+    // // safeToUseOptionalCaches: true,
+    // // 'additional' section is fetch only once.
+    // // updateStrategy: 'changed',
+    // // When using the publicPath we need to disable the "relativePaths"
+    // // feature of this plugin.
+    // relativePaths: false,
+  })
 ];
 
 if (commonChunks) {

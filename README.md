@@ -8,6 +8,7 @@ Universal React Starter Kit is an universal web application framework using [koa
 [![Build status](https://ci.appveyor.com/api/projects/status/xmypn7o4togy04c1?svg=true)](https://ci.appveyor.com/project/zhongzhi107/universal-react-starter-kit)
 [![Dependency Status](https://david-dm.org/zhongzhi107/universal-react-starter-kit.svg)](https://david-dm.org/zhongzhi107/universal-react-starter-kit)
 [![devDependency Status](https://david-dm.org/zhongzhi107/universal-react-starter-kit/dev-status.svg)](https://david-dm.org/zhongzhi107/universal-react-starter-kit#info=devDependencies)
+[![Known Vulnerabilities](https://snyk.io/test/github/zhongzhi107/universal-react-starter-kit/badge.svg)](https://snyk.io/test/github/zhongzhi107/universal-react-starter-kit)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/zhongzhi107/universal-react-starter-kit/master/LICENSE)
 
 ## Features
@@ -59,30 +60,20 @@ Really starter boilerplate with the most popular technologies:
 
 ## Getting Started
 
-1. You can start by clone the repository on your local machine by running:
   ```
-  git clone https://github.com/zhongzhi107/universal-react-starter-kit
-  cd universal-react-starter-kit
-  ```
-
-2. Install all of the npm packages:
-  ```
-  yarn install
-  ```
-
-3. Start to run it:
-  ```
-  # Building bundle and running development server
+  git clone https://github.com/zhongzhi107/universal-react-starter-kit my-project
+  cd my-project
+  yarn
   yarn run serve
   ```
 
+  Or, if you aren't using [yarn](https://yarnpkg.com/):
+
+  ```
+  git clone https://github.com/zhongzhi107/universal-react-starter-kit my-project
+  cd my-project
+  npm install
+  npm run serve
+  ```
+
   Now the app should be running at http://localhost:3000/
-
-  or start production server
-
-  ```
-  # Running production server
-  yarn run serve:dist
-  ```
-
-  Now the app should be running at http://localhost:8080/
