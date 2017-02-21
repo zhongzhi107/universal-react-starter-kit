@@ -1,5 +1,5 @@
 export default {
-  bundleAssetTypes: [
+  assetTypes: [
     'jpg',
     'jpeg',
     'png',
@@ -12,13 +12,13 @@ export default {
     'woff2',
     'otf',
   ],
-  paths: {
-    dist: 'dist',
-    logs: 'logs',
-  },
+
   fileHashLength: 8,
+
   jsOutputDirectory: 'js',
+
   cssOutputDirectory: 'css',
+
   commonChunks: {
     vendor: [
       'react',
@@ -30,6 +30,7 @@ export default {
   // page that will be used by the service worker to render our application
   // offline.
   offlinePageTemplate: 'tools/offline-page/template.html',
+
   // Offline page file name.
   offlinePageFileName: 'index.html',
 };

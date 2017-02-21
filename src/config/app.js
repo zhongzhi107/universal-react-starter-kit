@@ -1,8 +1,15 @@
 export default {
   host: process.env.HOST || 'localhost',
   port: process.env.PORT || 3000,
+
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
+
+  paths: {
+    dist: 'dist',
+    logs: 'logs',
+    api: 'api',
+  },
 
   globals: {
     // DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING

@@ -4,16 +4,17 @@ import session from 'koa-session';
 import body from 'koa-body';
 import json from 'koa-json';
 import PrettyError from 'pretty-error';
-import {mapUrl} from 'utils/url';
+import { mapUrl } from 'utils/url';
 import * as actions from 'actions';
-import {apiHost, apiPort, globals} from '../src/config/environments';
+import { appConfig } from '../src/config';
 
+const { apiHost, apiPort, globals } = appConfig;
 const pretty = new PrettyError();
 const app = new Koa();
 
 app.use(convert(session(app)));
 app.use(body());
-app.use(json({ pretty: globals.__DEVELOPMENT__}));
+app.use(json({ pretty: globals.__DEVELOPMENT__ }));
 app.use(async (ctx) => {
   const splittedUrlPath = ctx.url.split('?')[0].split('/').slice(1);
   const { action, params } = mapUrl(actions, splittedUrlPath);

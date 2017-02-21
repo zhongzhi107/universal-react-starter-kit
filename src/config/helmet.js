@@ -1,4 +1,5 @@
 const projectName = 'universal-react-starter-kit';
+
 export default Object.freeze({
   title: projectName,
   description: 'All the modern best practices in one example.',

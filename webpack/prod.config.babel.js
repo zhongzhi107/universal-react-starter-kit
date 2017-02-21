@@ -8,17 +8,23 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
-import {
-  commonChunks,
-  paths,
-  fileHashLength,
-  jsOutputDirectory,
-  cssOutputDirectory,
-  offlinePageTemplate,
-  offlinePageFileName
-} from '../src/config/compiler';
+import config from '../src/config';
 
-const { dist } = paths;
+const {
+  appConfig: {
+    paths: {
+      dist,
+    }
+  },
+  buildConfig: {
+    commonChunks,
+    fileHashLength,
+    jsOutputDirectory,
+    cssOutputDirectory,
+    offlinePageTemplate,
+    offlinePageFileName,
+  }
+} = config;
 const context = path.resolve(__dirname, '..');
 const assetsPath = path.resolve(context, dist);
 

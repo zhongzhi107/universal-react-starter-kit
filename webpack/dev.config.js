@@ -4,10 +4,18 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import config from 'config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
-import { jsOutputDirectory } from '../src/config/compiler';
-import { host, port } from '../src/config/environments';
 
+const {
+  appConfig: {
+    host,
+    port,
+  },
+  buildConfig: {
+    jsOutputDirectory
+  }
+} = config;
 const context = path.resolve(__dirname, '..');
 const devPort = parseInt(port, 10) + 1;
 

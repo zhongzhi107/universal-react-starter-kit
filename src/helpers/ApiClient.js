@@ -1,7 +1,8 @@
 import superagent from 'superagent';
 // import axios from 'axios'
-import { host, port } from 'config/environments';
+import { appConfig } from 'config';
 
+const { host, port } = appConfig;
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(url) {

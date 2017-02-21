@@ -8,12 +8,11 @@ import favicon from 'koa-favicon';
 import morgan from 'koa-morgan';
 import FileStreamRotator from 'file-stream-rotator';
 import mkdirp from 'mkdirp';
-import { host, port, apiHost, apiPort } from 'config/environments';
-import { paths } from 'config/compiler';
+import { appConfig } from 'config';
 import pkg from '../package.json';
 import serverSideRender from '../webpack/middleware/server-side-render';
 
-const { logs, dist } = paths;
+const { host, port, apiHost, apiPort, paths: { logs, dist } } = appConfig;
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const webroot = path.join(__dirname, '..', __DEVELOPMENT__ ? 'static' : dist);
 

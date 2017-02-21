@@ -1,10 +1,11 @@
 import Koa from 'koa';
 import webpack from 'webpack';
-import { host, port } from 'config/environments';
+import { appConfig } from 'config';
 import devMiddleware from './middleware/webpack-dev';
 import hotMiddleware from './middleware/webpack-hot';
 import webpackConfig from './dev.config';
 
+const { host, port } = appConfig;
 const devPort = parseInt(port, 10) + 1;
 const serverOptions = {
   contentBase: `http://${host}:${devPort}`,
