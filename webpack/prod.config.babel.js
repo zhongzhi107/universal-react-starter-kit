@@ -56,6 +56,7 @@ const moduleConfig = {
           {
             loader: 'css-loader',
             query: {
+              modules: true,
               importLoaders: 2,
               minimize: true,
               localIdentName: '[local]___[hash:base64:5]',
