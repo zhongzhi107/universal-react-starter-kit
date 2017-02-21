@@ -4,12 +4,12 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import { dist } from 'config/compiler';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
+import { jsOutputDirectory } from '../src/config/compiler';
+import { host, port } from '../src/config/environments';
 
-const assetsPath = path.resolve(__dirname, '..', dist);
-const host = (process.env.HOST || 'localhost');
-const port = (+process.env.PORT + 1) || 3001;
+const context = path.resolve(__dirname, '..');
+const devPort = parseInt(port, 10) + 1;
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
@@ -70,18 +70,18 @@ reactTransform[1].transforms.push({
 
 module.exports = {
   devtool: false, // 'inline-source-map',
-  context: path.resolve(__dirname, '..'),
+  context,
   entry: {
     main: [
-      `webpack-hot-middleware/client?path=http://${host}:${port}/__webpack_hmr`,
+      `webpack-hot-middleware/client?path=http://${host}:${devPort}/__webpack_hmr`,
       './src/client.js'
     ]
   },
   output: {
-    path: assetsPath,
-    filename: '[name]-[hash].js',
-    chunkFilename: '[name]-[chunkhash].js',
-    publicPath: `http://${host}:${port}/dist/`,
+    path: '/',
+    filename: `${jsOutputDirectory}/[name].js`,
+    chunkFilename: `${jsOutputDirectory}/[name].js`,
+    publicPath: `http://${host}:${devPort}/`,
   },
   module: {
     rules: [

@@ -11,7 +11,7 @@ import pkg from '../package.json';
 import serverSideRender from '../webpack/middleware/server-side-render';
 
 const targetUrl = `http://${apiHost}:${apiPort}`;
-const webroot = path.join(__dirname, '..', dist);
+const webroot = path.join(__dirname, '..', __DEVELOPMENT__ ? 'static' : dist);
 const app = new Koa();
 
 // Proxy to API server
@@ -31,19 +31,15 @@ app.use(cookie())
   .use(favicon(path.join(webroot, 'favicon.ico')))
   .use(serverSideRender());
 
-if (port) {
-  app.listen(port, (err) => {
-    if (err) {
-      console.error(`==> 😭  OMG!!! ${err}`);
-    }
-    console.info(`----\n==> ✅  ${pkg.name} is running, talking to API server on ${apiPort}.`);
-    console.info(`==> 💻  Open http://${host}:${port} in a browser to view the app.`);
+app.listen(port, (err) => {
+  if (err) {
+    console.error(`==> 😭  OMG!!! ${err}`);
+  }
+  console.info(`----\n==> ✅  ${pkg.name} is running, talking to API server on ${apiPort}.`);
+  console.info(`==> 💻  Open http://${host}:${port} in a browser to view the app.`);
 
-    if (__DEVELOPMENT__) {
-      // Open Chrome
-      require('../tools/open-browser')(`http://${host}:${port}/`);
-    }
-  });
-} else {
-  console.error('==>     ERROR: No PORT environment variable has been specified');
-}
+  if (__DEVELOPMENT__) {
+    // Open Chrome
+    require('../tools/open-browser')(`http://${host}:${port}/`);
+  }
+});

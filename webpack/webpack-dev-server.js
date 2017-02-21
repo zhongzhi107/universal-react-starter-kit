@@ -5,12 +5,9 @@ import devMiddleware from './middleware/webpack-dev';
 import hotMiddleware from './middleware/webpack-hot';
 import webpackConfig from './dev.config';
 
-const compiler = webpack(webpackConfig);
-const HOST = host || 'localhost';
-const PORT = (Number(port) + 1) || 3001;
-
+const devPort = parseInt(port, 10) + 1;
 const serverOptions = {
-  contentBase: `http://${HOST}:${PORT}`,
+  contentBase: `http://${host}:${devPort}`,
   quiet: true,
   noInfo: true,
   hot: true,
@@ -20,14 +17,16 @@ const serverOptions = {
   headers: { 'Access-Control-Allow-Origin': '*' },
   stats: { colors: true }
 };
-
+const compiler = webpack(webpackConfig);
 const app = new Koa();
-app.use(devMiddleware(compiler, serverOptions));
-app.use(hotMiddleware(compiler));
-app.listen(PORT, (err) => {
+
+app.use(devMiddleware(compiler, serverOptions))
+  .use(hotMiddleware(compiler));
+
+app.listen(devPort, (err) => {
   if (err) {
     console.error(err);
   } else {
-    console.info(`==> 🚧  Webpack development server listening on port ${PORT}`);
+    console.info(`==> 🚧  Webpack development server listening on port ${devPort}`);
   }
 });

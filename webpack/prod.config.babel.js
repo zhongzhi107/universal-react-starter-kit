@@ -30,7 +30,6 @@ const entry = {
   ]
 };
 
-
 const output = {
   path: assetsPath,
   filename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
@@ -54,7 +53,14 @@ const moduleConfig = {
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [
-          { loader: 'css-loader', query: { importLoaders: 2, minimize: true } },
+          {
+            loader: 'css-loader',
+            query: {
+              importLoaders: 2,
+              minimize: true,
+              localIdentName: '[local]___[hash:base64:5]',
+            }
+          },
           { loader: 'postcss-loader' },
           { loader: 'less-loader' },
         ],
