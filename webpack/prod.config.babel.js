@@ -106,7 +106,7 @@ const plugins = [
   }),
 
   // ignore dev config
-  new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
+  // new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
 
   // optimizations
   new webpack.optimize.OccurrenceOrderPlugin(),
