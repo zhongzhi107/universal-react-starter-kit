@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.4.1...v0.5.0) (2017-02-21)
+
+
+### Bug Fixes
+
+* **config:** Enable CSS Modules when webpack build ([9cda8ad](https://github.com/zhongzhi107/universal-react-starter-kit/commit/9cda8ad))
+
+
+### Features
+
+* **logs:** Morgan the HTTP request logger for server side debugging ([9d64a75](https://github.com/zhongzhi107/universal-react-starter-kit/commit/9d64a75))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.4.0...v0.4.1) (2017-02-20)
 
