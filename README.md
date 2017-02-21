@@ -30,7 +30,7 @@ Really starter boilerplate with the most popular technologies:
 * [x] [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-middleware.html) serves the files emitted from webpack over the Express server.
 * [x] [Webpack Hot Middleware]() allows you to add hot reloading into the Express server.
 * [ ] [react-addons-shallow-compare](https://facebook.github.io/react/docs/shallow-compare.html) for a performance boost, it works perfectly with immutable data structure.
-* [ ] [morgan](https://github.com/expressjs/morgan) the HTTP request logger for server side debugging.
+* [x] [morgan](https://github.com/koa-modules/morgan) the HTTP request logger for server side debugging.
 * [x] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension) for next generation developer experience.
 * [x] [ESLint](http://eslint.org/) to maintain a consistent javascript code style (Airbnb's code style).
 * [x] [StyleLint](http://stylelint.io/) to maintain a consistent css/less code style.

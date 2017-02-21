@@ -1,6 +1,7 @@
 .idea/
 node_modules/
 dist/
+logs/
 *.iml
 webpack-assets.json
 webpack-stats.json

@@ -5,13 +5,29 @@ import serve from 'koa-static';
 import proxy from 'koa-proxy';
 import cookie from 'koa-cookie';
 import favicon from 'koa-favicon';
+import morgan from 'koa-morgan';
+import FileStreamRotator from 'file-stream-rotator';
+import mkdirp from 'mkdirp';
 import { host, port, apiHost, apiPort } from 'config/environments';
-import { dist } from 'config/compiler';
+import { paths } from 'config/compiler';
 import pkg from '../package.json';
 import serverSideRender from '../webpack/middleware/server-side-render';
 
+const { logs, dist } = paths;
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const webroot = path.join(__dirname, '..', __DEVELOPMENT__ ? 'static' : dist);
+
+// make log directory if it not exist
+const logDir = path.join(process.cwd(), logs);
+mkdirp.sync(logDir);
+
+// create a rotating write stream
+const accessLogStream = FileStreamRotator.getStream({
+  date_format: 'YYYYMMDD',
+  filename: `${logDir}/access-%DATE%.log`,
+  frequency: 'daily',
+  verbose: false,
+});
 const app = new Koa();
 
 // Proxy to API server
@@ -24,7 +40,9 @@ if (process.env.ENABLE_PROXY) {
     map: endpoint => endpoint.replace('/api', '')
   })));
 }
-app.use(cookie())
+
+app.use(morgan('combined', { stream: accessLogStream }))
+  .use(cookie())
   // html-webpack-plugin will generate index.html in build for PWA
   // Here set index page not index.html to keep SSR
   .use(serve(webroot, { index: 'disable-index.html' }))

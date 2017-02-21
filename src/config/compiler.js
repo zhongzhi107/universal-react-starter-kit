@@ -12,7 +12,10 @@ export default {
     'woff2',
     'otf',
   ],
-  dist: 'dist',
+  paths: {
+    dist: 'dist',
+    logs: 'logs',
+  },
   fileHashLength: 8,
   jsOutputDirectory: 'js',
   cssOutputDirectory: 'css',

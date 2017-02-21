@@ -10,7 +10,7 @@ import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 import {
   commonChunks,
-  dist,
+  paths,
   fileHashLength,
   jsOutputDirectory,
   cssOutputDirectory,
@@ -18,6 +18,7 @@ import {
   offlinePageFileName
 } from '../src/config/compiler';
 
+const { dist } = paths;
 const context = path.resolve(__dirname, '..');
 const assetsPath = path.resolve(context, dist);
 
