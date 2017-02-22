@@ -157,8 +157,9 @@ const plugins = [
   new CopyWebpackPlugin([
     {
       from: {
-        glob: `./static/**/*.{${copyAssetTypes.join(',')}}`
-      }
+        glob: `**/*.{${copyAssetTypes.join(',')}}`,
+      },
+      context: 'static',
     }
   ]),
 
