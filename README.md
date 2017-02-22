@@ -51,6 +51,7 @@ Really starter boilerplate with the most popular technologies:
 * [x] Optimized configuration file structure
 * [ ] [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard)
 * [ ] Quick scaffolding - Create components, containers, routes from the CLI!
+* [x] [DllPlugin](http://webpack.github.io/docs/list-of-plugins.html#dllplugin) to improve compiler performance
 
 ## Requirements
 

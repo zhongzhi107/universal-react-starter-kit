@@ -19,7 +19,7 @@
   "main": "bin/server.js",
   "scripts": {
     "build": "better-npm-run build",
-    "postinstall": "npm run build",
+    "postinstall": "npm run dll",
     "postrelease": "better-npm-run postrelease",
     "lint": "eslint webpack src",
     "lint:style": "stylelint src/**/*.less",
@@ -31,7 +31,8 @@
     "start-prod": "better-npm-run start-prod",
     "watch-client": "better-npm-run watch-client",
     "release": "standard-version",
-    "test": "npm run lint && npm run lint:style"
+    "test": "npm run lint && npm run lint:style",
+    "dll": "better-npm-run dll"
   },
   "dependencies": {
     "babel-cli": "^6.23.0",
@@ -163,6 +164,13 @@
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production"
+      }
+    },
+    "dll": {
+      "command": "webpack --colors --display-error-details --config webpack/dll.config.babel.js",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "development"
       }
     },
     "postrelease": {

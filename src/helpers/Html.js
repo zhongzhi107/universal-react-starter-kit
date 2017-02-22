@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
+import config from 'config';
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -31,9 +32,21 @@ export default class Html extends Component {
   };
 
   render() {
+    const { buildConfig: { commonChunks } } = config;
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
+
+    // Insert dll javascript into page if environment is development
+    if (__DEVELOPMENT__ && commonChunks && Object.keys(commonChunks).length > 0) {
+      Object.keys(commonChunks).forEach((chunk) => {
+        if (chunk in assets.javascript) {
+          console.error('[error]: Duplicate key');
+        } else {
+          assets.javascript[chunk] = `/${chunk}.js`;
+        }
+      });
+    }
 
     return (
       <html lang={head.htmlAttributes.toComponent().lang}>

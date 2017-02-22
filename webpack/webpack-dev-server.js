@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import { appConfig } from 'config';
 import devMiddleware from './middleware/webpack-dev';
 import hotMiddleware from './middleware/webpack-hot';
-import webpackConfig from './dev.config';
+import webpackConfig from './dev.config.babel';
 
 const { host, port } = appConfig;
 const devPort = parseInt(port, 10) + 1;

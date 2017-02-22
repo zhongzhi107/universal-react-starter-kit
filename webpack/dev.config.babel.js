@@ -11,12 +11,17 @@ const {
   appConfig: {
     host,
     port,
+    paths: {
+      tmp
+    }
   },
   buildConfig: {
+    commonChunks,
     jsOutputDirectory
   }
 } = config;
 const context = path.resolve(__dirname, '..');
+const dll = path.resolve(context, tmp);
 const devPort = parseInt(port, 10) + 1;
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
@@ -75,6 +80,56 @@ reactTransform[1].transforms.push({
   imports: ['react'],
   locals: ['module']
 });
+
+const plugins = [
+  // You can configure global / shared loader options with this plugin
+  // and all loaders will receive these options.
+  // In the future this plugin may be removed.
+  // @see https://webpack.js.org/plugins/loader-options-plugin
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      postcss: [autoprefixer],
+    },
+  }),
+
+  // Style lint
+  new StyleLintPlugin({
+    files: '**/*.less',
+    syntax: 'less',
+    failOnError: true,  // Disable style lint error terminating here
+  }),
+
+  // hot reload
+  new webpack.HotModuleReplacementPlugin(),
+
+  // new webpack.IgnorePlugin(/webpack-stats\.json$/),
+
+  // The DefinePlugin allows you to create global constants
+  // which can be configured at compile time.
+  // @see https://webpack.js.org/plugins/define-plugin/
+  new webpack.DefinePlugin({
+    __CLIENT__: true,
+    __SERVER__: false,
+    __DEVELOPMENT__: true,
+    __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
+  }),
+
+  isomorphicToolsPlugin.development()
+];
+
+console.log('------', commonChunks);
+if (commonChunks) {
+  Object.keys(commonChunks).forEach((key) => {
+    console.log('=====', path.join(dll, `${key}-manifest.json`));
+    plugins.push(
+      new webpack.DllReferencePlugin({
+        context,
+        // eslint-disable-next-line
+        manifest: require(path.join(dll, `${key}-manifest.json`))
+      }),
+    );
+  });
+}
 
 module.exports = {
   context,
@@ -140,39 +195,5 @@ module.exports = {
     modules: ['src', 'node_modules'],
   },
 
-  plugins: [
-    // You can configure global / shared loader options with this plugin
-    // and all loaders will receive these options.
-    // In the future this plugin may be removed.
-    // @see https://webpack.js.org/plugins/loader-options-plugin
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [autoprefixer],
-      },
-    }),
-
-    // Style lint
-    new StyleLintPlugin({
-      files: '**/*.less',
-      syntax: 'less',
-      failOnError: true,  // Disable style lint error terminating here
-    }),
-
-    // hot reload
-    new webpack.HotModuleReplacementPlugin(),
-
-    // new webpack.IgnorePlugin(/webpack-stats\.json$/),
-
-    // The DefinePlugin allows you to create global constants
-    // which can be configured at compile time.
-    // @see https://webpack.js.org/plugins/define-plugin/
-    new webpack.DefinePlugin({
-      __CLIENT__: true,
-      __SERVER__: false,
-      __DEVELOPMENT__: true,
-      __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
-    }),
-
-    isomorphicToolsPlugin.development()
-  ]
+  plugins,
 };

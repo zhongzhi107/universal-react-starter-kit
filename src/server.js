@@ -11,12 +11,12 @@ import { appConfig } from 'config';
 import pkg from '../package.json';
 import serverSideRender from '../webpack/middleware/server-side-render';
 
-const { host, port, apiHost, apiPort, paths: { logs, dist } } = appConfig;
+const { host, port, apiHost, apiPort, paths: { logs, dist, tmp } } = appConfig;
 const targetUrl = `http://${apiHost}:${apiPort}`;
-const webroot = path.join(__dirname, '..', __DEVELOPMENT__ ? 'static' : dist);
+const cwd = process.cwd();
 
 // make log directory if it not exist
-const logDir = path.join(process.cwd(), logs);
+const logDir = path.join(cwd, logs);
 mkdirp.sync(logDir);
 
 // create a rotating write stream
@@ -39,12 +39,17 @@ if (process.env.ENABLE_PROXY) {
   })));
 }
 
-app.use(morgan('combined', { stream: accessLogStream }))
-  .use(cookie())
+app.use(morgan('combined', { stream: accessLogStream }));
+app.use(cookie());
+if (__DEVELOPMENT__) {
+  app.use(serve(path.join(cwd, 'static')));
+  app.use(serve(path.join(cwd, tmp)));
+} else {
   // html-webpack-plugin will generate index.html in build for PWA
   // Here set index page not index.html to keep SSR
-  .use(serve(webroot, { index: 'disable-index.html' }))
-  .use(serverSideRender());
+  app.use(serve(path.join(cwd, dist), { index: 'disable-index.html' }));
+}
+app.use(serverSideRender());
 
 app.listen(port, (err) => {
   if (err) {

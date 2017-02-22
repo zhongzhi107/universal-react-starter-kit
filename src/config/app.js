@@ -21,6 +21,9 @@ export default {
 
     // Path to access logs
     logs: 'logs',
+
+    // Path to tmp
+    tmp: '.tmp',
   },
 
   globals: {
