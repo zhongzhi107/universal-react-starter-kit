@@ -6,6 +6,10 @@ const initialState = {
   loaded: false,
 };
 
+/**
+ * @module redux/modules/auth
+ * @return {Object}
+ */
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
@@ -32,10 +36,18 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
+/**
+ * Check whether the auth data has been loaded
+ * @return {Boolean}
+ */
 export function isLoaded(globalState) {
   return globalState.auth && globalState.auth.loaded;
 }
 
+/**
+ * Load auth data from API server
+ * @return {Object}
+ */
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],

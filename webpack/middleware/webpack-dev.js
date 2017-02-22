@@ -1,6 +1,9 @@
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import applyExpressMiddleware from './apply-express-middleware';
 
+/**
+ * webpack development middleware for koa
+ */
 export default function (compiler, options) {
   const middleware = webpackDevMiddleware(compiler, options);
 

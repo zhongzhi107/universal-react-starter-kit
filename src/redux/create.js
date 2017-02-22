@@ -4,6 +4,13 @@ import thunk from 'redux-thunk';
 // import Immutable from 'immutable';
 import createMiddleware from './middleware/clientMiddleware';
 
+/**
+ * Create redux store
+ * @module redux/create
+ * @param {Object} history Browser history
+ * @param {Object} client ApiClient instantence
+ * @param {Object} data Default store
+ */
 export default function createStore(history, client, data) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);

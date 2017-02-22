@@ -13,6 +13,12 @@ import getRoutes from 'routes';
 
 const pretty = new PrettyError();
 
+/**
+ * Add error handle for loadOnServer
+ *
+ * @param {Object} opt
+ * @return {Promise}
+ */
 function proxyLoadOnServer(opt) {
   return loadOnServer(opt).then((result) => {
     for (let i = 0; i < result.length; i++) {
@@ -52,6 +58,12 @@ function proxyLoadOnServer(opt) {
   });
 }
 
+/**
+ * koa middlewave for SSR
+ *
+ * @module webpack/middlewave/serve-side-render
+ * @return {Function}
+ */
 export default function () {
   return async (ctx) => {
     if (__DEVELOPMENT__) {
@@ -64,6 +76,9 @@ export default function () {
     const store = createStore(memoryHistory, client);
     const history = syncHistoryWithStore(memoryHistory, store);
 
+    /**
+     * Render Index page only on client
+     */
     function hydrateOnClient() {
       const html = ReactDOM.renderToString(
         <Html

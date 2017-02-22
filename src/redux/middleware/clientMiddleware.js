@@ -1,3 +1,6 @@
+/**
+ * @module redux/middleware/clientMiddleware
+ */
 export default function clientMiddleware(client) {
   return ({ dispatch, getState }) => next => (action) => {
     if (typeof action === 'function') {

@@ -5,6 +5,11 @@ import { appConfig } from 'config';
 const { host, port } = appConfig;
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
+/**
+ * Format URL based on environment variables
+ * @param {String} url
+ * @return {String}
+ */
 function formatUrl(url) {
   const adjustedUrl = url.startsWith('/') ? url : `/${url}`;
 

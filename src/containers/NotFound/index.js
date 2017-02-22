@@ -1,6 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+/**
+ * NotFound Component
+ */
 export default function NotFound() {
   return (
     <div className="container">
