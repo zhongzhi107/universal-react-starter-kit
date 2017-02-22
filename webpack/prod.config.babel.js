@@ -97,33 +97,51 @@ const moduleConfig = {
 };
 
 const plugins = [
+
+  // You can configure global / shared loader options with this plugin
+  // and all loaders will receive these options.
+  // In the future this plugin may be removed.
+  // @see https://webpack.js.org/plugins/loader-options-plugin
   new webpack.LoaderOptionsPlugin({
     options: {
       postcss: [autoprefixer],
     },
   }),
 
+  // Remove/clean your build folder(s) before building
+  // @see https://github.com/johnagan/clean-webpack-plugin
   new CleanPlugin([assetsPath], { root: context }),
 
+  // Extract text from bundle into a file
   // css files from the extract-text-plugin loader
+  // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
   new ExtractTextPlugin({
     filename: `${cssOutputDirectory}/[name]-[contenthash:${fileHashLength}].css`,
     allChunks: true,
   }),
 
+  // The DefinePlugin allows you to create global constants
+  // which can be configured at compile time.
+  // @see https://webpack.js.org/plugins/define-plugin/
   new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: '"production"'
-    },
-
     __CLIENT__: true,
     __SERVER__: false,
     __DEVELOPMENT__: false,
     __DEVTOOLS__: false
   }),
 
+  // The EnvironmentPlugin is a shorthand for using the DefinePlugin
+  // on process.env keys
+  // @see https://webpack.js.org/plugins/environment-plugin/
+  new webpack.EnvironmentPlugin({
+    NODE_ENV: 'production',
+  }),
+
   // optimizations
   new webpack.optimize.OccurrenceOrderPlugin(),
+
+  // UglifyJS
+  // @see https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
@@ -135,6 +153,8 @@ const plugins = [
 
   isomorphicToolsPlugin,
 
+  // Copy files and directories in webpack
+  // @see https://github.com/kevlened/copy-webpack-plugin
   new CopyWebpackPlugin([
     {
       from: {
@@ -143,11 +163,15 @@ const plugins = [
     }
   ]),
 
+  // Simplifies creation of HTML files to serve your webpack bundles
+  // @see https://github.com/jantimon/html-webpack-plugin
   new HtmlWebpackPlugin({
     filename: offlinePageFileName,
     template: offlinePageTemplate
   }),
 
+  // Offline plugin (ServiceWorker, AppCache) for webpack
+  // @see https://github.com/NekR/offline-plugin
   new OfflinePlugin({
     // caches: {
     //   main: [
@@ -180,6 +204,9 @@ const plugins = [
   })
 ];
 
+// Creates a separate file (known as a chunk),
+// consisting of common modules shared between multiple entry points
+// @see https://webpack.js.org/plugins/commons-chunk-plugin
 if (commonChunks) {
   const chunkKeys = Object.keys(commonChunks);
   chunkKeys.forEach((key) => {
