@@ -23,7 +23,6 @@ install:
   - npm install
 
   # Install our current directory as a dependency of itself
-  - npm run lint
-  - npm run lint:style
+  - npm run test
 
 build: off
