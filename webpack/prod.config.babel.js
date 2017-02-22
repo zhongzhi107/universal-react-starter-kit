@@ -7,8 +7,8 @@ import OfflinePlugin from 'offline-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import config from 'config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
-import config from '../src/config';
 
 const {
   appConfig: {

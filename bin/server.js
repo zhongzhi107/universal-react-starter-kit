@@ -3,8 +3,8 @@
 import path from 'path';
 import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 import piping from 'piping';
+import { appConfig } from 'config';
 import witConfig from '../webpack/webpack-isomorphic-tools';
-import { appConfig } from '../src/config';
 
 /**
  * Define isomorphic constants.
