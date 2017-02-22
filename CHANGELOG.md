@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.5.1...v0.6.0) (2017-02-22)
+
+
+### Bug Fixes
+
+* **build:** Fixed path error when copy static files to dist directory ([478fbfe](https://github.com/zhongzhi107/universal-react-starter-kit/commit/478fbfe))
+
+
+### Features
+
+* **eslint:** Enable require-jsdoc option to make sure that the comments conform to the JSDoc specification ([d73854a](https://github.com/zhongzhi107/universal-react-starter-kit/commit/d73854a))
+
+
+### Performance Improvements
+
+* **build:** Using DllPlugin to improve compiler performance ([ba0b4f8](https://github.com/zhongzhi107/universal-react-starter-kit/commit/ba0b4f8))
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.5.0...v0.5.1) (2017-02-22)
 
