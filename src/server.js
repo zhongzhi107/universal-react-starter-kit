@@ -4,7 +4,6 @@ import convert from 'koa-convert';
 import serve from 'koa-static';
 import proxy from 'koa-proxy';
 import cookie from 'koa-cookie';
-import favicon from 'koa-favicon';
 import morgan from 'koa-morgan';
 import FileStreamRotator from 'file-stream-rotator';
 import mkdirp from 'mkdirp';
@@ -45,7 +44,6 @@ app.use(morgan('combined', { stream: accessLogStream }))
   // html-webpack-plugin will generate index.html in build for PWA
   // Here set index page not index.html to keep SSR
   .use(serve(webroot, { index: 'disable-index.html' }))
-  .use(favicon(path.join(webroot, 'favicon.ico')))
   .use(serverSideRender());
 
 app.listen(port, (err) => {
