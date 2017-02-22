@@ -6,9 +6,9 @@ export default {
   apiPort: process.env.APIPORT,
 
   paths: {
+    api: 'api',
     dist: 'dist',
     logs: 'logs',
-    api: 'api',
   },
 
   globals: {

@@ -17,6 +17,7 @@ const {
     }
   },
   buildConfig: {
+    assetTypes,
     commonChunks,
     fileHashLength,
     jsOutputDirectory,
@@ -25,6 +26,7 @@ const {
     offlinePageFileName,
   }
 } = config;
+const copyAssetTypes = assetTypes.concat('json', 'txt');
 const context = path.resolve(__dirname, '..');
 const assetsPath = path.resolve(context, dist);
 
@@ -100,6 +102,7 @@ const plugins = [
       postcss: [autoprefixer],
     },
   }),
+
   new CleanPlugin([assetsPath], { root: context }),
 
   // css files from the extract-text-plugin loader
@@ -119,9 +122,6 @@ const plugins = [
     __DEVTOOLS__: false
   }),
 
-  // ignore dev config
-  // new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
-
   // optimizations
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
@@ -137,9 +137,11 @@ const plugins = [
 
   new CopyWebpackPlugin([
     {
-      from: './static'
+      from: {
+        glob: `./static/**/*.{${copyAssetTypes.join(',')}}`
+      }
     }
-  ], { ignore: ['*.psd'] }),
+  ]),
 
   new HtmlWebpackPlugin({
     filename: offlinePageFileName,

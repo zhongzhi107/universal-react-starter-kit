@@ -11,6 +11,7 @@ export default {
     'woff',
     'woff2',
     'otf',
+    'mp3',
   ],
 
   fileHashLength: 8,
