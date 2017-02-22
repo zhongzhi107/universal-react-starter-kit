@@ -1,6 +1,6 @@
 {
   "name": "universal-react-starter-kit",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "An universal web application framework using react, redux, koa and webpack",
   "keywords": [
     "universal",
@@ -23,7 +23,7 @@
     "postrelease": "better-npm-run postrelease",
     "lint": "eslint webpack src",
     "lint:style": "stylelint src/**/*.less",
-    "serve": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-api\"",
+    "serve": "concurrently --kill-others --color \"bgBlue.bold,bgMagenta.bold,bgGreen.bold\" \"npm run watch-client\" \"npm run start-dev\" \"npm run start-api\"",
     "serve:dist": "npm run build && npm start",
     "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-api\"",
     "start-api": "better-npm-run start-api",
