@@ -77,20 +77,24 @@ reactTransform[1].transforms.push({
 });
 
 module.exports = {
-  devtool: false, // 'inline-source-map',
   context,
+
+  devtool: false, // 'inline-source-map',
+
   entry: {
     main: [
       `webpack-hot-middleware/client?path=http://${host}:${devPort}/__webpack_hmr`,
       './src/client.js'
     ]
   },
+
   output: {
     path: '/',
     filename: `${jsOutputDirectory}/[name].js`,
     chunkFilename: `${jsOutputDirectory}/[name].js`,
     publicPath: `http://${host}:${devPort}/`,
   },
+
   module: {
     rules: [
       {
@@ -131,29 +135,44 @@ module.exports = {
       }
     ]
   },
+
   resolve: {
     modules: ['src', 'node_modules'],
   },
+
   plugins: [
+    // You can configure global / shared loader options with this plugin
+    // and all loaders will receive these options.
+    // In the future this plugin may be removed.
+    // @see https://webpack.js.org/plugins/loader-options-plugin
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [autoprefixer],
       },
     }),
+
+    // Style lint
     new StyleLintPlugin({
       files: '**/*.less',
       syntax: 'less',
       failOnError: true,  // Disable style lint error terminating here
     }),
+
     // hot reload
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.IgnorePlugin(/webpack-stats\.json$/),
+
+    // new webpack.IgnorePlugin(/webpack-stats\.json$/),
+
+    // The DefinePlugin allows you to create global constants
+    // which can be configured at compile time.
+    // @see https://webpack.js.org/plugins/define-plugin/
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false,
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
     }),
+
     isomorphicToolsPlugin.development()
   ]
 };

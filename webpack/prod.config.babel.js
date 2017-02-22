@@ -97,7 +97,6 @@ const moduleConfig = {
 };
 
 const plugins = [
-
   // You can configure global / shared loader options with this plugin
   // and all loaders will receive these options.
   // In the future this plugin may be removed.
