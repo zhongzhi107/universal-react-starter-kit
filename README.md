@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/images/logo.png?raw=true" width="150" alt="Universal React Starter Kit" />
+<img src="https://github.com/zhongzhi107/universal-react-starter-kit/blob/master/static/images/touch/logo_144.png?raw=true" width="144" alt="Universal React Starter Kit" />
 <h1>Universal React Starter Kit</h1>
 </div>
 
