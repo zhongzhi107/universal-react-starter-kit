@@ -39,11 +39,13 @@ const entry = {
   ]
 };
 
+const { CDN_ROOT = '' } = process.env;
+
 const output = {
   path: assetsPath,
   filename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
   chunkFilename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
-  publicPath: ''
+  publicPath: CDN_ROOT,
 };
 
 const resolve = {
