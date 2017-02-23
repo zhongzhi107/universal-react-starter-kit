@@ -78,3 +78,24 @@ Really starter boilerplate with the most popular technologies:
   ```
 
   Now the app should be running at http://localhost:3000/
+
+  ## Commands
+  ```
+  # Build the project
+  yarn build
+
+  # Build the project with CDN_ROOT
+  CDN_ROOT=//mycdn.com/ yarn build
+
+  # Test
+  yarn test
+
+  # JavaScript lint
+  yarn run lint
+
+  # CSS lint
+  yarn run lint:style
+
+  # Build "dll" bundles
+  yarn run dll
+  ```
