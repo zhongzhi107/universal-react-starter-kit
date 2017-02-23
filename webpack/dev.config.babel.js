@@ -117,10 +117,8 @@ const plugins = [
   isomorphicToolsPlugin.development()
 ];
 
-console.log('------', commonChunks);
 if (commonChunks) {
   Object.keys(commonChunks).forEach((key) => {
-    console.log('=====', path.join(dll, `${key}-manifest.json`));
     plugins.push(
       new webpack.DllReferencePlugin({
         context,
@@ -134,7 +132,7 @@ if (commonChunks) {
 module.exports = {
   context,
 
-  devtool: false, // 'inline-source-map',
+  devtool: false,
 
   entry: {
     main: [
