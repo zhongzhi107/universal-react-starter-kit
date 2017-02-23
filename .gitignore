@@ -1,14 +1,16 @@
 .idea/
 .tmp/
+.gitlab/
+.github/
 node_modules/
 dist/
 logs/
 *.iml
 webpack-assets.json
-webpack-stats.json
 npm-debug.log
 yarn-error.log
 *.swp
 *.psd
 *.report.html
 .happypack
+gitlab.sh
