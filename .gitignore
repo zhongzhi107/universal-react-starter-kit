@@ -1,10 +1,12 @@
 .idea/
 .tmp/
 .gitlab/
+.gitlab_node/
 .github/
 node_modules/
 dist/
 logs/
+prd/
 *.iml
 webpack-assets.json
 npm-debug.log
