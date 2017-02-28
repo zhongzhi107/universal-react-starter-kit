@@ -24,7 +24,7 @@ const accessLogStream = FileStreamRotator.getStream({
   date_format: 'YYYYMMDD',
   filename: `${logDir}/access-%DATE%.log`,
   frequency: 'daily',
-  verbose: false,
+  verbose: false
 });
 const app = new Koa();
 

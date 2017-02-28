@@ -13,7 +13,7 @@ import isomorphicToolsConfig from './webpack-isomorphic-tools';
 const {
   appConfig: {
     paths: {
-      dist,
+      dist
     }
   },
   buildConfig: {
@@ -23,7 +23,7 @@ const {
     jsOutputDirectory,
     cssOutputDirectory,
     offlinePageTemplate,
-    offlinePageFileName,
+    offlinePageFileName
   }
 } = config;
 const copyAssetTypes = assetTypes.concat('json', 'txt');
@@ -45,11 +45,11 @@ const output = {
   path: assetsPath,
   filename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
   chunkFilename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
-  publicPath: CDN_ROOT,
+  publicPath: CDN_ROOT
 };
 
 const resolve = {
-  modules: ['src', 'node_modules'],
+  modules: ['src', 'node_modules']
 };
 
 const moduleConfig = {
@@ -70,13 +70,13 @@ const moduleConfig = {
               modules: true,
               importLoaders: 2,
               minimize: true,
-              localIdentName: '[local]___[hash:base64:5]',
+              localIdentName: '[local]___[hash:base64:5]'
             }
           },
           { loader: 'postcss-loader' },
           { loader: 'less-loader' },
-        ],
-      }),
+        ]
+      })
     },
     {
       test: isomorphicToolsPlugin.regular_expression('images'),
@@ -84,15 +84,9 @@ const moduleConfig = {
         {
           loader: 'url-loader',
           query: {
-            limit: 10240,
+            limit: 10240
           }
-        },
-        {
-          loader: 'image-webpack-loader',
-          query: {
-            bypassOnDebug: true,
-          },
-        },
+        }
       ]
     }
   ]
@@ -105,8 +99,8 @@ const plugins = [
   // @see https://webpack.js.org/plugins/loader-options-plugin
   new webpack.LoaderOptionsPlugin({
     options: {
-      postcss: [autoprefixer],
-    },
+      postcss: [autoprefixer]
+    }
   }),
 
   // Remove/clean your build folder(s) before building
@@ -118,7 +112,7 @@ const plugins = [
   // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
   new ExtractTextPlugin({
     filename: `${cssOutputDirectory}/[name]-[contenthash:${fileHashLength}].css`,
-    allChunks: true,
+    allChunks: true
   }),
 
   // The DefinePlugin allows you to create global constants
@@ -135,7 +129,7 @@ const plugins = [
   // on process.env keys
   // @see https://webpack.js.org/plugins/environment-plugin/
   new webpack.EnvironmentPlugin({
-    NODE_ENV: 'production',
+    NODE_ENV: 'production'
   }),
 
   // optimizations
@@ -147,9 +141,9 @@ const plugins = [
     compress: {
       warnings: false,
       drop_debugger: true,
-      drop_console: true,
+      drop_console: true
     },
-    comments: /^!/,
+    comments: /^!/
   }),
 
   isomorphicToolsPlugin,
@@ -159,9 +153,9 @@ const plugins = [
   new CopyWebpackPlugin([
     {
       from: {
-        glob: `**/*.{${copyAssetTypes.join(',')}}`,
+        glob: `**/*.{${copyAssetTypes.join(',')}}`
       },
-      context: 'static',
+      context: 'static'
     }
   ]),
 

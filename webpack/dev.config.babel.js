@@ -88,15 +88,16 @@ const plugins = [
   // @see https://webpack.js.org/plugins/loader-options-plugin
   new webpack.LoaderOptionsPlugin({
     options: {
-      postcss: [autoprefixer],
-    },
+      postcss: [autoprefixer]
+    }
   }),
 
   // Style lint
   new StyleLintPlugin({
     files: '**/*.less',
     syntax: 'less',
-    failOnError: true,  // Disable style lint error terminating here
+    // Disable style lint error terminating here
+    failOnError: true
   }),
 
   // hot reload
@@ -111,7 +112,8 @@ const plugins = [
     __CLIENT__: true,
     __SERVER__: false,
     __DEVELOPMENT__: true,
-    __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
+    // DISABLE redux-devtools HERE
+    __DEVTOOLS__: true
   }),
 
   isomorphicToolsPlugin.development()
@@ -124,7 +126,7 @@ if (commonChunks) {
         context,
         // eslint-disable-next-line
         manifest: require(path.join(dll, `${key}-manifest.json`))
-      }),
+      })
     );
   });
 }
@@ -145,7 +147,7 @@ module.exports = {
     path: '/',
     filename: `${jsOutputDirectory}/[name].js`,
     chunkFilename: `${jsOutputDirectory}/[name].js`,
-    publicPath: `http://${host}:${devPort}/`,
+    publicPath: `http://${host}:${devPort}/`
   },
 
   module: {
@@ -156,12 +158,12 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: babelLoaderQuery,
+            query: babelLoaderQuery
           },
           {
-            loader: 'eslint-loader',
+            loader: 'eslint-loader'
           }
-        ],
+        ]
       },
       {
         test: /\.less$/,
@@ -172,26 +174,26 @@ module.exports = {
             query: {
               modules: true,
               importLoaders: 2,
-              localIdentName: '[local]___[hash:base64:5]',
+              localIdentName: '[local]___[hash:base64:5]'
             }
           },
           { loader: 'postcss-loader' },
-          { loader: 'less-loader' },
-        ],
+          { loader: 'less-loader' }
+        ]
       },
       {
         test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
         query: {
-          limit: 10240,
-        },
+          limit: 10240
+        }
       }
     ]
   },
 
   resolve: {
-    modules: ['src', 'node_modules'],
+    modules: ['src', 'node_modules']
   },
 
-  plugins,
+  plugins
 };

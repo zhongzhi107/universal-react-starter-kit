@@ -40,7 +40,7 @@ export default Object.freeze({
       // Make sure you update your manifest.json to match your application.
       { rel: 'manifest', href: '/manifest.json' }
     ],
-    script: [],
+    script: []
   }
 
 });

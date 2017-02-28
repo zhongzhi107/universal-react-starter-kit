@@ -1,5 +1,4 @@
 import superagent from 'superagent';
-// import axios from 'axios'
 import { appConfig } from 'config';
 
 const { host, port } = appConfig;
@@ -26,7 +25,6 @@ export default class ApiClient {
     methods.forEach((method) => {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         console.log('-----------fetch url: ', formatUrl(path));
-        // const request = createRequest(method, formatUrl(path));
         const url = formatUrl(path);
         const request = superagent[method](url);
 

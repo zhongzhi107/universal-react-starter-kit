@@ -17,19 +17,19 @@ export default {
 
     // Path to the public assets that will be served off the root of the
     // HTTP server.
-    dist: 'dist',
+    dist: 'prd',
 
     // Path to access logs
     logs: 'logs',
 
     // Path to tmp
-    tmp: '.tmp',
+    tmp: '.tmp'
   },
 
   globals: {
     // DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
     __DISABLE_SSR__: false,
-    __DEVELOPMENT__: process.env.NODE_ENV !== 'production',
+    __DEVELOPMENT__: process.env.NODE_ENV !== 'production'
   },
 
   proxies: {

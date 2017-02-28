@@ -5,5 +5,5 @@ import app from './app';
 export default {
   appConfig: app,
   buildConfig: build,
-  helmetConfig: helmet,
+  helmetConfig: helmet
 };

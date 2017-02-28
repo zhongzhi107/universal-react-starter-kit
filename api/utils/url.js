@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 export function mapUrl(availableActions = {}, url = []) {
-  const notFound = {action: null, params: []};
+  const notFound = { action: null, params: [] };
 
   // test for empty input
   if (url.length === 0 || Object.keys(availableActions).length === 0) {
@@ -8,15 +8,17 @@ export function mapUrl(availableActions = {}, url = []) {
   }
   const reducer = (prev, current) => {
     if (prev.action && prev.action[current]) {
-      return {action: prev.action[current], params: []}; // go deeper
+      // go deeper
+      return { action: prev.action[current], params: [] };
     }
     if (typeof prev.action === 'function') {
-      return {action: prev.action, params: prev.params.concat(current)}; // params are found
+      // params are found
+      return { action: prev.action, params: prev.params.concat(current) };
     }
     return notFound;
   };
 
-  const actionAndParams = url.reduce(reducer, {action: availableActions, params: []});
+  const actionAndParams = url.reduce(reducer, { action: availableActions, params: [] });
 
   return (typeof actionAndParams.action === 'function') ? actionAndParams : notFound;
 }

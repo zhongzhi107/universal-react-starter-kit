@@ -15,7 +15,7 @@ export default {
     'woff',
     'woff2',
     'otf',
-    'mp3',
+    'mp3'
   ],
 
   // Length of md5
@@ -37,8 +37,8 @@ export default {
   commonChunks: {
     vendor: [
       'react',
-      'react-dom',
-    ],
+      'react-dom'
+    ]
   },
 
   // Path to the template used by HtmlWebpackPlugin to generate an offline
@@ -47,5 +47,5 @@ export default {
   offlinePageTemplate: 'tools/offline-page/template.html',
 
   // Offline page file name.
-  offlinePageFileName: 'index.html',
+  offlinePageFileName: 'index.html'
 };
