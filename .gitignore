@@ -1,8 +1,5 @@
 .idea/
 .tmp/
-.gitlab/
-.gitlab_node/
-.github/
 node_modules/
 dist/
 logs/
