@@ -43,8 +43,8 @@ const { CDN_ROOT = '' } = process.env;
 
 const output = {
   path: assetsPath,
-  filename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
-  chunkFilename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
+  filename: `/${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
+  chunkFilename: `/${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
   publicPath: CDN_ROOT
 };
 
