@@ -4,6 +4,7 @@ import CleanPlugin from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import config from 'config';
@@ -20,7 +21,9 @@ const {
     commonChunks,
     fileHashLength,
     jsOutputDirectory,
-    cssOutputDirectory
+    cssOutputDirectory,
+    offlinePageTemplate,
+    offlinePageFileName
   }
 } = config;
 const copyAssetTypes = assetTypes.concat('json', 'txt');
@@ -156,18 +159,31 @@ const plugins = [
     }
   ]),
 
+  // Simplifies creation of HTML files to serve your webpack bundles
+  // @see https://github.com/jantimon/html-webpack-plugin
+  new HtmlWebpackPlugin({
+    filename: offlinePageFileName,
+    template: offlinePageTemplate
+  }),
+
   // Offline plugin (ServiceWorker, AppCache) for webpack
   // @see https://github.com/NekR/offline-plugin
   new OfflinePlugin({
-    caches: {
-      main: [
-        // These assets don't have a chunk hash.
-        // SW fetch them on every SW update.
-        './',
-        './about',
-        ':rest:'
-      ]
-    },
+    // caches: {
+    //   main: [
+    //     // These assets don't have a chunk hash.
+    //     // SW fetch them on every SW update.
+    //     // '/',
+    //     offlinePageFileName
+    //   ],
+    //   additional: [
+    //     // All other assets have a chunk hash.
+    //     // SW only fetch them once.
+    //     // They'll have another name on change.
+    //     ':rest:',
+    //     // ':externals:'
+    //   ]
+    // },
     // externals: [
     //   'manifest.json',
     //   'robots.txt',
