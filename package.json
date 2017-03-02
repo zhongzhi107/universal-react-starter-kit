@@ -56,7 +56,6 @@
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.10.1",
     "file-stream-rotator": "^0.0.7",
-    "html-webpack-plugin": "^2.28.0",
     "less": "^3.0.0-alpha.2",
     "less-loader": "^2.2.3",
     "offline-plugin": "^4.6.1",
@@ -155,8 +154,7 @@
       "command": "babel-node webpack/webpack-dev-server.js",
       "env": {
         "NODE_PATH": "./src",
-        "PORT": 3000,
-        "APIPORT": 3030
+        "PORT": 3000
       }
     },
     "build": {
