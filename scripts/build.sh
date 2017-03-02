@@ -15,7 +15,7 @@ else
 
   # Jenkins 会自动为前端工程安装好依赖包，后端工程需要手动装
   if [ ! -d "node_modules" ]; then
-    npm --registry http://registry.npm.corp.qunar.com --disturl=https://npm.taobao.org/dist --sass-binary-site=http://npm.taobao.org/mirrors/node-sass --production
+    npm install --registry http://registry.npm.corp.qunar.com --disturl=https://npm.taobao.org/dist --sass-binary-site=http://npm.taobao.org/mirrors/node-sass --production
   fi
 
   CDN_ROOT=$1 npm run build
