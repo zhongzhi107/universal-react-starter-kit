@@ -4,8 +4,8 @@
 export PATH=/usr/local/n/versions/node/6.2.1/bin:$PATH
 
 if [ ! -n "$1" ] ;then
-  echo 参数错误
-  echo usage: build.client.sh <cdn_root>
+  echo "参数错误"
+  echo "usage: build.client.sh <cdn_root>"
 else
   echo hostname: `hostname`
   echo node version: `node -v`
