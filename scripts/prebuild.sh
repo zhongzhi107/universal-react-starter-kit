@@ -4,6 +4,8 @@ git fetch touch_server
 
 diff=`git diff origin/init touch_server/init --name-only`
 
+echo "diff: ${diff}"
+
 if [ ! $diff ]; then
   git remote remove touch_server
 else
