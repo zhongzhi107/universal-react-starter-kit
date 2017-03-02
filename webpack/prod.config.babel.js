@@ -163,24 +163,11 @@ const plugins = [
       main: [
         // These assets don't have a chunk hash.
         // SW fetch them on every SW update.
+        // '/',
         './',
-        './about',
         ':rest:'
       ]
-    },
-    // externals: [
-    //   'manifest.json',
-    //   'robots.txt',
-    //   'favicon.ico',
-    //   'images/touch/logo_192.png'
-    // ],
-    // // To remove a warning about additional need to have hash
-    // // safeToUseOptionalCaches: true,
-    // // 'additional' section is fetch only once.
-    // // updateStrategy: 'changed',
-    // // When using the publicPath we need to disable the "relativePaths"
-    // // feature of this plugin.
-    // relativePaths: false,
+    }
   })
 ];
 
