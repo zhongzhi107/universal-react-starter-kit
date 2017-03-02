@@ -4,6 +4,7 @@ git fetch touch_client
 
 diff=`git diff origin/init touch_client/init --name-only`
 
+echo "super_branch: ${super_branch}"
 echo "diff: ${diff}"
 
 if [ ! $diff ]; then
