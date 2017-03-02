@@ -7,5 +7,6 @@ diff=`git diff origin/init touch_server/init --name-only`
 if [ ! $diff ]; then
   git remote remove touch_server
 else
+  echo "两个仓库的代码不一致，请同步后再发布"
   exit 1
 fi
