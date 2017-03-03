@@ -1,12 +1,12 @@
 export default {
   // The host on which the HTTP server should run.
-  host: process.env.HOST || 'localhost',
+  host: process.env.HOST,
 
   // The port on which the HTTP server should run.
-  port: process.env.PORT || 3000,
+  port: process.env.PORT,
 
   // The host on which the API server should run.
-  apiHost: process.env.APIHOST || 'localhost',
+  apiHost: process.env.APIHOST,
 
   // The port on which the API server should run.
   apiPort: process.env.APIPORT,
