@@ -76,7 +76,7 @@ if [ -n "$1" ] ;then
   git remote add ${server_project} git@gitlab.corp.qunar.com:${server_group}/${server_project}.git
 
   # git fetch touch_server
-  git fetch ${server_project}
+  git fetch ${server_project} ${server_branch}
 
   # diff=`git diff origin/init touch_server/init --name-only`
   diff=`git diff origin/${server_branch} ${server_project}/${server_branch} --name-only`
@@ -89,7 +89,7 @@ if [ -n "$1" ] ;then
   if [ ! $diff ]; then
     echo "代码检查通过：client库和server库代码完全一致"
   else
-    echo "代码检查失败：请同步代码后再发布"
+    echo "代码检查失败：client库和server库代码不一致，请同步代码后再发布"
     exit 1
   fi
 fi
