@@ -14,6 +14,8 @@ if [ "${only_one_module}" == "" ]; then
 fi
 
 # 跳过线上
+# jenkins在rebuild时target可能会导致变量莫名的加上引号，如"""prod"""
+# 所以这里的判断不能使用等于，而是用的grep
 target_skip=prod
 result=`echo ${target} | grep "${target_skip}"`
 if [ "${result}" != "" ]; then
@@ -59,6 +61,7 @@ fi
 
 # 因为前端工程先于后端工程编译，所以只需要对前端工程做代码校验即可
 # 当前工程类型是通过调用脚本时传递的第一个参数来标识的
+# 参数在 jenkins 的 build_command 中配置
 if [ -n "$1" ] ;then
   if [ "${a1}" == "fe" ]; then
     server_group=${a2}
@@ -92,4 +95,6 @@ if [ -n "$1" ] ;then
     echo "代码检查失败：client库和server库代码不一致，请同步代码后再发布"
     exit 1
   fi
+else
+  echo "当前工程非fe工程，跳过代码检查"
 fi
