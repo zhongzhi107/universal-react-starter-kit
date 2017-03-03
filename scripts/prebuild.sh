@@ -76,7 +76,7 @@ if [ -n "$1" ] ;then
   git remote add ${server_project} git@gitlab.corp.qunar.com:${server_group}/${server_project}.git
 
   # git fetch touch_server
-  git fetch ${server_project} ${server_branch}
+  git fetch ${server_project}
 
   # diff=`git diff origin/init touch_server/init --name-only`
   diff=`git diff origin/${server_branch} ${server_project}/${server_branch} --name-only`
