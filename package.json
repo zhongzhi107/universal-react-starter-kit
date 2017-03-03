@@ -131,10 +131,7 @@
       "command": "babel-node webpack/webpack-dev-server.js"
     },
     "build": {
-      "command": "webpack --display-error-details --config webpack/prod.config.babel.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "command": "webpack --display-error-details --config webpack/prod.config.babel.js"
     },
     "dll": {
       "command": "webpack --colors --display-error-details --config webpack/dll.config.babel.js",
