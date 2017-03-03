@@ -1,11 +1,12 @@
+# 发线上时跳过版本检查
+target_skip=prod
+result=$(echo ${target} | grep "${target_skip}")
+if [ "${result}" != "" ]; then
+  echo "当前是线上发布，跳过版本检查 prebuild.sh，直接进入build.sh"
+fi
+
 echo "target: ${target}"
 echo "super_branch: ${super_branch}"
-
-# 发线上时跳过版本检查
-if [ "${target}" == "beta" ]; then
-  echo "当前是线上发布，跳过版本检查 prebuild.sh，直接进入build.sh"
-  exit 0
-fi
 
 # 解析 super_branch，让下面的代码变成通用代码
 # super_branch='fe.touch_client=init
@@ -72,4 +73,3 @@ else
   echo "请同步后再发布"
   exit 1
 fi
-exit 1
