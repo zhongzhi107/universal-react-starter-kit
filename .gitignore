@@ -5,6 +5,7 @@ dist/
 logs/
 prd/
 *.iml
+.env
 webpack-assets.json
 npm-debug.log
 yarn-error.log
