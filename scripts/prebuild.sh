@@ -19,7 +19,7 @@ fi
 target_skip=prod
 result=`echo ${target} | grep "${target_skip}"`
 if [ "${result}" != "" ]; then
-  echo "当前是线上发布，跳过版本检查prebuild.sh，直接进入build.sh"
+  echo "当前是prod发布，跳过版本检查prebuild.sh，直接进入build.sh"
 fi
 
 echo "target: ${target}"
