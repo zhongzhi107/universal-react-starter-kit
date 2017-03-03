@@ -43,13 +43,13 @@ if [ "${c1}" != "$c2" ]; then
 fi
 
 if [ "${a1}" == "fe" ]; then
-  client_group=a1
-  client_project=b1
-  client_branch=c1
+  client_group=${a1}
+  client_project=${b1}
+  client_branch=${c1}
 else
-  client_group=a2
-  client_project=b2
-  client_branch=c2
+  client_group=${a2}
+  client_project=${b2}
+  client_branch=${c2}
 fi
 
 # git remote add touch_client git@gitlab.corp.qunar.com:fe/touch_client.git
