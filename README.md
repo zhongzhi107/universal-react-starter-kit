@@ -64,6 +64,7 @@ Really starter boilerplate with the most popular technologies:
   ```
   git clone https://github.com/zhongzhi107/universal-react-starter-kit my-project
   cd my-project
+  cp profiles/local.env .env
   yarn
   yarn run serve
   ```
@@ -73,6 +74,7 @@ Really starter boilerplate with the most popular technologies:
   ```
   git clone https://github.com/zhongzhi107/universal-react-starter-kit my-project
   cd my-project
+  cp profiles/local.env .env
   npm install
   npm run serve
   ```
