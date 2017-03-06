@@ -11,9 +11,11 @@ import Header from 'components/Header';
   key: 'TestInit',
   deferred: true,
   // eslint-disable-next-line
-  promise: ({store: {dispatch, getState}}) => {
+  promise: ({store: {dispatch, getState}, location }) => {
+    console.log('=====querystring:', location.query);
+    const { name } = location.query;
     if (!isLoaded(getState())) {
-      return dispatch(loadTest());
+      return dispatch(loadTest(name));
     }
   }
 }])

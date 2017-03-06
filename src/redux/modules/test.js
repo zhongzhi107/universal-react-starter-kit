@@ -52,10 +52,15 @@ export function isLoaded(globalState) {
  * Load auth data from API server
  * @return {Object}
  */
-export function load() {
-  console.log('--------test load()');
+export function load(name) {
+  console.log('--------test load(), name: ', name);
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: client => client.get('/api/test') // params not used, just shown as demonstration
+    promise: client => client.get('/api/test', {
+      // qureystring for GET method
+      params: { name },
+      // data for POST method
+      data: {}
+    })
   };
 }
