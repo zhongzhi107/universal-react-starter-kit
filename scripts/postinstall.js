@@ -8,17 +8,15 @@ const hostname = os.hostname();
 const isLocal = !/^l-/.test(hostname);
 
 if (isLocal) {
+  // Copy .env
+  const { NODE_ENV = 'local' } = process.env;
+  const dest = path.resolve('.env');
+  const src = `profiles/${NODE_ENV}.env`;
+
+  writeFileSync(dest, readFileSync(src));
+  console.log(`${src} --> ${dest} copied`);
+  // execute dll
   console.log(execSync('npm run dll').toString());
 } else {
   console.log('npm run dll ... skipped');
 }
-
-console.log('[postinstall]process.env.NODE_ENV: ', process.env.NODE_ENV);
-
-// Copy .env
-const { NODE_ENV = 'local' } = process.env;
-const dest = path.resolve('.env');
-const src = `profiles/${NODE_ENV}.env`;
-
-writeFileSync(dest, readFileSync(src));
-console.log('.env copied');
