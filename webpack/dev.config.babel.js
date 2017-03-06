@@ -1,4 +1,3 @@
-// import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
@@ -113,8 +112,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
-            // query: babelLoaderQuery
+            loader: 'babel-loader'
           },
           {
             loader: 'eslint-loader'
