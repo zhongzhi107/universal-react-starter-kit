@@ -33,6 +33,6 @@ export default {
   },
 
   proxies: {
-    '^/api/(.*)': 'http://touch.qunar.com/api/$1'
+    '^/api/(.*)': 'http://localhost:3030/$1'
   }
 };

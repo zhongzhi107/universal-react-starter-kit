@@ -37,15 +37,17 @@ const render = (routes) => {
   });
 };
 
+console.log('-----------process.env.NODE_ENV,', process.env.NODE_ENV);
+
 if (process.env.NODE_ENV !== 'local') {
   require('offline-plugin/runtime').install();
 }
 
 render(getRoutes(store));
 
-if (process.env.NODE_ENV === 'local') {
+if (process.env.NODE_ENV !== 'production') {
   window.React = React; // enable debugger
-
+  console.log(!dest, !dest.firstChild, !dest.firstChild.attributes, !dest.firstChild.attributes['data-react-checksum']);
   if (!dest || !dest.firstChild || !dest.firstChild.attributes || !dest.firstChild.attributes['data-react-checksum']) {
     console.error(
       'Server-side React render was discarded.',

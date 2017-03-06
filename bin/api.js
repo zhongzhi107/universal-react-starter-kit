@@ -8,4 +8,9 @@ if (process.env.NODE_ENV !== 'production') {
     ignore: /(\/\.|~$|\.json|\.scss$)/i
   });
 }
-require('../api/api');
+
+if (process.env.ENABLE_PROXY === 'true') {
+  require('../api/api');
+} else {
+  console.log('API proxy was disabled.');
+}

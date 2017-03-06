@@ -8,7 +8,7 @@ module.exports =  {
   rules: {
     'comma-dangle': 0,  // not sure why airbnb turned this on. gross!
     'global-require': 0,
-    'indent': [2, 2, {SwitchCase: 1}],
+    'indent': [2, 2, { SwitchCase: 1 }],
     'new-cap': [2, { capIsNewExceptions: ['List', 'Map', 'Set'] }],
     'no-alert': 0,
     'no-console': 0,
