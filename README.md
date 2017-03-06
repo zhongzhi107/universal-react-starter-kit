@@ -54,7 +54,7 @@
   git add .
   git commit -m 'xx'
   git push origin/分支名
-  git push touch_server/分支名
+  git push touch_server HEAD:init
   ```
 
 ## 其他说明
