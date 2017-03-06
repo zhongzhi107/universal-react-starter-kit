@@ -1,4 +1,5 @@
 import path from 'path';
+import url from 'url';
 import Koa from 'koa';
 import convert from 'koa-convert';
 import serve from 'koa-static';
@@ -11,8 +12,7 @@ import { appConfig } from 'config';
 import pkg from '../package.json';
 import serverSideRender from '../webpack/middleware/server-side-render';
 
-const { host, port, apiHost, apiPort, paths: { logs, dist, tmp } } = appConfig;
-const targetUrl = `http://${apiHost}:${apiPort}`;
+const { host, port, apiPort, proxies, paths: { logs, dist, tmp } } = appConfig;
 const cwd = process.cwd();
 
 // make log directory if it not exist
@@ -28,26 +28,30 @@ const accessLogStream = FileStreamRotator.getStream({
 });
 const app = new Koa();
 
-// Proxy to API server
-if (process.env.ENABLE_PROXY) {
-  app.use(convert(proxy({
-    host: targetUrl,
-    // Send cookie to real server
-    jar: true,
-    match: /^\/api\//,
-    map: endpoint => endpoint.replace('/api', '')
-  })));
+if (process.env.ENABLE_PROXY === 'true') {
+  Object.keys(proxies).forEach((key) => {
+    const from = new RegExp(key);
+    const to = proxies[key];
+    // eslint-disable-next-line
+    const { host, protocol } = url.parse(to);
+    app.use(convert(proxy({
+      host: `${protocol}//${host}`,
+      jar: true,
+      match: from,
+      map: endpoint => endpoint.replace(from, to)
+    })));
+  });
 }
 
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(cookie());
 if (__DEVELOPMENT__) {
+  // Load assets from static
   app.use(serve(path.join(cwd, 'static')));
+  // Load dll.js from tmp
   app.use(serve(path.join(cwd, tmp)));
 } else {
-  // html-webpack-plugin will generate index.html in build for PWA
-  // Here set index page not index.html to keep SSR
-  app.use(serve(path.join(cwd, dist), { index: 'disable-index.html' }));
+  app.use(serve(path.join(cwd, dist)));
 }
 app.use(serverSideRender());
 

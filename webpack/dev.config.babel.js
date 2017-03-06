@@ -1,4 +1,4 @@
-import fs from 'fs';
+// import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
@@ -6,6 +6,8 @@ import StyleLintPlugin from 'stylelint-webpack-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import config from 'config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
+
+console.log('[npm serve]process.env.NODE_ENV: ', process.env.NODE_ENV);
 
 const {
   appConfig: {
@@ -27,59 +29,6 @@ const devPort = parseInt(port, 10) + 1;
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
 
-const babelrc = fs.readFileSync('./.babelrc');
-let babelrcObject = {};
-
-try {
-  babelrcObject = JSON.parse(babelrc);
-} catch (err) {
-  console.error('==>     ERROR: Error parsing your .babelrc.');
-  console.error(err);
-}
-
-const babelrcObjectDevelopment = (babelrcObject.env && babelrcObject.env.development) || {};
-
-// merge global and dev-only plugins
-let combinedPlugins = babelrcObject.plugins || [];
-combinedPlugins = combinedPlugins.concat(babelrcObjectDevelopment.plugins);
-
-const babelLoaderQuery = Object.assign(
-  {},
-  babelrcObjectDevelopment,
-  babelrcObject,
-  { plugins: combinedPlugins }
-);
-delete babelLoaderQuery.env;
-
-// Since we use .babelrc for client and server,
-// and we don't want HMR enabled on the server, we have to add
-// the babel plugin react-transform-hmr manually here.
-
-// make sure react-transform is enabled
-babelLoaderQuery.plugins = babelLoaderQuery.plugins || [];
-let reactTransform = null;
-for (let i = 0; i < babelLoaderQuery.plugins.length; ++i) {
-  const plugin = babelLoaderQuery.plugins[i];
-  if (Array.isArray(plugin) && plugin[0] === 'react-transform') {
-    reactTransform = plugin;
-  }
-}
-
-if (!reactTransform) {
-  reactTransform = ['react-transform', { transforms: [] }];
-  babelLoaderQuery.plugins.push(reactTransform);
-}
-
-if (!reactTransform[1] || !reactTransform[1].transforms) {
-  reactTransform[1] = Object.assign({}, reactTransform[1], { transforms: [] });
-}
-
-// make sure react-transform-hmr is enabled
-reactTransform[1].transforms.push({
-  transform: 'react-transform-hmr',
-  imports: ['react'],
-  locals: ['module']
-});
 
 const plugins = [
   // You can configure global / shared loader options with this plugin
@@ -114,6 +63,13 @@ const plugins = [
     __DEVELOPMENT__: true,
     // DISABLE redux-devtools HERE
     __DEVTOOLS__: true
+  }),
+
+  // The EnvironmentPlugin is a shorthand for using the DefinePlugin
+  // on process.env keys
+  // @see https://webpack.js.org/plugins/environment-plugin/
+  new webpack.EnvironmentPlugin({
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
   }),
 
   isomorphicToolsPlugin.development()
@@ -158,7 +114,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: babelLoaderQuery
+            // query: babelLoaderQuery
           },
           {
             loader: 'eslint-loader'
