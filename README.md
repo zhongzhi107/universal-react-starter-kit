@@ -9,7 +9,9 @@
 ## Getting Started
 
   ```
-  git clone git@gitlab.corp.qunar.com:fe/touch_client.git my-project
+  git clone git@gitlab.corp.qunar.com:fe/touch_client.git
+  cd touch_client
+  cp profiles/local.env .env
   yarn
   yarn run serve
   ```
