@@ -37,13 +37,13 @@ const render = (routes) => {
   });
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'local') {
   require('offline-plugin/runtime').install();
 }
 
 render(getRoutes(store));
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'local') {
   window.React = React; // enable debugger
 
   if (!dest || !dest.firstChild || !dest.firstChild.attributes || !dest.firstChild.attributes['data-react-checksum']) {
