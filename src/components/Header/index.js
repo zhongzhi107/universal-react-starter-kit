@@ -6,8 +6,8 @@ export default class Header extends Component {
   render() {
     return (
       <ul>
-        <li><IndexLink to="/" activeClassName={active}>Home</IndexLink></li>
-        <li><IndexLink to="/about" activeClassName={active}>About</IndexLink></li>
+        <li><IndexLink to="/?name=Joe" activeClassName={active}>Home</IndexLink></li>
+        <li><IndexLink to="/about?id=100" activeClassName={active}>About</IndexLink></li>
         <li><IndexLink to="/registry" activeClassName={active}>Registry</IndexLink></li>
       </ul>
     );
