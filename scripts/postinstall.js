@@ -13,7 +13,7 @@ if (isLocal) {
   console.log('npm run dll ... skipped');
 }
 
-console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
+console.log('[postinstall]process.env.NODE_ENV: ', process.env.NODE_ENV);
 
 // Copy .env
 const { NODE_ENV = 'local' } = process.env;

@@ -9,7 +9,7 @@ import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import config from 'config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+console.log('[npm build]process.env.NODE_ENV: ', process.env.NODE_ENV);
 
 const {
   appConfig: {
