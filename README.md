@@ -38,14 +38,16 @@
   ```
 
 ## 约定
-* 为了jenkins发布，把前、后端代码分别放在不同库里 [`touch_client`](http://gitlab.corp.qunar.com/fe/touch_client) [`touch_server`](http://gitlab.corp.qunar.com/mobile/touch_server)，但2个库的代码完全一样
-* 本地开发时，只需拉取 [touch_client](http://gitlab.corp.qunar.com/fe/touch_client) 工程，同时，需要为 [touch_server](http://gitlab.corp.qunar.com/mobile/touch_server)  建立远处链接
+* 为了jenkins发布，把前、后端代码分别放在不同库里 [touch_client](http://gitlab.corp.qunar.com/fe/touch_client) [touch_server](http://gitlab.corp.qunar.com/mobile/touch_server)，但2个库的代码完全一样
+* 本地开发时，只需拉取 [touch_client](http://gitlab.corp.qunar.com/fe/touch_client) 工程，同时，需要为 [touch_server](http://gitlab.corp.qunar.com/mobile/touch_server)  建立远程链接
+
   ```
   git remote add touch_server git@gitlab.corp.qunar.com:mobile/touch_server.git
   git fetch touch_server
   ```
 * 在做新功能开发时，需要为2个仓库新建同样名称的分支，分支名不一样在发布校验通不过
 * 提交代码时需要把修改同步提交到2个仓库
+
   ```
   git add .
   git commit -m 'xx'
