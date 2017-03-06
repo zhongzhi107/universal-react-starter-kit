@@ -56,3 +56,11 @@
   git push origin/分支名
   git push touch_server/分支名
   ```
+
+## 其他说明
+* .env中的所有环境变量都可以用过调用是传入参数来覆盖，如
+
+```
+# 覆盖.env文件中的 `NODE_ENV` 和 `ENABLE_PROXY`
+NODE_ENV=beta ENABLE_PROXY=false yarn run serve
+```
