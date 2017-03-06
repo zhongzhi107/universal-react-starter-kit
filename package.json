@@ -18,8 +18,8 @@
   "license": "MIT",
   "main": "bin/server.js",
   "scripts": {
-    "build": "better-npm-run build",
-    "postrelease": "better-npm-run postrelease",
+    "build": "bnr build",
+    "postrelease": "bnr postrelease",
     "postinstall": "babel-node ./scripts/postinstall.js",
     "lint": "eslint webpack src",
     "lint:style": "stylelint src/**/*.less",
@@ -28,8 +28,10 @@
     "start": "concurrently --kill-others -p \"[{name}]\" -n \"HTTP,API\" -c \"blue,magenta\" \"bnr http\" \"bnr api\"",
     "release": "standard-version",
     "test": "npm run lint && npm run lint:style",
-    "dll": "better-npm-run dll",
-    "asset": "better-npm-run asset"
+    "dll": "bnr dll",
+    "asset": "bnr asset",
+    "http": "bnr http",
+    "api": "bnr api"
   },
   "dependencies": {
     "autoprefixer": "^6.7.6",

@@ -1,4 +1,5 @@
 import path from 'path';
+import { existsSync } from 'fs';
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
@@ -76,11 +77,17 @@ const plugins = [
 
 if (commonChunks) {
   Object.keys(commonChunks).forEach((key) => {
+    const manifest = path.join(dll, `${key}-manifest.json`);
+    if (!existsSync(manifest)) {
+      console.error(`💔 💔 💔 Can not found ${manifest}`);
+      console.log('----> Please run `yarn run dll` first');
+      process.exit(1);
+    }
     plugins.push(
       new webpack.DllReferencePlugin({
         context,
         // eslint-disable-next-line
-        manifest: require(path.join(dll, `${key}-manifest.json`))
+        manifest: require(manifest)
       })
     );
   });
