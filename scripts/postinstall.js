@@ -10,7 +10,7 @@ const isLocal = !/^(l|APPVYR)-/.test(hostname);
 if (isLocal) {
   console.log(execSync('npm run dll').toString());
 } else {
-  console.log('npm run dll ... skipped');
+  console.log('[postinstall] npm run dll ... skipped');
 }
 
 // Copy .env

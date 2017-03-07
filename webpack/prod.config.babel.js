@@ -165,11 +165,13 @@ const plugins = [
       main: [
         // These assets don't have a chunk hash.
         // SW fetch them on every SW update.
-        // '/',
-        './',
+        // './',
         ':rest:'
-      ]
-    }
+      ],
+      additional: [':externals:']
+    },
+    externals: ['./'],
+    safeToUseOptionalCaches: true
   })
 ];
 
