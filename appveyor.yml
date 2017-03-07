@@ -9,20 +9,18 @@ matrix:
   fast_finish: true
 
 install:
-  # Install Node.js
-  #- ps: Install-Product node $env:nodejs_version
-
-  # Upgrade npm
-  - npm install -g npm
+  # Upgrade yarn
+  - npm install -g yarn
 
   # Output our current versions for debugging
   - node --version
   - npm --version
+  - hostname
 
   # Install our package dependencies
-  - npm install
+  - yarn
 
   # Install our current directory as a dependency of itself
-  - npm run test
+  - yarn test
 
 build: off
