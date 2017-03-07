@@ -14,7 +14,7 @@ install:
 
   # Output our current versions for debugging
   - node --version
-  - npm --version
+  - yarn --version
   - hostname
 
   # Install our package dependencies
