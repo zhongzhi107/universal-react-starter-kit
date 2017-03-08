@@ -21,6 +21,6 @@ install:
   - yarn
 
   # Install our current directory as a dependency of itself
-  - yarn test && yarn build
+  - yarn test
 
 build: off
