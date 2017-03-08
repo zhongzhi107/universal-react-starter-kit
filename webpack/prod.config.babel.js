@@ -158,24 +158,28 @@ const plugins = [
       },
       context: 'static'
     }
-  ]),
-
-  // Offline plugin (ServiceWorker, AppCache) for webpack
-  // @see https://github.com/NekR/offline-plugin
-  new OfflinePlugin({
-    caches: {
-      main: [
-        // These assets don't have a chunk hash.
-        // SW fetch them on every SW update.
-        // './',
-        ':rest:'
-      ],
-      additional: [':externals:']
-    },
-    externals: ['./'],
-    safeToUseOptionalCaches: true
-  })
+  ])
 ];
+
+if (process.env.NODE_ENV !== 'local') {
+  plugins.push(
+    // Offline plugin (ServiceWorker, AppCache) for webpack
+    // @see https://github.com/NekR/offline-plugin
+    new OfflinePlugin({
+      caches: {
+        main: [
+          // These assets don't have a chunk hash.
+          // SW fetch them on every SW update.
+          // './',
+          ':rest:'
+        ],
+        additional: [':externals:']
+      },
+      externals: ['./'],
+      safeToUseOptionalCaches: true
+    })
+  );
+}
 
 // Creates a separate file (known as a chunk),
 // consisting of common modules shared between multiple entry points

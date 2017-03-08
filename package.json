@@ -30,7 +30,7 @@
     "release": "standard-version",
     "postrelease": "bnr postrelease",
     "serve": "concurrently --kill-others -p \"[{name}]\" -n \"ASSET,HTTP,API\" -c \"blue,magenta,yellow\" \"bnr asset\" \"bnr http\" \"bnr api\"",
-    "serve:dist": "npm run build && npm start",
+    "serve:dist": "npm run build && NODE_ENV=production npm start",
     "sort-package-json": "sort-package-json",
     "start": "concurrently --kill-others -p \"[{name}]\" -n \"HTTP,API\" -c \"blue,magenta\" \"bnr http\" \"bnr api\"",
     "test": "npm run lint && npm run build"
@@ -98,6 +98,7 @@
     "image-webpack-loader": "^3.2.0",
     "koa": "^2.0.1",
     "koa-body": "^2.0.0",
+    "koa-compress": "^2.0.0",
     "koa-convert": "^1.2.0",
     "koa-cookie": "^1.0.0",
     "koa-json": "^2.0.2",
