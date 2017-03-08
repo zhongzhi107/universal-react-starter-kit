@@ -1,6 +1,7 @@
 import path from 'path';
 import url from 'url';
 import Koa from 'koa';
+import compress from 'koa-compress';
 import convert from 'koa-convert';
 import serve from 'koa-static';
 import proxy from 'koa-proxy';
@@ -51,6 +52,7 @@ if (__DEVELOPMENT__) {
   // Load dll.js from tmp
   app.use(serve(path.join(cwd, tmp)));
 } else {
+  app.use(convert(compress()));
   app.use(serve(path.join(cwd, dist)));
 }
 app.use(serverSideRender());
