@@ -40,6 +40,8 @@ const entry = {
 
 const { CDN_ROOT = '' } = process.env;
 
+console.log('[npm build] CDN_ROOT: ', CDN_ROOT);
+
 const output = {
   path: assetsPath,
   filename: `/${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,

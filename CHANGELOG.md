@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.6.0...v1.0.0) (2017-03-08)
+
+
+### Bug Fixes
+
+* **build:** Fix chunk file name output path ([145e039](https://github.com/zhongzhi107/universal-react-starter-kit/commit/145e039))
+* **build:** os.hostname syntax error ([89193dd](https://github.com/zhongzhi107/universal-react-starter-kit/commit/89193dd))
+* Enable dll plugin and check manifest file when yarn run serve ([07cf0aa](https://github.com/zhongzhi107/universal-react-starter-kit/commit/07cf0aa))
+* NPM install ([535c45a](https://github.com/zhongzhi107/universal-react-starter-kit/commit/535c45a))
+* Remove OfflinePlugin warning ([56ad7ce](https://github.com/zhongzhi107/universal-react-starter-kit/commit/56ad7ce))
+* Skip `npm run dll` on APPVYR-WIN ([1190d82](https://github.com/zhongzhi107/universal-react-starter-kit/commit/1190d82))
+* syntax error ([b44ae49](https://github.com/zhongzhi107/universal-react-starter-kit/commit/b44ae49))
+
+
+### Features
+
+* **build:** Add CDN_root environment variables for front-end and back-end resource deployment ([297b6c5](https://github.com/zhongzhi107/universal-react-starter-kit/commit/297b6c5))
+* Loads environment variables from .env for nodejs projects ([3abde65](https://github.com/zhongzhi107/universal-react-starter-kit/commit/3abde65))
+* Set proxy rules in config files ([0851a16](https://github.com/zhongzhi107/universal-react-starter-kit/commit/0851a16))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.5.1...v0.6.0) (2017-02-22)
 
