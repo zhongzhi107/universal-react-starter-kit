@@ -24,6 +24,7 @@
     "dll": "bnr dll",
     "http": "bnr http",
     "postinstall": "babel-node ./scripts/postinstall.js",
+    "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint webpack src",
     "lint:style": "stylelint src/**/*.less",
     "release": "standard-version",
@@ -32,7 +33,7 @@
     "serve:dist": "npm run build && npm start",
     "sort-package-json": "sort-package-json",
     "start": "concurrently --kill-others -p \"[{name}]\" -n \"HTTP,API\" -c \"blue,magenta\" \"bnr http\" \"bnr api\"",
-    "test": "npm run lint:js && npm run lint:style"
+    "test": "npm run lint && npm run build"
   },
   "dependencies": {
     "autoprefixer": "^6.7.6",
