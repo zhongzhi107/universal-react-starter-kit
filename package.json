@@ -64,7 +64,6 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "file-stream-rotator": "^0.1.0",
-    "history": "^3.3.0",
     "less": "^3.0.0-alpha.2",
     "less-loader": "^4.0.2",
     "offline-plugin": "^4.6.1",
