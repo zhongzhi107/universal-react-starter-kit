@@ -44,8 +44,8 @@ console.log('[npm build] CDN_ROOT: ', CDN_ROOT);
 
 const output = {
   path: assetsPath,
-  filename: `/${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
-  chunkFilename: `/${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
+  filename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
+  chunkFilename: `${jsOutputDirectory}/[name]-[chunkhash:${fileHashLength}].js`,
   publicPath: CDN_ROOT
 };
 
