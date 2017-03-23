@@ -2,25 +2,28 @@ version: "{build}"
 
 environment:
   matrix:
-    - nodejs_version: "6"
-    - nodejs_version: "7"
+    - nodejs_version: "7.6"
 
 matrix:
   fast_finish: true
 
+build: off
+
 install:
+  - ps: Install-Product node $env:nodejs_version x64
+
   # Upgrade yarn
   - npm install -g yarn
 
+  # Install our package dependencies
+  - yarn install
+
+test_script:
   # Output our current versions for debugging
   - node --version
+  - npm --version
   - yarn --version
   - hostname
 
-  # Install our package dependencies
-  - yarn
-
   # Install our current directory as a dependency of itself
   - yarn test
-
-build: off
