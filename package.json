@@ -126,10 +126,7 @@
   },
   "betterScripts": {
     "http": {
-      "command": "babel-node ./bin/server.js",
-      "env": {
-        "NODE_PATH": "./src"
-      }
+      "command": "babel-node ./bin/server.js"
     },
     "api": {
       "command": "babel-node ./bin/api.js",
@@ -138,22 +135,15 @@
       }
     },
     "asset": {
-      "command": "babel-node webpack/webpack-dev-server.js",
-      "env": {
-        "NODE_PATH": "./src"
-      }
+      "command": "babel-node webpack/webpack-dev-server.js"
     },
     "build": {
-      "command": "webpack --display-error-details --config webpack/prod.config.babel.js",
-      "env": {
-        "NODE_PATH": "./src"
-      }
+      "command": "webpack --display-error-details --config webpack/prod.config.babel.js"
     },
     "dll": {
       "command": "webpack --colors --display-error-details --config webpack/dll.config.babel.js",
       "env": {
-        "NODE_ENV": "local",
-        "NODE_PATH": "./src"
+        "NODE_ENV": "local"
       }
     },
     "postrelease": {
