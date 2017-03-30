@@ -3,8 +3,11 @@
 <h1>Universal React Starter Kit</h1>
 </div>
 
+<<<<<<< HEAD
 [test](api)
 
+=======
+>>>>>>> parent of d4be0a9... test
 Universal React Starter Kit is an universal web application framework using [koa](https://koajs.com/), [react](https://github.com/facebook/react), [redux](https://github.com/reactjs/redux) and [webpack](https://github.com/webpack/webpack).
 
 [![Build status](https://ci.appveyor.com/api/projects/status/xmypn7o4togy04c1?svg=true)](https://ci.appveyor.com/project/zhongzhi107/universal-react-starter-kit)
