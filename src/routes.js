@@ -43,6 +43,15 @@ export default (/* store */) => {
         }}
       />
 
+      <Route
+        path="chat"
+        getComponent={(nextState, callback) => {
+          require.ensure([], (require) => {
+            callback(null, require('containers/Chat'));
+          });
+        }}
+      />
+
       {/* Catch all route */}
       <Route
         path="*"

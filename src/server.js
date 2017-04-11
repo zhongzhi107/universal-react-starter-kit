@@ -1,5 +1,6 @@
 import path from 'path';
 import url from 'url';
+import http from 'http';
 import Koa from 'koa';
 import compress from 'koa-compress';
 import convert from 'koa-convert';
@@ -28,6 +29,7 @@ const accessLogStream = FileStreamRotator.getStream({
   verbose: false
 });
 const app = new Koa();
+let serverInstance = app;
 
 if (process.env.ENABLE_PROXY === 'true') {
   Object.keys(proxies).forEach((key) => {
@@ -57,7 +59,36 @@ if (__DEVELOPMENT__) {
 }
 app.use(serverSideRender());
 
-app.listen(port, (err) => {
+if (!__DISABLE_SOCKET__) {
+  const server = http.createServer(app.callback());
+  const ws = require('socket.io')(server);
+
+  console.log(`socketio starting ${new Date().toLocaleString()}`);
+
+  ws.on('connection', (socket) => {
+    console.log('-- connected --');
+    // node server time
+    socket.emit('heartbeat', Date.now());
+    setInterval(() => {
+      socket.emit('msg', {
+        id: Date.now(),
+        from: 'Robot',
+        text: `Hello, ${Date.now()}`
+      });
+    }, 5000);
+    socket.on('event', (data) => {
+      console.log('event: ', data);
+    });
+    socket.on('disconnect', () => {
+      console.log('disconnect');
+    });
+  });
+
+  serverInstance = server;
+}
+
+
+serverInstance.listen(port, (err) => {
   if (err) {
     console.error(`==> 😭  OMG!!! ${err}`);
   }

@@ -37,6 +37,21 @@ const render = (routes) => {
   });
 };
 
+
+if (!__DISABLE_SOCKET__) {
+  const socket = require('socket.io-client')();
+  socket.on('connect', () => {
+    console.log('-- client connect --');
+  });
+  socket.on('heartbeat', (data) => {
+    console.log('-- heartbeat --', data);
+  });
+  socket.on('disconnect', () => {
+    console.log('-- client disconnect --');
+  });
+  global.socket = socket;
+}
+
 console.log('-----------process.env.NODE_ENV,', process.env.NODE_ENV);
 
 if (process.env.NODE_ENV !== 'local') {
@@ -47,7 +62,7 @@ render(getRoutes(store));
 
 if (process.env.NODE_ENV !== 'production') {
   window.React = React; // enable debugger
-  console.log(!dest, !dest.firstChild, !dest.firstChild.attributes, !dest.firstChild.attributes['data-react-checksum']);
+  // eslint-disable-next-line
   if (!dest || !dest.firstChild || !dest.firstChild.attributes || !dest.firstChild.attributes['data-react-checksum']) {
     console.error(
       'Server-side React render was discarded.',

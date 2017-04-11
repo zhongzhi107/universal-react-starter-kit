@@ -40,7 +40,7 @@ export default class Test extends Component {
     return (
       <div className="container">
         <Helmet title="Test title" />
-        <h1>Test</h1>
+        <h1>Test11</h1>
         <Header />
         <div>{message}</div>
         <button>Click Here</button>

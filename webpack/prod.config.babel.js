@@ -15,7 +15,10 @@ const {
   appConfig: {
     paths: {
       dist
-    }
+    },
+    globals: {
+      __DISABLE_SOCKET__
+    },
   },
   buildConfig: {
     assetTypes,
@@ -122,6 +125,7 @@ const plugins = [
   new webpack.DefinePlugin({
     __CLIENT__: true,
     __SERVER__: false,
+    __DISABLE_SOCKET__,
     __DEVELOPMENT__: false,
     __DEVTOOLS__: false
   }),

@@ -39,7 +39,9 @@ module.exports =  {
     __CLIENT__: true,
     __SERVER__: true,
     __DISABLE_SSR__: true,
+    __DISABLE_SOCKET__: true,
     __DEVTOOLS__: true,
+    socket: true,
     webpackIsomorphicTools: true
   }
 };
