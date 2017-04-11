@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import cx from 'classnames';
-import Header from 'components/Header';
 import styles from './About.less';
 
 export default class About extends Component {
@@ -16,8 +15,11 @@ export default class About extends Component {
       <div className={cx(styles.about, 'container')}>
         <Helmet title="About" />
         <h1>About</h1>
+        <h2>Features in this page:</h2>
+        <ul>
+          <li>Get querystring from URL</li>
+        </ul>
         <p>query: {JSON.stringify(this.props.location.query)}</p>
-        <Header />
       </div>
     );
   }

@@ -25,7 +25,8 @@ const {
     commonChunks,
     fileHashLength,
     jsOutputDirectory,
-    cssOutputDirectory
+    cssOutputDirectory,
+    imageOutputDirectory
   }
 } = config;
 const copyAssetTypes = assetTypes.concat('json', 'txt');
@@ -88,6 +89,7 @@ const moduleConfig = {
         {
           loader: 'url-loader',
           query: {
+            name: `${imageOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`,
             limit: 10240
           }
         }

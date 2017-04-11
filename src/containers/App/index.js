@@ -5,6 +5,8 @@ import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-async-connect';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import { helmetConfig } from 'config';
+import Header from 'components/Header';
+import { pageContent } from 'containers/App/App.less';
 
 @asyncConnect([{
   key: 'AppInit',
@@ -58,9 +60,9 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <p>6</p>
         <Helmet {...helmetConfig.head} />
-        <div key="pageContent">
+        <Header />
+        <div className={pageContent} key="pageContent">
           {this.props.children}
         </div>
       </div>

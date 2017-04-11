@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import Header from 'components/Header';
 
 export default class Chat extends Component {
   static propTypes = {
@@ -36,7 +35,10 @@ export default class Chat extends Component {
       <div className="container">
         <Helmet title="Chat" />
         <h1>Websocket Test</h1>
-        <Header />
+        <h2>Features in this page:</h2>
+        <ul>
+          <li>Transfer data with socket</li>
+        </ul>
         <p>You can disable socket by modifying the configuration file: ` src/config/app.js `</p>
         {
           messages.length > 0 &&

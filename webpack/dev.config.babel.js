@@ -49,7 +49,7 @@ const plugins = [
     files: '**/*.less',
     syntax: 'less',
     // Disable style lint error terminating here
-    failOnError: true
+    failOnError: false
   }),
 
   // hot reload
