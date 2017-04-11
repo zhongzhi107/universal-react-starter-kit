@@ -15,6 +15,9 @@ const {
     port,
     paths: {
       tmp
+    },
+    globals: {
+      __DISABLE_SOCKET__
     }
   },
   buildConfig: {
@@ -61,6 +64,7 @@ const plugins = [
     __CLIENT__: true,
     __SERVER__: false,
     __DEVELOPMENT__: true,
+    __DISABLE_SOCKET__,
     // DISABLE redux-devtools HERE
     __DEVTOOLS__: true
   }),
