@@ -105,6 +105,7 @@ module.exports = {
   entry: {
     main: [
       `webpack-hot-middleware/client?path=http://${host}:${devPort}/__webpack_hmr`,
+      'react-hot-loader/patch',
       './src/client.js'
     ]
   },

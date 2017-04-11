@@ -58,6 +58,7 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
+        <p>6</p>
         <Helmet {...helmetConfig.head} />
         <div key="pageContent">
           {this.props.children}

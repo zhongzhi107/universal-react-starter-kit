@@ -8,6 +8,7 @@ import { applyRouterMiddleware, Router, browserHistory, match } from 'react-rout
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import { useScroll } from 'react-router-scroll';
+import { AppContainer } from 'react-hot-loader';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import getRoutes from './routes';
@@ -28,9 +29,11 @@ const render = (routes) => {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
     ReactDOM.render(
       <Provider store={store} key="provider">
-        <Router {...renderProps} render={renderRouter} history={history}>
-          {routes}
-        </Router>
+        <AppContainer>
+          <Router {...renderProps} render={renderRouter} history={history}>
+            {routes}
+          </Router>
+        </AppContainer>
       </Provider>,
       dest
     );
@@ -75,11 +78,18 @@ if (__DEVTOOLS__ && !window.devToolsExtension) {
   const DevTools = require('./containers/DevTools');
   ReactDOM.render(
     <Provider store={store} key="provider">
-      <div>
-        {/* component */}
-        <DevTools />
-      </div>
+      <AppContainer>
+        <div>
+          {/* component */}
+          <DevTools />
+        </div>
+      </AppContainer>
     </Provider>,
     dest
   );
+}
+
+if (module.hot) {
+  module.hot.accept();
+  // module.hot.accept('./containers/App/index.js', () => { console.log('-------'); });
 }
