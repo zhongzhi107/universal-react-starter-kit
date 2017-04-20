@@ -11,7 +11,7 @@ import logo from '../../../static/images/touch/logo_144.png';
   key: 'HomeInit',
   deferred: true,
   // eslint-disable-next-line
-  promise: ({store: {dispatch, getState}, location }) => {
+  promise: ({ store: {dispatch, getState}, location }) => {
     console.log('=====querystring:', location.query);
     const { name } = location.query;
     if (!isLoaded(getState())) {
