@@ -66,7 +66,7 @@ if (!__DISABLE_SOCKET__) {
   console.log(`socketio starting ${new Date().toLocaleString()}`);
 
   ws.on('connection', (socket) => {
-    console.log('-- connected --');
+    console.log('web socket connected');
     // node server time
     socket.emit('heartbeat', Date.now());
     setInterval(() => {
@@ -80,7 +80,7 @@ if (!__DISABLE_SOCKET__) {
       console.log('event: ', data);
     });
     socket.on('disconnect', () => {
-      console.log('disconnect');
+      console.log('web socket disconnect');
     });
   });
 
