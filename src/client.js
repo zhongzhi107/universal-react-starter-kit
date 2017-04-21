@@ -9,9 +9,16 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import { useScroll } from 'react-router-scroll';
 import { AppContainer } from 'react-hot-loader';
+import { appConfig } from 'config';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import getRoutes from './routes';
+
+const {
+  globals: {
+    __DISABLE_HMR__
+  }
+} = appConfig;
 
 const client = new ApiClient();
 const dest = document.getElementById('content');
@@ -27,16 +34,20 @@ const renderRouter = props => <ReduxAsyncConnect
 
 const render = (routes) => {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
-    ReactDOM.render(
-      <Provider store={store} key="provider">
-        <AppContainer>
-          <Router {...renderProps} render={renderRouter} history={history}>
-            {routes}
-          </Router>
-        </AppContainer>
-      </Provider>,
-      dest
+    let jsx = (
+      <Router {...renderProps} render={renderRouter} history={history}>
+        {routes}
+      </Router>
     );
+    if (!__DISABLE_HMR__) {
+      jsx = <AppContainer>{jsx}</AppContainer>;
+    }
+
+    ReactDOM.render((
+      <Provider store={store} key="provider">
+        {jsx}
+      </Provider>
+    ), dest);
   });
 };
 

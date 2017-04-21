@@ -5,7 +5,13 @@ import devMiddleware from './middleware/webpack-dev';
 import hotMiddleware from './middleware/webpack-hot';
 import webpackConfig from './dev.config.babel';
 
-const { host, port } = appConfig;
+const {
+  host,
+  port,
+  globals: {
+    __DISABLE_HMR__
+  }
+} = appConfig;
 const devPort = parseInt(port, 10) + 1;
 const serverOptions = {
   contentBase: `http://${host}:${devPort}`,
@@ -21,8 +27,10 @@ const serverOptions = {
 const compiler = webpack(webpackConfig);
 const app = new Koa();
 
-app.use(devMiddleware(compiler, serverOptions))
-  .use(hotMiddleware(compiler));
+app.use(devMiddleware(compiler, serverOptions));
+if (!__DISABLE_HMR__) {
+  app.use(hotMiddleware(compiler));
+}
 
 app.listen(devPort, (err) => {
   if (err) {
