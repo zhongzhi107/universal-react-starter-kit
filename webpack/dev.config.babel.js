@@ -40,8 +40,6 @@ if (!__DISABLE_HMR__) {
   );
 }
 
-console.log(entry);
-
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
 
