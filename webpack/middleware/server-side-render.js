@@ -113,13 +113,13 @@ export default function () {
             reject();
           } else if (renderProps) {
             try {
+              global.navigator = { userAgent: ctx.headers['user-agent'] };
               await proxyLoadOnServer({ ...renderProps, store, helpers: client });
               const component = (
                 <Provider store={store} key="provider">
                   <ReduxAsyncConnect {...renderProps} />
                 </Provider>
               );
-              global.navigator = { userAgent: ctx.headers['user-agent'] };
               const html = ReactDOM.renderToString(
                 <Html
                   assets={webpackIsomorphicTools.assets()}

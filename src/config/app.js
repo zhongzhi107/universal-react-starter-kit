@@ -30,6 +30,7 @@ export default {
     __DISABLE_SOCKET__: false,
     // DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
     __DISABLE_SSR__: false,
+    __DISABLE_HMR__: false,
     __DEVELOPMENT__: process.env.NODE_ENV === 'local'
   },
 

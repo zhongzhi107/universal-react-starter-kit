@@ -17,7 +17,8 @@ const {
       tmp
     },
     globals: {
-      __DISABLE_SOCKET__
+      __DISABLE_SOCKET__,
+      __DISABLE_HMR__
     }
   },
   buildConfig: {
@@ -29,9 +30,20 @@ const context = path.resolve(__dirname, '..');
 const dll = path.resolve(context, tmp);
 const devPort = parseInt(port, 10) + 1;
 
+const entry = {
+  main: ['./src/client.js']
+};
+if (!__DISABLE_HMR__) {
+  entry.main.unshift(
+    `webpack-hot-middleware/client?path=http://${host}:${devPort}/__webpack_hmr`,
+    'react-hot-loader/patch'
+  );
+}
+
+console.log(entry);
+
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
-
 
 const plugins = [
   // You can configure global / shared loader options with this plugin
@@ -102,13 +114,7 @@ module.exports = {
 
   devtool: false,
 
-  entry: {
-    main: [
-      `webpack-hot-middleware/client?path=http://${host}:${devPort}/__webpack_hmr`,
-      'react-hot-loader/patch',
-      './src/client.js'
-    ]
-  },
+  entry,
 
   output: {
     path: '/',
