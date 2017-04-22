@@ -6,7 +6,7 @@ import { asyncConnect } from 'redux-async-connect';
 import { initializeWithKey } from 'redux-form';
 import homeActions, { isLoaded, load as loadHome } from 'redux/modules/home';
 import styles from './Home.less';
-import logo from '../../../static/images/touch/logo_144.png';
+import logo144 from '../../../static/images/logo/144.png';
 
 @asyncConnect([{
   key: 'HomeInit',
@@ -42,7 +42,7 @@ export default class Home extends Component {
       <div className="container">
         <Helmet title="Home title" />
         <div className={styles.logo}>
-          <img src={logo} alt="Universal React Starter Kit" />
+          <img src={logo144} alt="Universal React Starter Kit" />
           <h1>Universal React Starter Kit</h1>
         </div>
         <h2>Features in this page:</h2>

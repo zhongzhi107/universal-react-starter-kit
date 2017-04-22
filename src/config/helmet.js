@@ -2,6 +2,11 @@
 // We make use of react-helmet to consume the values below.
 // @see https://github.com/nfl/react-helmet
 
+import logo16 from '../../static/images/logo/16.png';
+import logo32 from '../../static/images/logo/32.png';
+import logo144 from '../../static/images/logo/144.png';
+import logo192 from '../../static/images/logo/192.png';
+
 const projectName = 'universal-react-starter-kit';
 
 export default Object.freeze({
@@ -26,7 +31,7 @@ export default Object.freeze({
       { name: 'application-name', content: projectName },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
       { name: 'apple-mobile-web-app-title', content: projectName },
-      { name: 'msapplication-TileImage', content: '/images/touch/logo_144.png' },
+      { name: 'msapplication-TileImage', content: logo144 },
       { name: 'msapplication-TileColor', content: '#2196F3' }
     ],
     link: [
@@ -34,9 +39,9 @@ export default Object.freeze({
       // a manifest.json as well as a variety of icon types. This can be
       // tricky. Luckily there is a service to help you with this.
       // http://realfavicongenerator.net/
-      { rel: 'icon', type: 'image/png', href: '/images/favicon_32.png', sizes: '32x32' },
-      { rel: 'icon', type: 'image/png', href: '/images/favicon_16.png', sizes: '16x16' },
-      { rel: 'apple-touch-icon', href: '/images/touch/logo_192.png' },
+      { rel: 'icon', type: 'image/png', href: logo32, sizes: '32x32' },
+      { rel: 'icon', type: 'image/png', href: logo16, sizes: '16x16' },
+      { rel: 'apple-touch-icon', href: logo192 },
       // Make sure you update your manifest.json to match your application.
       { rel: 'manifest', href: '/manifest.json' }
     ],
