@@ -2,7 +2,7 @@ import Koa from 'koa';
 import webpack from 'webpack';
 import middleware from 'koa-webpack';
 import { appConfig } from 'config';
-import webpackConfig from './dev.config.babel';
+import webpackConfig from '../webpack/dev.config.babel';
 
 const { host, port } = appConfig;
 const devPort = parseInt(port, 10) + 1;
