@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import Header from 'components/Header';
 import RegistryForm from 'components/RegistryForm';
 
 export default class Registry extends Component {
@@ -14,7 +13,10 @@ export default class Registry extends Component {
       <div className="container">
         <Helmet title="Registry" />
         <h1>Registry</h1>
-        <Header />
+        <h2>Features in this page:</h2>
+        <ul>
+          <li>Form interactive with redux</li>
+        </ul>
         <RegistryForm onSubmit={this.handleSubmit} />
       </div>
     );

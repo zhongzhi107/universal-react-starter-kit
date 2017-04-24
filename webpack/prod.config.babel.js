@@ -1,7 +1,9 @@
 import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+// import CopyWebpackPlugin from 'copy-webpack-plugin';
+// import RevWebpackPlugin from 'packing-rev-webpack-plugin';
+import ReplaceHashWebpackPlugin from 'replace-hash-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
@@ -15,17 +17,22 @@ const {
   appConfig: {
     paths: {
       dist
-    }
+    },
+    globals: {
+      __DISABLE_SOCKET__
+    },
   },
   buildConfig: {
-    assetTypes,
+    // assetTypes,
     commonChunks,
     fileHashLength,
     jsOutputDirectory,
-    cssOutputDirectory
+    cssOutputDirectory,
+    imageOutputDirectory,
+    dataUrlLimit
   }
 } = config;
-const copyAssetTypes = assetTypes.concat('json', 'txt');
+// const copyAssetTypes = assetTypes.concat('json', 'txt');
 const context = path.resolve(__dirname, '..');
 const assetsPath = path.resolve(context, dist);
 
@@ -80,15 +87,19 @@ const moduleConfig = {
       })
     },
     {
+      test: /manifest.json$/,
+      loader: 'file-loader',
+      query: {
+        name: `[name]-[hash:${fileHashLength}].[ext]`
+      }
+    },
+    {
       test: isomorphicToolsPlugin.regular_expression('images'),
-      use: [
-        {
-          loader: 'url-loader',
-          query: {
-            limit: 10240
-          }
-        }
-      ]
+      loader: 'url-loader',
+      query: {
+        name: `${imageOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`,
+        limit: dataUrlLimit
+      }
     }
   ]
 };
@@ -122,6 +133,7 @@ const plugins = [
   new webpack.DefinePlugin({
     __CLIENT__: true,
     __SERVER__: false,
+    __DISABLE_SOCKET__,
     __DEVELOPMENT__: false,
     __DEVTOOLS__: false
   }),
@@ -149,16 +161,12 @@ const plugins = [
 
   isomorphicToolsPlugin,
 
-  // Copy files and directories in webpack
-  // @see https://github.com/kevlened/copy-webpack-plugin
-  new CopyWebpackPlugin([
-    {
-      from: {
-        glob: `**/*.{${copyAssetTypes.join(',')}}`
-      },
-      context: 'static'
-    }
-  ])
+  new ReplaceHashWebpackPlugin({
+    cwd: 'prd',
+    src: 'manifest*.json',
+    dest: 'prd',
+    exts: ['png']
+  })
 ];
 
 if (process.env.NODE_ENV !== 'local') {

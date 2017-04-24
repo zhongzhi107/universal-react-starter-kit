@@ -1,13 +1,12 @@
 import Koa from 'koa';
 import webpack from 'webpack';
+import middleware from 'koa-webpack';
 import { appConfig } from 'config';
-import devMiddleware from './middleware/webpack-dev';
-import hotMiddleware from './middleware/webpack-hot';
-import webpackConfig from './dev.config.babel';
+import webpackConfig from '../webpack/dev.config.babel';
 
 const { host, port } = appConfig;
 const devPort = parseInt(port, 10) + 1;
-const serverOptions = {
+const dev = {
   contentBase: `http://${host}:${devPort}`,
   quiet: true,
   noInfo: true,
@@ -20,9 +19,10 @@ const serverOptions = {
 };
 const compiler = webpack(webpackConfig);
 const app = new Koa();
-
-app.use(devMiddleware(compiler, serverOptions))
-  .use(hotMiddleware(compiler));
+app.use(middleware({
+  compiler,
+  dev
+}));
 
 app.listen(devPort, (err) => {
   if (err) {

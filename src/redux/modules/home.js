@@ -1,6 +1,6 @@
-const LOAD = 'test/LOAD';
-const LOAD_SUCCESS = 'test/LOAD_SUCCESS';
-const LOAD_FAIL = 'test/LOAD_FAIL';
+const LOAD = 'home/LOAD';
+const LOAD_SUCCESS = 'home/LOAD_SUCCESS';
+const LOAD_FAIL = 'home/LOAD_FAIL';
 
 const initialState = {
   loaded: false,
@@ -45,7 +45,7 @@ export default function reducer(state = initialState, action = {}) {
  * @return {Boolean}
  */
 export function isLoaded(globalState) {
-  return globalState.test && globalState.test.loaded;
+  return globalState.home && globalState.home.loaded;
 }
 
 /**
@@ -53,10 +53,10 @@ export function isLoaded(globalState) {
  * @return {Object}
  */
 export function load(name) {
-  console.log('--------test load(), name: ', name);
+  console.log('--------home load(), name: ', name);
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: client => client.get('/api/test', {
+    promise: client => client.get('/api/home', {
       // qureystring for GET method
       params: { name },
       // data for POST method

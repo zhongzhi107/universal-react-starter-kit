@@ -18,6 +18,9 @@ export default {
     'mp3'
   ],
 
+  // return a Data Url if the file is smaller than a byte limit
+  dataUrlLimit: 1,
+
   // Length of md5
   fileHashLength: 8,
 
@@ -26,6 +29,9 @@ export default {
 
   // Directory for style files output at building
   cssOutputDirectory: 'css',
+
+  // Directory for image files output at building
+  imageOutputDirectory: 'images',
 
   // Configuration settings for the development vendor DLL.  This will be created
   // by our development server and provides an improved dev experience

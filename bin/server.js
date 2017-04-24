@@ -15,6 +15,7 @@ global.__SERVER__ = true;
 // DISABLES SERVER SIDE RENDERING FOR ERROR DEBUGGING
 global.__DISABLE_SSR__ = globals.__DISABLE_SSR__;
 global.__DEVELOPMENT__ = globals.__DEVELOPMENT__;
+global.__DISABLE_SOCKET__ = globals.__DISABLE_SOCKET__;
 
 if (__DEVELOPMENT__) {
   piping({

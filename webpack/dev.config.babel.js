@@ -15,11 +15,15 @@ const {
     port,
     paths: {
       tmp
+    },
+    globals: {
+      __DISABLE_SOCKET__
     }
   },
   buildConfig: {
     commonChunks,
-    jsOutputDirectory
+    jsOutputDirectory,
+    dataUrlLimit
   }
 } = config;
 const context = path.resolve(__dirname, '..');
@@ -28,7 +32,6 @@ const devPort = parseInt(port, 10) + 1;
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const isomorphicToolsPlugin = new IsomorphicToolsPlugin(isomorphicToolsConfig);
-
 
 const plugins = [
   // You can configure global / shared loader options with this plugin
@@ -46,7 +49,7 @@ const plugins = [
     files: '**/*.less',
     syntax: 'less',
     // Disable style lint error terminating here
-    failOnError: true
+    failOnError: false
   }),
 
   // hot reload
@@ -61,6 +64,7 @@ const plugins = [
     __CLIENT__: true,
     __SERVER__: false,
     __DEVELOPMENT__: true,
+    __DISABLE_SOCKET__,
     // DISABLE redux-devtools HERE
     __DEVTOOLS__: true
   }),
@@ -101,6 +105,7 @@ module.exports = {
   entry: {
     main: [
       `webpack-hot-middleware/client?path=http://${host}:${devPort}/__webpack_hmr`,
+      'react-hot-loader/patch',
       './src/client.js'
     ]
   },
@@ -143,10 +148,18 @@ module.exports = {
         ]
       },
       {
+        test: /manifest.json$/,
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]'
+        }
+      },
+      {
         test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
         query: {
-          limit: 10240
+          name: '[name].[ext]',
+          limit: dataUrlLimit
         }
       }
     ]

@@ -14,7 +14,7 @@ export default (/* store */) => {
       <IndexRoute
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/Test'));
+            callback(null, require('containers/Home'));
           });
         }}
       />
@@ -35,10 +35,10 @@ export default (/* store */) => {
         }}
       />
       <Route
-        path="test"
+        path="chat"
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/Test'));
+            callback(null, require('containers/Chat'));
           });
         }}
       />
@@ -46,7 +46,7 @@ export default (/* store */) => {
       {/* Catch all route */}
       <Route
         path="*"
-        getComponent={NotFound}
+        component={NotFound}
         status={404}
       />
     </Route>
