@@ -22,7 +22,8 @@ const {
   },
   buildConfig: {
     commonChunks,
-    jsOutputDirectory
+    jsOutputDirectory,
+    dataUrlLimit
   }
 } = config;
 const context = path.resolve(__dirname, '..');
@@ -147,10 +148,18 @@ module.exports = {
         ]
       },
       {
+        test: /manifest.json$/,
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]'
+        }
+      },
+      {
         test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
         query: {
-          limit: 10240
+          name: '[name].[ext]',
+          limit: dataUrlLimit
         }
       }
     ]

@@ -2,6 +2,7 @@
 // We make use of react-helmet to consume the values below.
 // @see https://github.com/nfl/react-helmet
 
+/* eslint-disable */
 import logo16 from '../../static/images/16.png';
 import logo32 from '../../static/images/32.png';
 import logo128 from '../../static/images/128.png';
@@ -11,6 +12,7 @@ import logo192 from '../../static/images/192.png';
 import logo256 from '../../static/images/256.png';
 import logo512 from '../../static/images/512.png';
 import manifest from '../../static/manifest.json';
+/* eslint-enable */
 
 const projectName = 'universal-react-starter-kit';
 
@@ -47,8 +49,6 @@ export default Object.freeze({
       { rel: 'icon', type: 'image/png', href: logo32, sizes: '32x32' },
       { rel: 'icon', type: 'image/png', href: logo16, sizes: '16x16' },
       { rel: 'apple-touch-icon', href: logo192 },
-      // Make sure you update your manifest.json to match your application.
-      { rel: 'manifest', href: manifest }
     ],
     script: []
   }

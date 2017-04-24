@@ -25,6 +25,10 @@ export default {
       ],
       parser: WebpackIsomorphicToolsPlugin.url_loader_parser
     },
+    json: {
+      extensions: ['jsona'],
+      filter: module => module.name === './static/manifest.json',
+    },
     fonts: {
       extensions: [
         'woff',

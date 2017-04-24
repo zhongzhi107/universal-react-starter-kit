@@ -49,6 +49,8 @@ export default class Html extends Component {
       });
     }
 
+    const manifest = assets.assets['./static/manifest.json'];
+
     return (
       <html lang={head.htmlAttributes.toComponent().lang}>
         <head>
@@ -56,6 +58,7 @@ export default class Html extends Component {
           {head.title.toComponent()}
           {head.meta.toComponent()}
           {head.link.toComponent()}
+          {manifest ? <link rel="manifest" href={manifest} /> : null}
           {head.script.toComponent()}
 
           {/* styles (will be present only in production with webpack extract text plugin) */}
