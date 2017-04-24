@@ -6,7 +6,7 @@ import { asyncConnect } from 'redux-async-connect';
 import { initializeWithKey } from 'redux-form';
 import homeActions, { isLoaded, load as loadHome } from 'redux/modules/home';
 import styles from './Home.less';
-import logo144 from '../../../static/images/logo/144.png';
+import logo144 from '../../../static/images/144.png';
 
 @asyncConnect([{
   key: 'HomeInit',
