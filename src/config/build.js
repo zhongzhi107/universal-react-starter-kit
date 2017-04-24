@@ -18,6 +18,9 @@ export default {
     'mp3'
   ],
 
+  // return a Data Url if the file is smaller than a byte limit
+  dataUrlLimit: 1,
+
   // Length of md5
   fileHashLength: 8,
 
