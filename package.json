@@ -66,6 +66,7 @@
     "less": "^3.0.0-pre.4",
     "less-loader": "^4.0.3",
     "offline-plugin": "^4.6.2",
+    "packing-glob": "^1.0.1",
     "postcss-loader": "^1.3.3",
     "pretty-error": "^2.1.0",
     "prop-types": "^15.5.8",

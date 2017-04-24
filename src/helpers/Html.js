@@ -1,8 +1,10 @@
+import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
+import glob from 'packing-glob';
 import config from 'config';
 
 /**
@@ -37,6 +39,7 @@ export default class Html extends Component {
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
+    const cwd = process.cwd();
 
     // Insert dll javascript into page if environment is development
     if (__DEVELOPMENT__ && commonChunks && Object.keys(commonChunks).length > 0) {
@@ -49,8 +52,21 @@ export default class Html extends Component {
       });
     }
 
-    const manifest = assets.assets['./static/manifest.json'];
+    const manifestJSON = assets.assets['./static/manifest.json'];
+    const manifest = manifestJSON ? <link rel="manifest" href={manifestJSON} /> : null;
 
+    let styleBlock = null;
+    if (Object.keys(assets.styles).length === 0) {
+      styleBlock = (
+        <style
+          dangerouslySetInnerHTML={{
+            __html: glob('**/*.less', { cwd: path.resolve(cwd, 'src') })
+              // eslint-disable-next-line
+              .map(less => require(less)._style).join('\n')
+          }}
+        />
+      );
+    }
     return (
       <html lang={head.htmlAttributes.toComponent().lang}>
         <head>
@@ -58,7 +74,7 @@ export default class Html extends Component {
           {head.title.toComponent()}
           {head.meta.toComponent()}
           {head.link.toComponent()}
-          {manifest ? <link rel="manifest" href={manifest} /> : null}
+          {manifest}
           {head.script.toComponent()}
 
           {/* styles (will be present only in production with webpack extract text plugin) */}
@@ -80,7 +96,7 @@ export default class Html extends Component {
             in development mode. */}
           {/* ideally one could also include here the style
             for the current page (Home.scss, About.scss, etc) */}
-          { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{ __html: require('containers/App/App.less')._style }} /> : null }
+          {styleBlock}
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
