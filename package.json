@@ -53,7 +53,6 @@
     "better-npm-run": "^0.0.15",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.16",
-    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -84,6 +83,7 @@
     "redux-async-connect": "^1.0.0-rc4",
     "redux-form": "^6.6.2",
     "redux-thunk": "^2.2.0",
+    "replace-hash-webpack-plugin": "^2.2.0",
     "serialize-javascript": "^1.3.0",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
@@ -115,9 +115,7 @@
     "piping": "^1.0.0-rc.4",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
-    "redux-devtools-log-monitor": "^1.2.0",
-    "sort-package-json": "^1.6.0",
-    "standard-version": "^4.0.0"
+    "redux-devtools-log-monitor": "^1.2.0"
   },
   "engines": {
     "node": ">= 7.6.0",
