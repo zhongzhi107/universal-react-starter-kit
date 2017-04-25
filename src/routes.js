@@ -42,6 +42,14 @@ export default (/* store */) => {
           });
         }}
       />
+      <Route
+        path="touch"
+        getComponent={(nextState, callback) => {
+          require.ensure([], (require) => {
+            callback(null, require('containers/Touch'));
+          });
+        }}
+      />
 
       {/* Catch all route */}
       <Route

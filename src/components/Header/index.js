@@ -28,6 +28,11 @@ export default class Header extends Component {
             <FormattedMessage id="app.header.menu.about" />
           </IndexLink>
         </li>
+        <li>
+          <IndexLink to="/touch" activeClassName={active}>
+            <FormattedMessage id="app.header.menu.touch" />
+          </IndexLink>
+        </li>
       </ul>
     );
   }
