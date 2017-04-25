@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
-/**
- * NotFound Component
- */
-export default function NotFound() {
-  return (
-    <div className="container">
-      <Helmet title="Not found" />
-      <h1>Doh! 404!</h1>
-      <p>These are <em>not</em> the droids you are looking for!</p>
-    </div>
-  );
+class NotFound extends Component {
+  static propTypes = {
+    intl: intlShape.isRequired
+  };
+
+  render() {
+    // 使用 API 获取数据
+    const { intl } = this.props;
+    const title = intl.formatMessage({ id: '404.title' });
+
+    return (
+      <div>
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
+        <h1>
+          <FormattedMessage id="404.title" />
+        </h1>
+      </div>
+    );
+  }
 }
+
+export default injectIntl(NotFound);

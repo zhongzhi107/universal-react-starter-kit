@@ -67,8 +67,10 @@ export default class Html extends Component {
         />
       );
     }
+
+    /* eslint-disable */
     return (
-      <html lang={head.htmlAttributes.toComponent().lang}>
+      <html>
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}

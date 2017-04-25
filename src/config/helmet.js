@@ -14,20 +14,12 @@ import logo512 from '../../static/images/512.png';
 import manifest from '../../static/manifest.json';
 /* eslint-enable */
 
-const projectName = 'universal-react-starter-kit';
-
 export default Object.freeze({
-  title: projectName,
-  description: 'All the modern best practices in one example.',
   head: {
-    htmlAttributes: {
-      lang: 'zh'
-    },
-    titleTemplate: 'ursk: %s',
+    // titleTemplate: '%s_',
     meta: [
       // Default content encoding.
       { charset: 'utf-8' },
-      { name: 'description', content: 'All the modern best practices in one example.' },
       // This is important to signify your application is mobile responsive!
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       // Providing a theme color is good if you are doing a progressive
@@ -35,9 +27,9 @@ export default Object.freeze({
       { name: 'theme-color', content: '#2196F3' },
       { name: 'mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
-      { name: 'application-name', content: projectName },
+      { name: 'application-name', content: '' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
-      { name: 'apple-mobile-web-app-title', content: projectName },
+      { name: 'apple-mobile-web-app-title', content: '' },
       { name: 'msapplication-TileImage', content: logo144 },
       { name: 'msapplication-TileColor', content: '#2196F3' }
     ],
