@@ -33,6 +33,9 @@ export default {
   // Directory for image files output at building
   imageOutputDirectory: 'images',
 
+  // Directory for fonts output at building
+  fontOutputDirectory: 'fonts',
+
   // Configuration settings for the development vendor DLL.  This will be created
   // by our development server and provides an improved dev experience
   // by decreasing the number of modules that webpack needs to process
