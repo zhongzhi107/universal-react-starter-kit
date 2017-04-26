@@ -29,6 +29,7 @@ const {
     jsOutputDirectory,
     cssOutputDirectory,
     imageOutputDirectory,
+    fontOutputDirectory,
     dataUrlLimit
   }
 } = config;
@@ -74,33 +75,47 @@ const moduleConfig = {
         use: [
           {
             loader: 'css-loader',
-            query: {
+            options: {
               modules: true,
               importLoaders: 2,
               minimize: true,
-              localIdentName: '[local]___[hash:base64:5]'
+              localIdentName: '[local]___[hash:base64:5]',
+              sourceMap: false
             }
           },
           { loader: 'postcss-loader' },
-          { loader: 'less-loader' },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: false
+            }
+          },
         ]
       })
     },
     {
       test: /manifest.json$/,
       loader: 'file-loader',
-      query: {
+      options: {
         name: `[name]-[hash:${fileHashLength}].[ext]`
       }
     },
     {
       test: isomorphicToolsPlugin.regular_expression('images'),
       loader: 'url-loader',
-      query: {
+      options: {
         name: `${imageOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`,
         limit: dataUrlLimit
       }
+    },
+    {
+      test: isomorphicToolsPlugin.regular_expression('fonts'),
+      loader: 'file-loader',
+      options: {
+        name: `${fontOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`
+      }
     }
+
   ]
 };
 

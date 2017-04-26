@@ -85,7 +85,7 @@
     "redux-async-connect": "^1.0.0-rc4",
     "redux-form": "^6.6.2",
     "redux-thunk": "^2.2.0",
-    "replace-hash-webpack-plugin": "^2.2.0",
+    "replace-hash-webpack-plugin": "^2.3.0",
     "serialize-javascript": "^1.3.0",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",

@@ -16,7 +16,8 @@ const {
     },
   },
   buildConfig: {
-    commonChunks
+    commonChunks,
+    dataUrlLimit
   }
 } = config;
 const cwd = process.cwd();
@@ -48,7 +49,7 @@ export default {
         test: /\.css$/i,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', query: { importLoaders: 2 } },
+          { loader: 'css-loader', options: { importLoaders: 2 } },
           { loader: 'postcss-loader' }
         ]
       },
@@ -56,7 +57,7 @@ export default {
         test: /\.less$/i,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', query: { importLoaders: 2 } },
+          { loader: 'css-loader', options: { importLoaders: 2 } },
           { loader: 'postcss-loader' },
           { loader: 'less-loader' }
         ]
@@ -64,8 +65,8 @@ export default {
       {
         test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
-        query: {
-          limit: 10240
+        options: {
+          limit: dataUrlLimit
         }
       }
     ]

@@ -137,7 +137,8 @@ module.exports = {
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
-            query: {
+            options: {
+              // root: '/static',
               modules: true,
               importLoaders: 2,
               localIdentName: '[local]___[hash:base64:5]'
@@ -150,16 +151,23 @@ module.exports = {
       {
         test: /manifest.json$/,
         loader: 'file-loader',
-        query: {
+        options: {
           name: '[name].[ext]'
         }
       },
       {
         test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
-        query: {
+        options: {
           name: '[name].[ext]',
           limit: dataUrlLimit
+        }
+      },
+      {
+        test: isomorphicToolsPlugin.regular_expression('fonts'),
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
         }
       }
     ]
