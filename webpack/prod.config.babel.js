@@ -79,17 +79,11 @@ const moduleConfig = {
               modules: true,
               importLoaders: 2,
               minimize: true,
-              localIdentName: '[local]___[hash:base64:5]',
-              sourceMap: false
+              localIdentName: '[local]_[hash:base64:4]'
             }
           },
           { loader: 'postcss-loader' },
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: false
-            }
-          },
+          { loader: 'less-loader' },
         ]
       })
     },
@@ -219,7 +213,7 @@ if (commonChunks) {
 }
 
 const webpackConfig = {
-  devtool: 'source-map',
+  devtool: false,
   context,
   entry,
   output,

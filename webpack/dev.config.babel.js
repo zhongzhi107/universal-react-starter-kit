@@ -141,7 +141,7 @@ module.exports = {
               // root: '/static',
               modules: true,
               importLoaders: 2,
-              localIdentName: '[local]___[hash:base64:5]'
+              localIdentName: '[local]_[hash:base64:4]'
             }
           },
           { loader: 'postcss-loader' },
