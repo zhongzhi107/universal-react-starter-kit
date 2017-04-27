@@ -45,12 +45,12 @@ const plugins = [
   }),
 
   // Style lint
-  new StyleLintPlugin({
-    files: '**/*.less',
-    syntax: 'less',
-    // Disable style lint error terminating here
-    failOnError: false
-  }),
+  // new StyleLintPlugin({
+  //   files: '**/*.less',
+  //   syntax: 'less',
+  //   // Disable style lint error terminating here
+  //   failOnError: false
+  // }),
 
   // hot reload
   new webpack.HotModuleReplacementPlugin(),
@@ -138,7 +138,6 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              // root: '/static',
               modules: true,
               importLoaders: 2,
               localIdentName: '[local]_[hash:base64:4]'

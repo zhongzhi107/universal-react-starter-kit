@@ -1,10 +1,8 @@
-import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
-import glob from 'packing-glob';
 import config from 'config';
 
 /**
@@ -39,7 +37,6 @@ export default class Html extends Component {
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
-    const cwd = process.cwd();
 
     // Insert dll javascript into page if environment is development
     if (__DEVELOPMENT__ && commonChunks && Object.keys(commonChunks).length > 0) {
@@ -60,7 +57,7 @@ export default class Html extends Component {
       styleBlock = (
         <style
           dangerouslySetInnerHTML={{
-            __html: glob('**/*.less', { cwd: path.resolve(cwd, 'src') })
+            __html: ['containers/App/App.less']
               // eslint-disable-next-line
               .map(less => require(less)._style).join('\n')
           }}

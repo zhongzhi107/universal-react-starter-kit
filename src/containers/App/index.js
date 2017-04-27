@@ -6,12 +6,11 @@ import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-async-connect';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import helmetConfig from 'config/helmet';
-import Header from 'components/Header';
-import { page } from 'containers/App/App.less';
 import { IntlProvider, addLocaleData } from 'react-intl';
 // add the en locale data to intl
 // import enLocale from 'locale/en-US';
 import cnLocale from 'locale/zh-CN';
+import 'containers/App/App.less';
 
 const appLocale = cnLocale;
 addLocaleData(appLocale.data);
@@ -70,8 +69,7 @@ export default class App extends Component {
       <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
         <div id="app">
           <Helmet {...helmetConfig.head} />
-          <Header />
-          <div className={page} key="page">
+          <div className="page" key="page">
             {this.props.children}
           </div>
         </div>

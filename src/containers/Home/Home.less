@@ -1,3 +1,36 @@
+@font-face {
+  font-family: touch;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../../../static/fonts/home.ttf), url(../../../static/fonts/home.woff);
+}
+
+.home {
+  color: #000;
+
+  :global {
+    .download-banner {
+      padding: 4px;
+      height: 44px;
+      background-color: #474747;
+      color: #fff;
+    }
+
+    .close {
+      &::after {
+        font: 16px touch;
+        content: '\f3f3';
+        color: #fff;
+        display: inline-block;
+      }
+    }
+
+    .test {
+      display: flex;
+    }
+  }
+}
+
 .logo {
   text-align: center;
   padding-top: 20px;

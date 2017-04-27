@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-async-connect';
 import { initializeWithKey } from 'redux-form';
 import homeActions, { isLoaded, load as loadHome } from 'redux/modules/home';
-import styles from './Home.less';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import s from './Home.less';
 import logo144 from '../../../static/images/144.png';
 
 @asyncConnect([{
@@ -29,8 +30,9 @@ import logo144 from '../../../static/images/144.png';
   }),
   { ...homeActions, initializeWithKey }
 )
-export default class Home extends Component {
+class Home extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     data: PropTypes.shape({
       message: PropTypes.string.isRequired,
     }),
@@ -38,10 +40,25 @@ export default class Home extends Component {
 
   render() {
     const { data: { message } } = this.props;
+    const { intl } = this.props;
+    const title = intl.formatMessage({ id: 'home.title' });
+    const keywords = intl.formatMessage({ id: 'home.keywords' });
+    const description = intl.formatMessage({ id: 'home.description' });
+
     return (
-      <div className="container">
-        <Helmet title="Home title" />
-        <div className={styles.logo}>
+      <div className={s.home}>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="keywords" content={keywords} />
+          <meta name="description" content={description} />
+        </Helmet>
+        <h1>
+          <FormattedMessage id="home.title" />
+        </h1>
+        <div className="download-banner">
+          <i className="close" />
+        </div>
+        <div className={s.logo}>
           <img src={logo144} alt="Universal React Starter Kit" />
           <h1>Universal React Starter Kit</h1>
         </div>
@@ -58,3 +75,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default injectIntl(Home);
