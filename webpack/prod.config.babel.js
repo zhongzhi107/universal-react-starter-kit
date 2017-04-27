@@ -171,9 +171,9 @@ const plugins = [
   isomorphicToolsPlugin,
 
   new ReplaceHashWebpackPlugin({
-    cwd: 'prd',
+    cwd: dist,
     src: 'manifest*.json',
-    dest: 'prd',
+    dest: dist,
     exts: ['png']
   })
 ];
