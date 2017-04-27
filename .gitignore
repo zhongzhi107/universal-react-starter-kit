@@ -1,0 +1,16 @@
+.idea/
+.tmp/
+node_modules/
+dist/
+logs/
+prd/
+*.iml
+.env
+webpack-assets.json
+npm-debug.log
+yarn-error.log
+*.swp
+*.psd
+*.report.html
+.happypack
+gitlab.sh
