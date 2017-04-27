@@ -55,8 +55,9 @@ class Home extends Component {
         <h1>
           <FormattedMessage id="home.title" />
         </h1>
-        <div className="download-banner">
+        <div className="downloadBar">
           <i className="close" />
+          <i className="smallLogo" />
         </div>
         <div className={s.logo}>
           <img src={logo144} alt="Universal React Starter Kit" />

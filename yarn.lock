@@ -5797,9 +5797,9 @@ replace-ext@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-0.0.1.tgz#29bbd92078a739f0bcce2b4ee41e837953522924"
 
-replace-hash-webpack-plugin@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/replace-hash-webpack-plugin/-/replace-hash-webpack-plugin-2.2.0.tgz#7312375b11c090cbeced2c1eac3063f659343a20"
+replace-hash-webpack-plugin@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/replace-hash-webpack-plugin/-/replace-hash-webpack-plugin-2.3.1.tgz#7752d93dadf52163861accb25022181c5acb8256"
   dependencies:
     lodash.endswith "^4.1.0"
     mkdirp "^0.5.1"

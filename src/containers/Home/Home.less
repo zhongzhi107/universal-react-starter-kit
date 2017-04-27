@@ -1,5 +1,7 @@
+@import (once) '../App/variables.less';
+
 @font-face {
-  font-family: touch;
+  font-family: home;
   font-weight: normal;
   font-style: normal;
   src: url(../../../static/fonts/home.ttf), url(../../../static/fonts/home.woff);
@@ -9,7 +11,7 @@
   color: #000;
 
   :global {
-    .download-banner {
+    .downloadBar {
       padding: 4px;
       height: 44px;
       background-color: #474747;
@@ -18,15 +20,27 @@
 
     .close {
       &::after {
-        font: 16px touch;
+        font: 16px home;
         content: '\f3f3';
         color: #fff;
         display: inline-block;
+        vertical-align: top;
       }
     }
 
-    .test {
-      display: flex;
+    .smallLogo {
+      width: 36px;
+      height: 36px;
+      color: #fff;
+      border-radius: 4px;
+      background-color: @cyan;
+      display: inline-block;
+      vertical-align: top;
+
+      &::after {
+        font: 28px touch;
+        content: '\e045';
+      }
     }
   }
 }
