@@ -44,13 +44,12 @@ const plugins = [
     }
   }),
 
-  // Style lint
-  // new StyleLintPlugin({
-  //   files: '**/*.less',
-  //   syntax: 'less',
-  //   // Disable style lint error terminating here
-  //   failOnError: false
-  // }),
+  new StyleLintPlugin({
+    files: '**/*.less',
+    syntax: 'less',
+    // Disable style lint error terminating here
+    failOnError: false
+  }),
 
   // hot reload
   new webpack.HotModuleReplacementPlugin(),
