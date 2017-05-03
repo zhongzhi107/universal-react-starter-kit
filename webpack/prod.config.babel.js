@@ -96,7 +96,10 @@ const moduleConfig = {
       test: isomorphicToolsPlugin.regular_expression('images'),
       use: [
         {
-          loader: 'image-webpack-loader'
+          loader: 'image-webpack-loader',
+          options: {
+            bypassOnDebug: true
+          }
         },
         {
           loader: 'url-loader',

@@ -66,7 +66,7 @@ Really starter boilerplate with the most popular technologies:
   cd my-project
   cp profiles/local.env .env
   yarn
-  yarn run serve
+  yarn serve
   ```
 
   Or, if you aren't using [yarn](https://yarnpkg.com/):
@@ -93,14 +93,14 @@ Really starter boilerplate with the most popular technologies:
   yarn test
 
   # JavaScript && CSS lint
-  yarn run lint
+  yarn lint
 
   # CSS lint
-  yarn run lint:style
+  yarn lint:style
 
   # JavaScript lint
-  yarn run lint:js
+  yarn lint:js
 
   # Build "dll" bundles
-  yarn run dll
+  yarn dll
   ```
