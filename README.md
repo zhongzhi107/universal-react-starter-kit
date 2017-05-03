@@ -92,11 +92,14 @@ Really starter boilerplate with the most popular technologies:
   # Test
   yarn test
 
-  # JavaScript lint
+  # JavaScript && CSS lint
   yarn run lint
 
   # CSS lint
   yarn run lint:style
+
+  # JavaScript lint
+  yarn run lint:js
 
   # Build "dll" bundles
   yarn run dll
