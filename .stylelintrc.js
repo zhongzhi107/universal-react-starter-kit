@@ -1,10 +1,13 @@
 module.exports = {
-  extends: "stylelint-config-standard",
+  extends: 'stylelint-config-standard',
   rules: {
-    "at-rule-empty-line-before": null,
-    "selector-pseudo-class-no-unknown": [ true, {
-      ignorePseudoClasses: ["global"],
+    // 允许的最大嵌套层数
+    'max-nesting-depth': 3,
+
+    // 忽略 global 未知伪类错误
+    'selector-pseudo-class-no-unknown': [ true, {
+      ignorePseudoClasses: ['global'],
     } ]
   },
-  ignoreFiles: ["prd/**"]
+  ignoreFiles: ['prd/**']
 };
