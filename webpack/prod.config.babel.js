@@ -1,8 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
-// import CopyWebpackPlugin from 'copy-webpack-plugin';
-// import RevWebpackPlugin from 'packing-rev-webpack-plugin';
 import ReplaceHashWebpackPlugin from 'replace-hash-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
@@ -96,11 +94,18 @@ const moduleConfig = {
     },
     {
       test: isomorphicToolsPlugin.regular_expression('images'),
-      loader: 'url-loader',
-      options: {
-        name: `${imageOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`,
-        limit: dataUrlLimit
-      }
+      use: [
+        {
+          loader: 'image-webpack-loader'
+        },
+        {
+          loader: 'url-loader',
+          options: {
+            name: `${imageOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`,
+            limit: dataUrlLimit
+          }
+        }
+      ]
     },
     {
       test: isomorphicToolsPlugin.regular_expression('fonts'),
