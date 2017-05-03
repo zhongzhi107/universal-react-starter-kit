@@ -31,7 +31,6 @@
     "postrelease": "bnr postrelease",
     "serve": "concurrently --kill-others -p \"[{name}]\" -n \"ASSET,HTTP,API\" -c \"blue,magenta,yellow\" \"bnr asset\" \"npm run http\" \"bnr api\"",
     "serve:dist": "npm run build && NODE_ENV=production npm start",
-    "sort-package-json": "sort-package-json",
     "start": "concurrently --kill-others -p \"[{name}]\" -n \"HTTP,API\" -c \"blue,magenta\" \"bnr http\" \"bnr api\"",
     "test": "npm run lint && npm run build"
   },
