@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v1.0.0...v1.1.0) (2017-06-09)
+
+
+### Bug Fixes
+
+* Fix miss .env error if .env not exists ([020432c](https://github.com/zhongzhi107/universal-react-starter-kit/commit/020432c))
+* Fix unknown plugin "react-hot-loader/babel" ([ccc8ec5](https://github.com/zhongzhi107/universal-react-starter-kit/commit/ccc8ec5))
+* Fixed New Deprecation Warnings where react version >= 15.5 ([c53a97f](https://github.com/zhongzhi107/universal-react-starter-kit/commit/c53a97f))
+* Fixed not found favicon_16.png ([5945b4d](https://github.com/zhongzhi107/universal-react-starter-kit/commit/5945b4d))
+* Move NODE_PATH from .env to package.json ([baa6f87](https://github.com/zhongzhi107/universal-react-starter-kit/commit/baa6f87))
+
+
+### Features
+
+* Add socket support ([7624515](https://github.com/zhongzhi107/universal-react-starter-kit/commit/7624515))
+* Added all bootstrap styles into web page header,  it can smoothen the initial style flash on page load in development mode ([965dfcc](https://github.com/zhongzhi107/universal-react-starter-kit/commit/965dfcc))
+* Added config option  `__DISABLE_HMR__`, which can disable hot-module-replace ([0448eb3](https://github.com/zhongzhi107/universal-react-starter-kit/commit/0448eb3))
+* Added fontOutputDirectory build option ([ccdf5bf](https://github.com/zhongzhi107/universal-react-starter-kit/commit/ccdf5bf))
+* Compress middleware for Koa ([4a891e3](https://github.com/zhongzhi107/universal-react-starter-kit/commit/4a891e3))
+* Disabled file-loader date-url function ([5d901c1](https://github.com/zhongzhi107/universal-react-starter-kit/commit/5d901c1))
+* Disabled source map ([5cb6fd9](https://github.com/zhongzhi107/universal-react-starter-kit/commit/5cb6fd9))
+* react-hot-loader ([b5cd749](https://github.com/zhongzhi107/universal-react-starter-kit/commit/b5cd749))
+* **i18n:** Added react-intl to dependencies, which support ([d3eff91](https://github.com/zhongzhi107/universal-react-starter-kit/commit/d3eff91))
+* **styleLint:** Ignore Pseudo Classes : global which uses by CSS Module ([96e1cae](https://github.com/zhongzhi107/universal-react-starter-kit/commit/96e1cae))
+* Replaced webpack-hot-middleware & webpack-dev-middleware with koa-webpack, which has better compatibility ([38c9cf6](https://github.com/zhongzhi107/universal-react-starter-kit/commit/38c9cf6))
+* Rule.query only exists for compatibility reasons. Use Rule.options instead. ([661a1dc](https://github.com/zhongzhi107/universal-react-starter-kit/commit/661a1dc))
+* Updated manifest.json when it's content be changed ([ca7a63a](https://github.com/zhongzhi107/universal-react-starter-kit/commit/ca7a63a))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/zhongzhi107/universal-react-starter-kit/compare/v0.6.0...v1.0.0) (2017-03-08)
 
