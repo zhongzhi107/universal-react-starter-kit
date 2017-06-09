@@ -16,7 +16,7 @@ const appLocale = cnLocale;
 addLocaleData(appLocale.data);
 
 @asyncConnect([{
-  key: 'AppInit',
+  key: 'app-init',
   promise: ({ store: { dispatch, getState } }) => {
     const promises = [];
 

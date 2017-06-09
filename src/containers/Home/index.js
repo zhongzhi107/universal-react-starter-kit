@@ -10,7 +10,7 @@ import s from './Home.less';
 import logo144 from '../../../static/images/144.png';
 
 @asyncConnect([{
-  key: 'HomeInit',
+  key: 'home-init',
   deferred: true,
   // eslint-disable-next-line
   promise: ({ store: {dispatch, getState}, location }) => {
