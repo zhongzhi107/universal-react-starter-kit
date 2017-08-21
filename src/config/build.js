@@ -46,7 +46,22 @@ export default {
   commonChunks: {
     vendor: [
       'react',
-      'react-dom'
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'react-router-scroll',
+      'react-helmet',
+      'redux-async-connect',
+      'redux-form',
+      'prop-types',
+      'superagent',
+      'serialize-javascript',
+      'config',
+      'redux/create',
+      'helpers/ApiClient',
+      // 'containers/App',
+      // 'containers/NotFound'
     ]
   },
 
