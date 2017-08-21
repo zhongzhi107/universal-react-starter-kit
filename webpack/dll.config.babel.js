@@ -46,6 +46,16 @@ export default {
         ]
       },
       {
+        // https://github.com/reactjs/redux/pull/2059
+        test: /combineReducers\.js$/,
+        loader: 'string-replace-loader',
+        query: {
+          search: /\s*return 'Unexpected.*;/i,
+          replace: '/* Disable dynamic reducer warnings in dev environment. */',
+          flags: 'g'
+        }
+      },
+      {
         test: /\.css$/i,
         use: [
           { loader: 'style-loader' },
