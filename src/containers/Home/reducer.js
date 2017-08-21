@@ -14,7 +14,6 @@ const initialState = {
  * @return {Object}
  */
 export default function reducer(state = initialState, action = {}) {
-  console.log('----', action.type);
   switch (action.type) {
     case LOAD:
       return {

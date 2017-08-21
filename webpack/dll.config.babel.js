@@ -68,6 +68,13 @@ export default {
         options: {
           limit: dataUrlLimit
         }
+      },
+      {
+        test: isomorphicToolsPlugin.regular_expression('fonts'),
+        loader: 'url-loader',
+        options: {
+          limit: dataUrlLimit
+        }
       }
     ]
   },
@@ -83,7 +90,7 @@ export default {
       }
     }),
 
-    new CleanPlugin([dll], {
+    new CleanPlugin([dll, 'webpack-assets.json'], {
       root: cwd
     }),
 

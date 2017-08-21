@@ -9,8 +9,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import { useScroll } from 'react-router-scroll';
 import { AppContainer } from 'react-hot-loader';
-import createStore from './redux/create';
-import ApiClient from './helpers/ApiClient';
+import createStore from 'redux/create';
+import ApiClient from 'helpers/ApiClient';
 import getRoutes from './routes';
 
 const client = new ApiClient();
@@ -40,21 +40,6 @@ const render = (routes) => {
     ), dest);
   });
 };
-
-
-if (!__DISABLE_SOCKET__) {
-  const socket = require('socket.io-client')();
-  socket.on('connect', () => {
-    console.log('-- client connect --');
-  });
-  socket.on('heartbeat', (data) => {
-    console.log('-- heartbeat --', data);
-  });
-  socket.on('disconnect', () => {
-    console.log('-- client disconnect --');
-  });
-  global.socket = socket;
-}
 
 console.log('-----------process.env.NODE_ENV,', process.env.NODE_ENV);
 

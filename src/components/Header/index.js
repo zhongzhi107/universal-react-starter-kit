@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { IndexLink } from 'react-router';
-import { FormattedMessage } from 'react-intl';
 import { active } from 'containers/App/App.less';
 import header from './Header.less';
 
@@ -9,29 +8,16 @@ export default class Header extends Component {
     return (
       <ul className={header.nav}>
         <li>
-          <IndexLink to="/" activeClassName={active}>
-            <FormattedMessage id="app.header.menu.home" />
-          </IndexLink>
+          <IndexLink to="/" activeClassName={active}>首页</IndexLink>
         </li>
         <li>
-          <IndexLink to="/chat" activeClassName={active}>
-            <FormattedMessage id="app.header.menu.chat" />
-          </IndexLink>
+          <IndexLink to="/chat" activeClassName={active}>聊天室</IndexLink>
         </li>
         <li>
-          <IndexLink to="/registry" activeClassName={active}>
-            <FormattedMessage id="app.header.menu.form" />
-          </IndexLink>
+          <IndexLink to="/registry" activeClassName={active}>表单</IndexLink>
         </li>
         <li>
-          <IndexLink to="/about?id=100" activeClassName={active}>
-            <FormattedMessage id="app.header.menu.about" />
-          </IndexLink>
-        </li>
-        <li>
-          <IndexLink to="/touch" activeClassName={active}>
-            <FormattedMessage id="app.header.menu.touch" />
-          </IndexLink>
+          <IndexLink to="/about?id=100" activeClassName={active}>关于</IndexLink>
         </li>
       </ul>
     );

@@ -114,7 +114,8 @@ const moduleConfig = {
       test: isomorphicToolsPlugin.regular_expression('fonts'),
       loader: 'file-loader',
       options: {
-        name: `${fontOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`
+        name: `${fontOutputDirectory}/[name]-[hash:${fileHashLength}].[ext]`,
+        limit: dataUrlLimit
       }
     }
 
