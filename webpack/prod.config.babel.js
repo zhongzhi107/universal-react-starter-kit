@@ -4,7 +4,6 @@ import CleanPlugin from 'clean-webpack-plugin';
 import ReplaceHashWebpackPlugin from 'replace-hash-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
-import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import config from 'config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
@@ -15,9 +14,6 @@ const {
   appConfig: {
     paths: {
       dist
-    },
-    globals: {
-      __DISABLE_SOCKET__
     },
   },
   buildConfig: {
@@ -75,7 +71,7 @@ const moduleConfig = {
             loader: 'css-loader',
             options: {
               modules: true,
-              importLoaders: 2,
+              // importLoaders: 2,
               minimize: true,
               localIdentName: '[local]_[hash:base64:4]'
             }
@@ -123,16 +119,6 @@ const moduleConfig = {
 };
 
 const plugins = [
-  // You can configure global / shared loader options with this plugin
-  // and all loaders will receive these options.
-  // In the future this plugin may be removed.
-  // @see https://webpack.js.org/plugins/loader-options-plugin
-  new webpack.LoaderOptionsPlugin({
-    options: {
-      postcss: [autoprefixer]
-    }
-  }),
-
   // Remove/clean your build folder(s) before building
   // @see https://github.com/johnagan/clean-webpack-plugin
   new CleanPlugin([assetsPath], { root: context }),
@@ -151,7 +137,6 @@ const plugins = [
   new webpack.DefinePlugin({
     __CLIENT__: true,
     __SERVER__: false,
-    __DISABLE_SOCKET__,
     __DEVELOPMENT__: false,
     __DEVTOOLS__: false
   }),

@@ -11,9 +11,6 @@ const {
     paths: {
       tmp
     },
-    globals: {
-      __DISABLE_SOCKET__
-    },
   },
   buildConfig: {
     commonChunks,
@@ -50,7 +47,7 @@ export default {
         test: /combineReducers\.js$/,
         loader: 'string-replace-loader',
         query: {
-          search: /\s*return 'Unexpected.*;/i,
+          search: /\s*return 'Unexpected ' \+ \(unexpectedKeys\.length.*;/i,
           replace: '/* Disable dynamic reducer warnings in dev environment. */',
           flags: 'g'
         }
@@ -117,7 +114,6 @@ export default {
       __CLIENT__: true,
       __SERVER__: false,
       __DEVELOPMENT__: true,
-      __DISABLE_SOCKET__,
       // DISABLE redux-devtools HERE
       __DEVTOOLS__: true
     })
