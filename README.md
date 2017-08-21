@@ -55,8 +55,8 @@ Really starter boilerplate with the most popular technologies:
 
 ## Requirements
 
-* [node](https://nodejs.org/en/) >= 4.0
-* [npm](https://www.npmjs.com/) >= 3.0
+* [node](https://nodejs.org/en/) >= 7.6
+* [npm](https://www.npmjs.com/) >= 5.0
 
 
 ## Getting Started
