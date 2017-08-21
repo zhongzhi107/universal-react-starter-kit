@@ -25,7 +25,8 @@ module.exports = {
     'react/no-danger': 0,
     'react/prefer-stateless-function': 0,
     'react/require-default-props': 0,
-    'require-jsdoc': 2
+    'require-jsdoc': 2,
+    'jsx-a11y/href-no-hash': 0
   },
   plugins: ['react', 'import'],
   settings: {

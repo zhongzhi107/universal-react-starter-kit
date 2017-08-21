@@ -18,12 +18,14 @@ const dest = document.getElementById('content');
 const store = createStore(browserHistory, client, window.__data);
 const history = syncHistoryWithStore(browserHistory, store);
 
-const renderRouter = props => <ReduxAsyncConnect
-  {...props}
-  helpers={{ client }}
-  filter={item => !item.deferred}
-  render={applyRouterMiddleware(useScroll())}
-/>;
+const renderRouter = props => (
+  <ReduxAsyncConnect
+    {...props}
+    helpers={{ client }}
+    filter={item => !item.deferred}
+    render={applyRouterMiddleware(useScroll())}
+  />
+);
 
 const render = (routes) => {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
@@ -73,7 +75,7 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-if (__DEVTOOLS__ && !window.devToolsExtension) {
+if (__DEVTOOLS__ && !window.__REDUX_DEVTOOLS_EXTENSION__) {
   const DevTools = require('./containers/DevTools');
   ReactDOM.render(
     <Provider store={store} key="provider">

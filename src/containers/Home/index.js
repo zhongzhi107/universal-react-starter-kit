@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-async-connect';
-import { initializeWithKey } from 'redux-form';
-import homeActions, { isLoaded, load as loadHome } from 'redux/modules/home';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+// import reducer from '../../redux/modules/reducer';
+import homeActions, { isLoaded, load as loadHome } from './reducer';
 import s from './Home.less';
 import logo144 from '../../../static/images/144.png';
+import { injectAsyncReducer } from '../../redux/create';
 
 @asyncConnect([{
   key: 'home-init',
@@ -23,27 +23,27 @@ import logo144 from '../../../static/images/144.png';
 }])
 
 @connect(
-  state => ({
-    data: state.home.data,
-    error: state.home.error,
-    loading: state.home.loading
-  }),
-  { ...homeActions, initializeWithKey }
+  state => (state),
+  { ...homeActions }
 )
 class Home extends Component {
   static propTypes = {
-    intl: intlShape.isRequired,
-    data: PropTypes.shape({
-      message: PropTypes.string.isRequired,
-    }),
+    // intl: intlShape.isRequired,
+    // data: PropTypes.shape({
+    //   message: PropTypes.string.isRequired,
+    // }),
   };
 
+  // constructor(props) {
+  //   super(props);
+  // }
+
   render() {
-    const { data: { message } } = this.props;
-    const { intl } = this.props;
-    const title = intl.formatMessage({ id: 'home.title' });
-    const keywords = intl.formatMessage({ id: 'home.keywords' });
-    const description = intl.formatMessage({ id: 'home.description' });
+    // const { data: { message } } = this.props;
+    // const { intl } = this.props;
+    const title = 'home.title';
+    const keywords = 'home.keywords';
+    const description = 'home.description';
 
     return (
       <div className={s.home}>
@@ -52,13 +52,6 @@ class Home extends Component {
           <meta name="keywords" content={keywords} />
           <meta name="description" content={description} />
         </Helmet>
-        <h1>
-          <FormattedMessage id="home.title" />
-        </h1>
-        <div className="downloadBar">
-          <i className="close" />
-          <i className="smallLogo" />
-        </div>
         <div className={s.logo}>
           <img src={logo144} alt="Universal React Starter Kit" />
           <h1>Universal React Starter Kit</h1>
@@ -71,10 +64,16 @@ class Home extends Component {
             <li>HTTP.Request in server side</li>
           </ul>
         </ul>
-        <div>String from API server: {message}</div>
       </div>
     );
   }
 }
 
-export default injectIntl(Home);
+export default (store) => {
+  // store.replaceReducer(reducer('home', homeActions));
+  // const nodeEnv = process.env.NODE_ENV;
+  // process.env.NODE_ENV = 'production';
+  injectAsyncReducer(store, 'home', homeActions);
+  // process.env.NODE_ENV = nodeEnv;
+  return Home;
+};

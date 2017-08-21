@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import RegistryForm from 'components/RegistryForm';
 
 export default class Registry extends Component {
-
   handleSubmit = (values) => {
     console.log(values);
   }

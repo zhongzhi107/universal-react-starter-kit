@@ -16,7 +16,7 @@ export default (store) => {
       <IndexRoute
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/Home')(store));
+            callback(null, require('containers/Home'));
           });
         }}
       />
