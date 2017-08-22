@@ -12,6 +12,6 @@ body {
   padding: 0;
 }
 
-.page {
+:global .page {
   margin-top: 60px;
 }

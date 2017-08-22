@@ -9,14 +9,23 @@
   left: 0;
   width: 100%;
 
-  li {
+  & li {
     flex: 1;
     padding: 10px;
     list-style: none;
     text-align: center;
+
+    & a:link,
+    & a:visited {
+      color: #fff;
+    }
+
+    & a:hover {
+      color: #f00;
+    }
   }
 }
 
-.active {
+:global .active {
   color: red;
 }

@@ -3,6 +3,5 @@ module.exports = {
   plugins: {
     'postcss-cssnext': {},
     'postcss-normalize': {}
-    // 'postcss-css-reset': {}
   }
 };
