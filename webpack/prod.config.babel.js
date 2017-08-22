@@ -63,7 +63,7 @@ const moduleConfig = {
       loader: 'babel-loader'
     },
     {
-      test: /\.less$/,
+      test: /\.css$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [
@@ -76,8 +76,7 @@ const moduleConfig = {
               localIdentName: '[local]_[hash:base64:4]'
             }
           },
-          { loader: 'postcss-loader' },
-          { loader: 'less-loader' },
+          { loader: 'postcss-loader' }
         ]
       })
     },

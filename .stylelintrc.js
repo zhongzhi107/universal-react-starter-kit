@@ -7,7 +7,8 @@ module.exports = {
     // 忽略 global 未知伪类错误
     'selector-pseudo-class-no-unknown': [ true, {
       ignorePseudoClasses: ['global'],
-    } ]
+    } ],
+    ignoreAtRules: ['import-normalize']
   },
   ignoreFiles: ['prd/**']
 };

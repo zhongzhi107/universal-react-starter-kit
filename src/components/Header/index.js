@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { IndexLink } from 'react-router';
-import { active } from 'containers/App/App.less';
-import header from './Header.less';
+import { nav, active } from './Header.css';
 
 export default class Header extends Component {
   render() {
     return (
-      <ul className={header.nav}>
+      <ul className={nav}>
         <li>
           <IndexLink to="/" activeClassName={active}>首页</IndexLink>
         </li>

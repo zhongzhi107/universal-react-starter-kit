@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import cx from 'classnames';
-import styles from './About.less';
+import styles from './About.css';
 
 export default class About extends Component {
   static propTypes = {

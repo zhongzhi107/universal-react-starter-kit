@@ -7,7 +7,7 @@ import { asyncConnect } from 'redux-async-connect';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import helmetConfig from 'config/helmet';
 import Header from 'components/Header';
-import './App.less';
+import './App.css';
 
 @asyncConnect([{
   key: 'app-init',

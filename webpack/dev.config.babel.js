@@ -127,19 +127,18 @@ module.exports = {
         ]
       },
       {
-        test: /\.less$/,
+        test: /\.css$/,
         use: [
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {
               modules: true,
-              importLoaders: 2,
+              // importLoaders: 2,
               localIdentName: '[local]_[hash:base64:4]'
             }
           },
-          { loader: 'postcss-loader' },
-          { loader: 'less-loader' }
+          { loader: 'postcss-loader' }
         ]
       },
       {

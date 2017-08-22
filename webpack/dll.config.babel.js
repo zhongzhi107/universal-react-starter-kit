@@ -61,15 +61,6 @@ export default {
         ]
       },
       {
-        test: /\.less$/i,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { importLoaders: 2 } },
-          { loader: 'postcss-loader' },
-          { loader: 'less-loader' }
-        ]
-      },
-      {
         test: isomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
         options: {

@@ -57,7 +57,7 @@ export default class Html extends Component {
       styleBlock = (
         <style
           dangerouslySetInnerHTML={{
-            __html: ['containers/App/App.less']
+            __html: ['containers/App/App.css']
               // eslint-disable-next-line
               .map(less => require(less)._style).join('\n')
           }}

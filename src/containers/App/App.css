@@ -1,5 +1,4 @@
-@import (once) '../../../node_modules/normalize.css/normalize.css';
-@import (once) './variables.less';
+@import-normalize;
 
 @font-face {
   font-family: touch;

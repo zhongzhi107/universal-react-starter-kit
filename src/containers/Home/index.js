@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-async-connect';
 // import reducer from '../../redux/modules/reducer';
 import homeActions, { isLoaded, load as loadHome } from './reducer';
-import s from './Home.less';
+import s from './Home.css';
 import logo144 from '../../../static/images/144.png';
 import { injectAsyncReducer } from '../../redux/create';
 

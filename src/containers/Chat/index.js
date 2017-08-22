@@ -10,25 +10,6 @@ export default class Chat extends Component {
     messages: []
   };
 
-  componentDidMount() {
-    if (typeof socket === 'object') {
-      socket.on('msg', this.onMessageReceived);
-    }
-  }
-
-  componentWillUnmount() {
-    if (typeof socket === 'object') {
-      socket.removeListener('msg', this.onMessageReceived);
-    }
-  }
-
-  onMessageReceived = (data) => {
-    console.log(`Message from socket server: ${JSON.stringify(data)}`);
-    const messages = this.state.messages;
-    messages.push(data);
-    this.setState({ messages });
-  }
-
   render() {
     const { messages } = this.state;
     return (

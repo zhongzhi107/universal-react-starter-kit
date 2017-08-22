@@ -1,0 +1,12 @@
+.logo {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.abc {
+  display: flex;
+
+  .d {
+    color: white;
+  }
+}
