@@ -1,7 +1,7 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
-import App from 'containers/App';
-import NotFound from 'containers/NotFound';
+import App from './containers/App';
+import NotFound from './containers/NotFound';
 
 // eslint-disable-next-line
 export default (store) => {
@@ -16,7 +16,7 @@ export default (store) => {
       <IndexRoute
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/Home')(store));
+            callback(null, require('./containers/Home')(store));
           });
         }}
       />
@@ -24,7 +24,7 @@ export default (store) => {
         path="about"
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/About'));
+            callback(null, require('./containers/About'));
           });
         }}
       />
@@ -32,7 +32,7 @@ export default (store) => {
         path="registry"
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/Registry'));
+            callback(null, require('./containers/Registry'));
           });
         }}
       />
@@ -40,7 +40,7 @@ export default (store) => {
         path="chat"
         getComponent={(nextState, callback) => {
           require.ensure([], (require) => {
-            callback(null, require('containers/Chat'));
+            callback(null, require('./containers/Chat'));
           });
         }}
       />

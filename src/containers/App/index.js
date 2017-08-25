@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-async-connect';
-import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-import helmetConfig from 'config/helmet';
-import Header from 'components/Header';
+import { isLoaded as isAuthLoaded, load as loadAuth } from '../../redux/modules/auth';
+import helmetConfig from '../../config/helmet';
+import Header from '../../components/Header';
 import './App.css';
 
 @asyncConnect([{

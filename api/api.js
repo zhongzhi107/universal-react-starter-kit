@@ -4,8 +4,8 @@ import session from 'koa-session';
 import body from 'koa-body';
 import json from 'koa-json';
 import PrettyError from 'pretty-error';
-import { mapUrl } from 'utils/url';
-import * as actions from 'actions';
+import { mapUrl } from './utils/url';
+import * as actions from './actions';
 import { appConfig } from '../src/config';
 
 const { apiHost, apiPort, globals } = appConfig;

@@ -1,5 +1,5 @@
 import superagent from 'superagent';
-import { appConfig } from 'config';
+import { appConfig } from '../config';
 
 const { host, port } = appConfig;
 const methods = ['get', 'post', 'put', 'patch', 'del'];

@@ -9,8 +9,8 @@ import cookie from 'koa-cookie';
 import morgan from 'koa-morgan';
 import FileStreamRotator from 'file-stream-rotator';
 import mkdirp from 'mkdirp';
-import { appConfig } from 'config';
-import serverSideRender from 'middleware/server-side-render';
+import { appConfig } from './config';
+import serverSideRender from './middleware/server-side-render';
 import pkg from '../package.json';
 
 const { host, port, apiPort, proxies, paths: { logs, dist, tmp } } = appConfig;

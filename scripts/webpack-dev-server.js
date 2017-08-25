@@ -1,7 +1,9 @@
+/* eslint import/first: 0 */
+import '../dotenv';
 import Koa from 'koa';
 import webpack from 'webpack';
 import middleware from 'koa-webpack';
-import { appConfig } from 'config';
+import { appConfig } from '../src/config';
 import webpackConfig from '../webpack/dev.config.babel';
 
 const { host, port } = appConfig;

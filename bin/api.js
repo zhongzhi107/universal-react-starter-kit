@@ -1,5 +1,6 @@
 #!/usr/bin/env babel-node
-
+/* eslint import/first: 0 */
+import '../dotenv';
 import piping from 'piping';
 
 if (process.env.NODE_ENV !== 'production') {

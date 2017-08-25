@@ -6,10 +6,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { Provider } from 'react-redux';
-import createStore from 'redux/create';
-import ApiClient from 'helpers/ApiClient';
-import Html from 'helpers/Html';
-import getRoutes from 'routes';
+import createStore from '../redux/create';
+import ApiClient from '../helpers/ApiClient';
+import Html from '../helpers/Html';
+import getRoutes from '../routes';
 
 const pretty = new PrettyError();
 

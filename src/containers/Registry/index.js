@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import RegistryForm from 'components/RegistryForm';
+import RegistryForm from '../../components/RegistryForm';
 
 export default class Registry extends Component {
   handleSubmit = (values) => {

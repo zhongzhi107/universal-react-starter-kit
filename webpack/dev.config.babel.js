@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import config from 'config';
+import config from '../src/config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
 console.log('[npm serve]process.env.NODE_ENV: ', process.env.NODE_ENV);

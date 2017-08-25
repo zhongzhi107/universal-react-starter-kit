@@ -1,3 +1,5 @@
+/* eslint import/first: 0 */
+import '../dotenv';
 import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
@@ -5,7 +7,7 @@ import ReplaceHashWebpackPlugin from 'replace-hash-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import config from 'config';
+import config from '../src/config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
 console.log('[npm build]process.env.NODE_ENV: ', process.env.NODE_ENV);

@@ -9,8 +9,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import { useScroll } from 'react-router-scroll';
 import { AppContainer } from 'react-hot-loader';
-import createStore from 'redux/create';
-import ApiClient from 'helpers/ApiClient';
+import createStore from './redux/create';
+import ApiClient from './helpers/ApiClient';
 import getRoutes from './routes';
 
 const client = new ApiClient();

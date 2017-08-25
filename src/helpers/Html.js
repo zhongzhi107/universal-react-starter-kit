@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
-import config from 'config';
+import config from '../config';
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -57,7 +57,7 @@ export default class Html extends Component {
       styleBlock = (
         <style
           dangerouslySetInnerHTML={{
-            __html: ['containers/App/App.css']
+            __html: ['../containers/App/App.css']
               // eslint-disable-next-line
               .map(less => require(less)._style).join('\n')
           }}

@@ -1,9 +1,11 @@
+/* eslint import/first: 0 */
+import '../dotenv';
 import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import config from 'config';
+import config from '../src/config';
 import isomorphicToolsConfig from './webpack-isomorphic-tools';
 
 const {

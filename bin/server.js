@@ -1,9 +1,11 @@
 #!/usr/bin/env babel-node
 
+/* eslint import/first: 0 */
+import '../dotenv';
 import path from 'path';
 import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 import piping from 'piping';
-import { appConfig } from 'config';
+import { appConfig } from '../src/config';
 import witConfig from '../webpack/webpack-isomorphic-tools';
 
 /**
@@ -27,6 +29,7 @@ const root = path.resolve(__dirname, '..');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 global.webpackIsomorphicTools =
-new WebpackIsomorphicTools(witConfig).server(root, () => {
-  require('../src/server');
-});
+new WebpackIsomorphicTools(witConfig)
+  .server(root, () => {
+    require('../src/server');
+  });
