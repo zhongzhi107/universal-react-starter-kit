@@ -22,8 +22,8 @@ mkdirp.sync(logDir);
 
 // create a rotating write stream
 const accessLogStream = FileStreamRotator.getStream({
-  date_format: 'YYYYMMDD',
-  filename: `${logDir}/access-%DATE%.log`,
+  date_format: 'YYYY-MM-DD',
+  filename: `${logDir}/access_%DATE%.log`,
   frequency: 'daily',
   verbose: false
 });
