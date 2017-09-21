@@ -3,6 +3,8 @@ import '../dotenv';
 import path from 'path';
 import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import DelayCopyWebpackPlugin from 'delay-copy-webpack-plugin';
 import ReplaceHashWebpackPlugin from 'replace-hash-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
@@ -161,6 +163,41 @@ const plugins = [
       drop_console: true
     },
     comments: /^!/
+  }),
+
+  new CopyWebpackPlugin([{
+    from: {
+      glob: '**/*',
+      dot: true
+    },
+    to: 'server'
+  }], {
+    ignore: [
+      '.git/**',
+      '.tmp/**',
+      'api/**',
+      'docs/**',
+      'logs/**',
+      'node_modules/**',
+      'profiles/**',
+      'static/**',
+      'tools/**',
+      'webpack/**',
+      '.editorconfig',
+      '.eslintignore',
+      '.eslintrc.js',
+      '.gitignore',
+      '.stylelintrc.js',
+      '*.md',
+      'appveyor.yml',
+      'pom.xml'
+    ]
+  }),
+
+  new DelayCopyWebpackPlugin({
+    from: 'webpack-assets.json',
+    to: 'prd/server',
+    interval: 2000
   }),
 
   isomorphicToolsPlugin,
